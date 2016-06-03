@@ -5,10 +5,7 @@ table class="table table-hover"
     - @entities.each do |entity|
       tr.h4
         td = entity.parent_id
-        td = entity.name
-        td = entity.kind
-        td = entity.desc
-        td = entity.sort_order
+        td = entity.producer.sentence
         td = entity.deps
         td = link_to 'Show', entity
         td = link_to 'Edit', edit_entity_path(entity)

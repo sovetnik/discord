@@ -16,11 +16,9 @@ Metrics/LineLength:
 Style/Documentation:
   Exclude:
     - 'spec/**/*'
-    - 'test/**/*'
     - 'app/controllers/application_controller.rb'
     - 'app/helpers/application_helper.rb'
     - 'app/models/entity.rb'
     - 'config/application.rb'
-    - 'db/migrate/20160603123708_create_entities.rb'
-    - 'db/migrate/20160603124738_create_entity_hierarchies.rb'
+    - 'db/**/*
     - 'lib/application_responder.rb'

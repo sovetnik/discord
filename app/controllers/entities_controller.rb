@@ -1,5 +1,5 @@
 class EntitiesController < ApplicationController
-  before_action :set_entity, only: [:show, :edit, :update, :destroy]
+  before_action :set_entity, only: [:add_child, :show, :edit, :update, :destroy]
 
   # GET /entities
   # GET /entities.json
@@ -35,6 +35,11 @@ class EntitiesController < ApplicationController
         format.json { render json: @entity.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def add_child
+    @entity.add_child(entity_params.merge(parent: @entity))
+    redirect_to entity_path @entity.root? ? @entity : @entity.parent
   end
 
   # PATCH/PUT /entities/1

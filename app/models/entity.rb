@@ -4,6 +4,15 @@ class Entity < ActiveRecord::Base
   # #const
   KINDS = %w(Domain Model Context).freeze
 
+  ## define layer
+  def producer
+    kind.constantize.new self
+  end
+
+  def add_child params
+    child = children.create(params)
+  end
+
   ## Possible values to collection select & validation
   def parents_list
     Entity.all

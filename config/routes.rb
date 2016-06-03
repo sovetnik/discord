@@ -4,7 +4,9 @@ Rails.application.routes.draw do
 
   # You can have the root of your site routed with "root"
   root 'entities#index'
-  resources :entities
+  resources :entities do
+    post :add_child, on: :member
+  end
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

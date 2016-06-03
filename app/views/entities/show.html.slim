@@ -1,7 +1,7 @@
 p#notice = notice
 
 
-h3 = @entity.name
+h3 = @entity.producer.sentence
 p
   strong Parent:
   '
@@ -22,6 +22,14 @@ p
   strong Deps:
   '
   = @entity.deps
+  
+= bootstrap_form_for @entity.children.build, url: add_child_entity_path(@entity) do |form|
+  = form.collection_select :kind_num, @entity.kinds_list, :first, :last, label: 'kind'
+  = form.number_field :sort_order
+  = form.text_field :name
+  = form.text_area :desc
+  = form.text_field :deps
+  = form.submit 'Add a child'
 
 = link_to 'Edit', edit_entity_path(@entity)
 '|
