@@ -1,0 +1,28 @@
+p#notice = notice
+
+
+h3 = @entity.name
+p
+  strong Parent:
+  '
+  = @entity.parent&.name
+p
+  strong Sort order:
+  '
+  = @entity.sort_order
+p
+  strong Kind:
+  '
+  = @entity.kind
+p
+  strong Desc:
+  '
+  = @entity.desc
+p
+  strong Deps:
+  '
+  = @entity.deps
+
+= link_to 'Edit', edit_entity_path(@entity)
+'|
+= link_to 'Back', entities_path
