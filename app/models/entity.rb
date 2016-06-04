@@ -1,5 +1,5 @@
 class Entity < ActiveRecord::Base
-  acts_as_tree
+  acts_as_tree order: 'sort_order'
 
   # #const
   KINDS = %w(Domain Model Context).freeze
@@ -9,7 +9,7 @@ class Entity < ActiveRecord::Base
     kind.constantize.new self
   end
 
-  def add_child params
+  def add_child(params)
     child = children.create(params)
   end
 

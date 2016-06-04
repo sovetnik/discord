@@ -1,6 +1,6 @@
 class Context
   attr_reader :entity
-  def initialize entity
+  def initialize(entity)
     @entity = entity
   end
 

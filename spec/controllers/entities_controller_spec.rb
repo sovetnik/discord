@@ -19,141 +19,139 @@ require 'rails_helper'
 # that an instance is receiving a specific message.
 
 RSpec.describe EntitiesController, type: :controller do
-
   # This should return the minimal set of attributes required to create a valid
   # Entity. As you add validations to Entity, be sure to
   # adjust the attributes here as well.
-  let(:valid_attributes) {
-    skip("Add a hash of attributes valid for your model")
-  }
+  let(:valid_attributes) do
+    skip('Add a hash of attributes valid for your model')
+  end
 
-  let(:invalid_attributes) {
-    skip("Add a hash of attributes invalid for your model")
-  }
+  let(:invalid_attributes) do
+    skip('Add a hash of attributes invalid for your model')
+  end
 
   # This should return the minimal set of values that should be in the session
   # in order to pass any filters (e.g. authentication) defined in
   # EntitiesController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET #index" do
-    it "assigns all entities as @entities" do
+  describe 'GET #index' do
+    it 'assigns all entities as @entities' do
       entity = Entity.create! valid_attributes
       get :index, {}, valid_session
       expect(assigns(:entities)).to eq([entity])
     end
   end
 
-  describe "GET #show" do
-    it "assigns the requested entity as @entity" do
+  describe 'GET #show' do
+    it 'assigns the requested entity as @entity' do
       entity = Entity.create! valid_attributes
-      get :show, {:id => entity.to_param}, valid_session
+      get :show, { id: entity.to_param }, valid_session
       expect(assigns(:entity)).to eq(entity)
     end
   end
 
-  describe "GET #new" do
-    it "assigns a new entity as @entity" do
+  describe 'GET #new' do
+    it 'assigns a new entity as @entity' do
       get :new, {}, valid_session
       expect(assigns(:entity)).to be_a_new(Entity)
     end
   end
 
-  describe "GET #edit" do
-    it "assigns the requested entity as @entity" do
+  describe 'GET #edit' do
+    it 'assigns the requested entity as @entity' do
       entity = Entity.create! valid_attributes
-      get :edit, {:id => entity.to_param}, valid_session
+      get :edit, { id: entity.to_param }, valid_session
       expect(assigns(:entity)).to eq(entity)
     end
   end
 
-  describe "POST #create" do
-    context "with valid params" do
-      it "creates a new Entity" do
-        expect {
-          post :create, {:entity => valid_attributes}, valid_session
-        }.to change(Entity, :count).by(1)
+  describe 'POST #create' do
+    context 'with valid params' do
+      it 'creates a new Entity' do
+        expect do
+          post :create, { entity: valid_attributes }, valid_session
+        end.to change(Entity, :count).by(1)
       end
 
-      it "assigns a newly created entity as @entity" do
-        post :create, {:entity => valid_attributes}, valid_session
+      it 'assigns a newly created entity as @entity' do
+        post :create, { entity: valid_attributes }, valid_session
         expect(assigns(:entity)).to be_a(Entity)
         expect(assigns(:entity)).to be_persisted
       end
 
-      it "redirects to the created entity" do
-        post :create, {:entity => valid_attributes}, valid_session
+      it 'redirects to the created entity' do
+        post :create, { entity: valid_attributes }, valid_session
         expect(response).to redirect_to(Entity.last)
       end
     end
 
-    context "with invalid params" do
-      it "assigns a newly created but unsaved entity as @entity" do
-        post :create, {:entity => invalid_attributes}, valid_session
+    context 'with invalid params' do
+      it 'assigns a newly created but unsaved entity as @entity' do
+        post :create, { entity: invalid_attributes }, valid_session
         expect(assigns(:entity)).to be_a_new(Entity)
       end
 
       it "re-renders the 'new' template" do
-        post :create, {:entity => invalid_attributes}, valid_session
-        expect(response).to render_template("new")
+        post :create, { entity: invalid_attributes }, valid_session
+        expect(response).to render_template('new')
       end
     end
   end
 
-  describe "PUT #update" do
-    context "with valid params" do
-      let(:new_attributes) {
-        skip("Add a hash of attributes valid for your model")
-      }
-
-      it "updates the requested entity" do
-        entity = Entity.create! valid_attributes
-        put :update, {:id => entity.to_param, :entity => new_attributes}, valid_session
-        entity.reload
-        skip("Add assertions for updated state")
+  describe 'PUT #update' do
+    context 'with valid params' do
+      let(:new_attributes) do
+        skip('Add a hash of attributes valid for your model')
       end
 
-      it "assigns the requested entity as @entity" do
+      it 'updates the requested entity' do
         entity = Entity.create! valid_attributes
-        put :update, {:id => entity.to_param, :entity => valid_attributes}, valid_session
+        put :update, { id: entity.to_param, entity: new_attributes }, valid_session
+        entity.reload
+        skip('Add assertions for updated state')
+      end
+
+      it 'assigns the requested entity as @entity' do
+        entity = Entity.create! valid_attributes
+        put :update, { id: entity.to_param, entity: valid_attributes }, valid_session
         expect(assigns(:entity)).to eq(entity)
       end
 
-      it "redirects to the entity" do
+      it 'redirects to the entity' do
         entity = Entity.create! valid_attributes
-        put :update, {:id => entity.to_param, :entity => valid_attributes}, valid_session
+        put :update, { id: entity.to_param, entity: valid_attributes }, valid_session
         expect(response).to redirect_to(entity)
       end
     end
 
-    context "with invalid params" do
-      it "assigns the entity as @entity" do
+    context 'with invalid params' do
+      it 'assigns the entity as @entity' do
         entity = Entity.create! valid_attributes
-        put :update, {:id => entity.to_param, :entity => invalid_attributes}, valid_session
+        put :update, { id: entity.to_param, entity: invalid_attributes }, valid_session
         expect(assigns(:entity)).to eq(entity)
       end
 
       it "re-renders the 'edit' template" do
         entity = Entity.create! valid_attributes
-        put :update, {:id => entity.to_param, :entity => invalid_attributes}, valid_session
-        expect(response).to render_template("edit")
+        put :update, { id: entity.to_param, entity: invalid_attributes }, valid_session
+        expect(response).to render_template('edit')
       end
     end
   end
 
-  describe "DELETE #destroy" do
-    it "destroys the requested entity" do
+  describe 'DELETE #destroy' do
+    it 'destroys the requested entity' do
       entity = Entity.create! valid_attributes
-      expect {
-        delete :destroy, {:id => entity.to_param}, valid_session
-      }.to change(Entity, :count).by(-1)
+      expect do
+        delete :destroy, { id: entity.to_param }, valid_session
+      end.to change(Entity, :count).by(-1)
     end
 
-    it "redirects to the entities list" do
+    it 'redirects to the entities list' do
       entity = Entity.create! valid_attributes
-      delete :destroy, {:id => entity.to_param}, valid_session
+      delete :destroy, { id: entity.to_param }, valid_session
       expect(response).to redirect_to(entities_url)
     end
   end
-
 end

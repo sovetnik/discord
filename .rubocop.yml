@@ -11,14 +11,3 @@
 # URISchemes: http, https
 Metrics/LineLength:
   Max: 90
-
-# Offense count: 7
-Style/Documentation:
-  Exclude:
-    - 'spec/**/*'
-    - 'app/controllers/application_controller.rb'
-    - 'app/helpers/application_helper.rb'
-    - 'app/models/entity.rb'
-    - 'config/application.rb'
-    - 'db/**/*
-    - 'lib/application_responder.rb'

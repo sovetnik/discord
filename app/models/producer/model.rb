@@ -1,10 +1,10 @@
 class Model
-  attr_reader :entity
-  def initialize entity
-    @entity = entity
+  attr_reader :object
+  def initialize(object)
+    @object = object
   end
 
   def sentence
-    "where exist #{entity.name}"
+    "where exist #{object.name}"
   end
 end

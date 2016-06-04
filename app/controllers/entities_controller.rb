@@ -4,7 +4,7 @@ class EntitiesController < ApplicationController
   # GET /entities
   # GET /entities.json
   def index
-    @entities = Entity.all
+    @entities = Entity.roots
   end
 
   # GET /entities/1
@@ -67,13 +67,14 @@ class EntitiesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_entity
-      @entity = Entity.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def entity_params
-      params.require(:entity).permit(:parent_id, :sort_order, :kind_num, :name, :desc, :deps)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_entity
+    @entity = Entity.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def entity_params
+    params.require(:entity).permit(:parent_id, :sort_order, :kind_num, :name, :desc, :deps)
+  end
 end
