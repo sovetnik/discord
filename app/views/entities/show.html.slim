@@ -2,31 +2,30 @@ p#notice = notice
 
 
 h3 = @entity.producer.sentence
-p
-  strong Parent:
-  '
-  = @entity.parent&.name
-p
-  strong Sort order:
-  '
-  = @entity.sort_order
-p
-  strong Kind:
-  '
-  = @entity.kind
-p
-  strong Desc:
-  '
-  = @entity.desc
-p
-  strong Deps:
-  '
-  = @entity.deps
-
-= render 'shared/tree', entity: @entity  
-
-== render 'entities/child_form', entity: @entity
 
 = link_to 'Edit', edit_entity_path(@entity), class: 'btn btn-xs btn-warning'
 '|
 = link_to 'Back', entities_path, class: 'btn btn-xs btn-info'
+br
+strong Parent:
+'
+= @entity.parent&.name
+'
+strong Sort order:
+'
+= @entity.sort_order
+'
+strong Kind:
+'
+= @entity.kind
+'
+strong Desc:
+'
+= @entity.desc
+'
+strong Deps:
+'
+= @entity.deps
+
+= render 'tree', entity: @entity
+= render 'child_form', entity: @entity
