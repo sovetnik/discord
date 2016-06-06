@@ -1,8 +1,23 @@
 class Entity < ActiveRecord::Base
   acts_as_tree order: 'sort_order'
 
-  ##const
-  KINDS = %w(Domain Model Context).freeze
+  scope :layers, -> { where(kind: 'Layer') }
+
+  # #const
+  KINDS = %w(Domain Layer Model Context).freeze
+
+  ## interface
+  def sentence
+    [producer.sentence, layer_sentence].join ' '
+  end
+
+  def layer_sentence
+    "in #{layer.name}" if layer
+  end
+
+  def layer
+    Entity.layers.find(layer_id) if layer_id
+  end
 
   ## define layer
   def producer
@@ -20,6 +35,14 @@ class Entity < ActiveRecord::Base
 
   def kinds_list
     KINDS.map.with_index { |obj, index| [index, obj] }
+  end
+
+  def layers_list
+    list = []
+    list << parent.siblings.layers unless root?
+    list << siblings.layers unless root?
+    list << children.layers
+    list.flatten
   end
 
   def deps_list
