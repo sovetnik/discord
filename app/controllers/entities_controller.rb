@@ -1,4 +1,5 @@
 class EntitiesController < ApplicationController
+  before_action :authenticate_user!
   before_action :set_entity, only: [:add_child, :show, :edit, :update, :destroy]
 
   # GET /entities
@@ -75,6 +76,6 @@ class EntitiesController < ApplicationController
 
   # Never trust parameters from the scary internet, only allow the white list through.
   def entity_params
-    params.require(:entity).permit(:parent_id, :sort_order, :kind_num, :name, :desc, :deps)
+    params.require(:entity).permit(:parent_id, :layer_id, :sort_order, :kind_num, :name, :desc, :deps)
   end
 end
