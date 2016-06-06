@@ -1,11 +1,12 @@
 
 # paths
 app_path = '/var/www/discordian'
+socket_dir = "#{app_path}/current/tmp/sockets"
 working_directory "#{app_path}/current"
 pid "#{app_path}/current/tmp/pids/unicorn.pid"
 
 # listen
-listen '/tmp/unicorn.discordian.sock', backlog: 64
+listen "#{socket_dir}/unicorn.discordian.sock", backlog: 64
 
 # logging
 stderr_path 'log/unicorn.stderr.log'

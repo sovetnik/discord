@@ -1,7 +1,7 @@
 class Entity < ActiveRecord::Base
   acts_as_tree order: 'sort_order'
 
-  ##const
+  # #const
   KINDS = %w(Domain Model Context).freeze
 
   ## define layer

@@ -11,49 +11,47 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160605134845) do
-
+ActiveRecord::Schema.define(version: 20_160_605_134_845) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-  enable_extension "hstore"
+  enable_extension 'plpgsql'
+  enable_extension 'hstore'
 
-  create_table "entities", force: :cascade do |t|
-    t.integer  "parent_id"
-    t.integer  "sort_order"
-    t.string   "kind"
-    t.string   "name"
-    t.text     "desc"
-    t.hstore   "deps"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+  create_table 'entities', force: :cascade do |t|
+    t.integer  'parent_id'
+    t.integer  'sort_order'
+    t.string   'kind'
+    t.string   'name'
+    t.text     'desc'
+    t.hstore   'deps'
+    t.datetime 'created_at', null: false
+    t.datetime 'updated_at', null: false
   end
 
-  create_table "entity_hierarchies", id: false, force: :cascade do |t|
-    t.integer "ancestor_id",   null: false
-    t.integer "descendant_id", null: false
-    t.integer "generations",   null: false
+  create_table 'entity_hierarchies', id: false, force: :cascade do |t|
+    t.integer 'ancestor_id',   null: false
+    t.integer 'descendant_id', null: false
+    t.integer 'generations',   null: false
   end
 
-  add_index "entity_hierarchies", ["ancestor_id", "descendant_id", "generations"], name: "entity_anc_desc_idx", unique: true, using: :btree
-  add_index "entity_hierarchies", ["descendant_id"], name: "entity_desc_idx", using: :btree
+  add_index 'entity_hierarchies', %w(ancestor_id descendant_id generations), name: 'entity_anc_desc_idx', unique: true, using: :btree
+  add_index 'entity_hierarchies', ['descendant_id'], name: 'entity_desc_idx', using: :btree
 
-  create_table "users", force: :cascade do |t|
-    t.string   "name"
-    t.string   "email",                  default: "", null: false
-    t.string   "encrypted_password",     default: "", null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,  null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.inet     "current_sign_in_ip"
-    t.inet     "last_sign_in_ip"
-    t.datetime "created_at",                          null: false
-    t.datetime "updated_at",                          null: false
+  create_table 'users', force: :cascade do |t|
+    t.string   'name'
+    t.string   'email',                  default: '', null: false
+    t.string   'encrypted_password',     default: '', null: false
+    t.string   'reset_password_token'
+    t.datetime 'reset_password_sent_at'
+    t.datetime 'remember_created_at'
+    t.integer  'sign_in_count', default: 0, null: false
+    t.datetime 'current_sign_in_at'
+    t.datetime 'last_sign_in_at'
+    t.inet     'current_sign_in_ip'
+    t.inet     'last_sign_in_ip'
+    t.datetime 'created_at',                          null: false
+    t.datetime 'updated_at',                          null: false
   end
 
-  add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
-  add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
-
+  add_index 'users', ['email'], name: 'index_users_on_email', unique: true, using: :btree
+  add_index 'users', ['reset_password_token'], name: 'index_users_on_reset_password_token', unique: true, using: :btree
 end
