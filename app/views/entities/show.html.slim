@@ -9,10 +9,11 @@ h3 = @entity.sentence
 '|
 = link_to 'Back', entities_path, class: 'btn btn-xs btn-info'
 br
-strong Parent:
-'
-= @entity.parent&.name
-'
+- if @entity.parent_id
+  strong Parent:
+  '
+  = @entity.parent.name
+  '
 strong Sort order:
 '
 = @entity.sort_order
