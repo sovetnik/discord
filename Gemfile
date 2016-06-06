@@ -31,7 +31,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'responders'
 
 # Use Unicorn as the app server
-# gem 'unicorn'
+gem 'unicorn'
+gem 'dotenv-rails'
 gem 'thin'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
@@ -41,6 +42,16 @@ group :development, :test do
   gem 'byebug'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+
+  gem 'capistrano', require: false
+  gem 'capistrano-bundler', require: false
+  gem 'capistrano-rails', require: false
+  gem 'capistrano-rvm', require: false
+  # gem 'capistrano-sidekiq', require: false
+  gem 'capistrano3-unicorn', require: false
+  gem 'capistrano-rails-console', require: false
+  gem 'capistrano-rails-collection', require: false
+
   gem 'shoulda-matchers', require: false
 end
 
