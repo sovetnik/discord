@@ -6,9 +6,9 @@ h3 = @entity.sentence
 '|
 = link_to 'Back', entities_path, class: 'btn btn-xs btn-info'
 
-
-= render 'tabs', entity: @entity
+= render 'tree', entity: @entity
 
 = render 'info', entity: @entity
-= render 'tree', entity: @entity
+
+= render 'tabs', entity: @entity
 = render 'child_form', entity: @entity

@@ -14,10 +14,4 @@ h4 class='text-muted'Self and bros:
     = link_to mid.name, mid, class: 'btn btn-xs btn-warning'
     '
 br
-- unless entity.leaf?
-  h4 class='text-muted'Children:
-  - entity.children.each do |bottom|
-    = link_to bottom.name, bottom, class: 'btn btn-xs btn-warning'
-    '
-br
 br
