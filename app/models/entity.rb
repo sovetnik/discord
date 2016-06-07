@@ -21,7 +21,7 @@ class Entity < ActiveRecord::Base
 
   ## define layer
   def producer
-    kind.constantize.new self
+    Producer.new self
   end
 
   def add_child(params)
