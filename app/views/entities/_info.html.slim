@@ -1,0 +1,21 @@
+br
+- if entity.parent_id
+  strong Parent:
+  '
+  = entity.parent.name
+  '
+strong Sort order:
+'
+= entity.sort_order
+'
+strong Kind:
+'
+= entity.kind
+'
+strong Desc:
+'
+= entity.desc
+'
+strong Deps:
+'
+= entity.deps

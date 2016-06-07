@@ -2,33 +2,13 @@ p#notice = notice
 
 
 h3 = @entity.sentence
-- @entity.children.each do |child|
-  h4 = child.sentence
-
 = link_to 'Edit', edit_entity_path(@entity), class: 'btn btn-xs btn-warning'
 '|
 = link_to 'Back', entities_path, class: 'btn btn-xs btn-info'
-br
-- if @entity.parent_id
-  strong Parent:
-  '
-  = @entity.parent.name
-  '
-strong Sort order:
-'
-= @entity.sort_order
-'
-strong Kind:
-'
-= @entity.kind
-'
-strong Desc:
-'
-= @entity.desc
-'
-strong Deps:
-'
-= @entity.deps
 
+
+= render 'tabs', entity: @entity
+
+= render 'info', entity: @entity
 = render 'tree', entity: @entity
 = render 'child_form', entity: @entity
