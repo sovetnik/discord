@@ -1,17 +1,12 @@
 - unless entity.root?
-  h4 class='text-muted'Parent and bros:
+  h4 class='text-muted' Parent and bros:
   = link_to entity.parent.name, entity.parent, class: 'btn btn-xs btn-info'
   - if entity.parent.siblings.any?
     - entity.parent.siblings.each do |top|
       = link_to top.name, top, class: 'btn btn-xs btn-warning'
-      '
-  br
-h4 class='text-muted'Self and bros:
+h4 class='text-muted' Self and bros:
 = link_to entity.name, entity, class: 'btn btn-xs btn-success'
-'
 - if entity.siblings.any?
   - entity.siblings.each do |mid|
     = link_to mid.name, mid, class: 'btn btn-xs btn-warning'
-    '
-br
-br
+p

@@ -1,21 +1,11 @@
-br
 - if entity.parent_id
   strong Parent:
-  '
-  = entity.parent.name
-  '
+  '  #{entity.parent.name}
 strong Sort order:
-'
-= entity.sort_order
-'
+'  #{entity.sort_order}
 strong Kind:
-'
-= entity.kind
-'
+'  #{entity.kind}
 strong Desc:
-'
-= entity.desc
-'
+'  #{entity.desc}
 strong Deps:
-'
-= entity.deps
+'  #{entity.deps}
