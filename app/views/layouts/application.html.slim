@@ -8,25 +8,10 @@ html
     = javascript_include_tag "application", 'data-turbolinks-track' => true
 
   body
-    nav.navbar.navbar-default role="navigation"
+    = render "menu"
+    .container
       .row
-        .col-md-8.col-md-offset-2
-          /! Brand and toggle get grouped for better mobile display
-          .navbar-header
-            = link_to 'Discordia', root_path, class: 'navbar-brand'
-            .ul.nav.navbar-nav
-              li= link_to 'entities', entities_path
-            .ul.nav.navbar-nav
-              - if signed_in?
-                .button.pull-right= link_to "Log #{current_user.name} out!", destroy_user_session_path, method: :delete, 
-                class: 'btn btn-default navbar-btn'
-              -else
-                .button.pull-right= link_to 'Sign up now', new_user_registration_path, 
-                class: 'btn btn-info navbar-btn'
-                '
-                .button.pull-right= link_to 'Sign in', new_user_session_path, 
-                class: 'btn btn-success navbar-btn'
-    .col-md-4.col-md-offset-4
-      p class='notice' = notice
-      p class='alert' = alert
-      = yield
+        .col-md-4.col-md-offset-4
+          p class='notice' = notice
+          p class='alert' = alert
+          = yield

@@ -1,0 +1,26 @@
+nav.navbar.navbar-default.navbar-static-top
+  .container
+    .navbar-header
+      button.navbar-toggle.collapsed type="button" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar"
+        span.sr-only Toggle navigation
+        span.icon-bar
+        span.icon-bar
+        span.icon-bar
+    #navbar.collapse.navbar-collapse
+      = link_to 'Discordia', root_path, class: 'navbar-brand'
+      .ul.nav.navbar-nav
+        li= link_to 'entities', entities_path
+      .ul.nav.navbar-nav
+        - if signed_in?
+          .button.pull-right
+            = link_to "Log #{current_user.name} out!",
+              destroy_user_session_path, method: :delete,
+              class: 'btn btn-default navbar-btn'
+        -else
+          .button.pull-right
+            = link_to 'Sign up now', new_user_registration_path,
+              class: 'btn btn-info navbar-btn'
+          '
+          .button.pull-right
+            = link_to 'Sign in', new_user_session_path,
+              class: 'btn btn-success navbar-btn'

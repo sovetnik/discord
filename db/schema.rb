@@ -11,11 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-<<<<<<< HEAD
 ActiveRecord::Schema.define(version: 20_160_606_144_604) do
-=======
-ActiveRecord::Schema.define(version: 20_160_605_134_845) do
->>>>>>> master
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
   enable_extension 'hstore'
@@ -29,10 +25,7 @@ ActiveRecord::Schema.define(version: 20_160_605_134_845) do
     t.hstore   'deps'
     t.datetime 'created_at', null: false
     t.datetime 'updated_at', null: false
-<<<<<<< HEAD
     t.integer  'layer_id'
-=======
->>>>>>> master
   end
 
   create_table 'entity_hierarchies', id: false, force: :cascade do |t|

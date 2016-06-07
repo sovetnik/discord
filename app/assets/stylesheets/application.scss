@@ -16,10 +16,10 @@
  @import "bootstrap-sprockets";
  @import "bootstrap";
 
- html,
- body {
-   height: 100%;
-   background-color: #CCCCCC;
-   font-size: large
-   /* The html and body elements cannot have any padding or margin. */
- }
+body {
+  font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #333;
+  background-color: #fff;
+}
