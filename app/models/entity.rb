@@ -4,7 +4,7 @@ class Entity < ActiveRecord::Base
   scope :layers, -> { where(kind: 'Layer') }
 
   # #const
-  KINDS = %w(Domain Layer Model Context).freeze
+  KINDS = %w(Aught Domain Layer Model Context).freeze
 
   ## interface
   def sentence
