@@ -7,6 +7,21 @@ class Entity < ActiveRecord::Base
   KINDS = %w(Aught Domain Layer Model Context).freeze
 
   ## interface
+  def to_hash
+    { text: name,
+      href: "##{name.downcase}",
+      tags: [kind],
+      nodes: nodes }
+  end
+
+  def nodes
+    nodes_arr = []
+    children.each do |child|
+      nodes_arr << child.to_hash
+    end
+    nodes_arr
+  end
+
   def sentence
     [producer.sentence, layer_sentence].join ' '
   end

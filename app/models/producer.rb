@@ -1,5 +1,4 @@
 class Producer
-
   # at this time producer depends only on
   # kind attribute method of passed object
   # but concrete_producer depends on method #name on passed object

@@ -4,58 +4,8 @@
 
 <script type="text/javascript">
   $(function() {
-    var sampleData = [
-      {
-        text: 'Parent 1',
-        href: '#parent1',
-        tags: ['4'],
-        nodes: [
-          {
-            text: 'Child 1',
-            href: '#child1',
-            tags: ['2'],
-            nodes: [
-              {
-                text: 'Grandchild 1',
-                href: '#grandchild1',
-                tags: ['0']
-              },
-              {
-                text: 'Grandchild 2',
-                href: '#grandchild2',
-                tags: ['0']
-              }
-            ]
-          },
-          {
-            text: 'Child 2',
-            href: '#child2',
-            tags: ['0']
-          }
-        ]
-      },
-      {
-        text: 'Parent 2',
-        href: '#parent2',
-        tags: ['0']
-      },
-      {
-        text: 'Parent 3',
-        href: '#parent3',
-         tags: ['0']
-      },
-      {
-        text: 'Parent 4',
-        href: '#parent4',
-        tags: ['0']
-      },
-      {
-        text: 'Parent 5',
-        href: '#parent5'  ,
-        tags: ['0']
-      }
-    ];
-
+    var entity_data = "{\"text\":\"Discordia\",\"href\":\"#discordia\",\"tags\":[\"Domain\"],\"nodes\":[{\"text\":\"Chaos\",\"href\":\"#chaos\",\"tags\":[\"Context\"],\"nodes\":[{\"text\":\"Message\",\"href\":\"#message\",\"tags\":[\"Model\"],\"nodes\":[]},{\"text\":\"Story\",\"href\":\"#story\",\"tags\":[\"Aught\"],\"nodes\":[]}]},{\"text\":\"Discord\",\"href\":\"#discord\",\"tags\":[\"Context\"],\"nodes\":[]},{\"text\":\"Confusion\",\"href\":\"#confusion\",\"tags\":[\"Context\"],\"nodes\":[]},{\"text\":\"Bureaucracy\",\"href\":\"#bureaucracy\",\"tags\":[\"Domain\"],\"nodes\":[]},{\"text\":\"Aftermath\",\"href\":\"#aftermath\",\"tags\":[\"Domain\"],\"nodes\":[]},{\"text\":\"Interface\",\"href\":\"#interface\",\"tags\":[\"Layer\"],\"nodes\":[]}]}";
+    var entity_json = [$.parseJSON(entity_data)]
     var alternateData = [
       {
         text: 'Parent 1',
@@ -143,27 +93,12 @@
     ']';
 
     $('#treeview1').treeview({
-      data: sampleData
-    });
-
-    $('#treeview9').treeview({
-      expandIcon: "glyphicon glyphicon-stop",
-      collapseIcon: "glyphicon glyphicon-unchecked",
-      nodeIcon: "glyphicon glyphicon-user",
-      color: "yellow",
-      backColor: "purple",
-      onhoverColor: "orange",
-      borderColor: "red",
-      showBorder: false,
-      showTags: true,
-      highlightSelected: true,
-      selectedColor: "yellow",
-      selectedBackColor: "darkorange",
-      data: alternateData
+      data: entity_json
     });
 
     var $tree = $('#treeview12').treeview({
-      data: json
+      data: entity_json
     });
+    console.log($.parseJSON('<%= entity.to_hash.to_json %>'));
   });
 </script>
