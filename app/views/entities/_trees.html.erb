@@ -2,10 +2,9 @@
 
 <script type="text/javascript">
   $(function() {
-    var john = [<%= raw entity.to_hash.to_json %>];
-
+    var tree = [<%= raw render(partial: 'entities/tree', formats: :json, locals: {entity: entity}) %>];
     $('#treeview1').treeview({
-      data: john
+      data: tree
     });
   });
 </script>
