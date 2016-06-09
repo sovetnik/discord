@@ -1,11 +1,11 @@
-- if entity.parent_id
-  strong Parent:
-  '  #{entity.parent.name}
-strong Sort order:
+strong Order:
 '  #{entity.sort_order}
 strong Kind:
 '  #{entity.kind}
-strong Desc:
-'  #{entity.desc}
 strong Deps:
 '  #{entity.deps}
+= link_to 'Edit', edit_entity_path(entity), class: 'btn btn-xs btn-warning'
+'  |
+= link_to 'Back', entities_path, class: 'btn btn-xs btn-info'
+br
+br

@@ -1,9 +1,19 @@
-p#notice = notice
-h3 = @entity.sentence
-= render 'info', entity: @entity
-= link_to 'Edit', edit_entity_path(@entity), class: 'btn btn-xs btn-warning'
-'  |
-= link_to 'Back', entities_path, class: 'btn btn-xs btn-info'
-= render 'tree', entity: @entity
-= render 'tabs', entity: @entity
-= render 'child_form', entity: @entity
+.row
+  .col-md-3
+    h2 class='text-muted' Chaos
+    - @entity.root.descendants.stories.each do |story|
+      h4
+        = link_to story.name, story, class: 'btn btn-lg btn-link'
+      ' #{story.desc}
+        
+  .col-md-5
+    h2 class='text-muted' Discord
+    = render 'preamble', entity: @entity
+    = render 'info', entity: @entity
+    = render 'tree_nav_old', entity: @entity
+    = render 'tabs', entity: @entity
+    = render 'child_form', entity: @entity
+    
+  .col-md-3
+    h2 class='text-muted' Confusion
+    = render 'trees', entity: @entity.root

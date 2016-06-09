@@ -1,10 +1,10 @@
-class Aught
+class Inference
   attr_reader :entity
   def initialize(entity)
     @entity = entity
   end
 
   def sentence
-    "where pick out #{entity.name}"
+    "Should obey #{entity.name} and return described result"
   end
 end

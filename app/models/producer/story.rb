@@ -1,10 +1,10 @@
-class Aught
+class Story
   attr_reader :entity
   def initialize(entity)
     @entity = entity
   end
 
   def sentence
-    "where pick out #{entity.name}"
+    "and listen a story about #{entity.name}"
   end
 end

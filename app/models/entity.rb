@@ -2,9 +2,10 @@ class Entity < ActiveRecord::Base
   acts_as_tree order: 'sort_order'
 
   scope :layers, -> { where(kind: 'Layer') }
+  scope :stories, -> { where(kind: 'Story') }
 
   # #const
-  KINDS = %w(Aught Domain Layer Model Context).freeze
+  KINDS = %w(Aught Story Domain Layer Model Context Inference).freeze
 
   ## interface
   def sentence
