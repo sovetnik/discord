@@ -12,11 +12,11 @@ div class="tab-content"
     - unless entity.leaf?
       - entity.children.where(layer_id: nil).each do |child|
         h4
-          ' #{child.sentence} |
-          = link_to child.name, child, class: 'btn btn-xs btn-warning'
+          = link_to child.name, child, class: 'btn btn-link'
+          ' | #{child.sentence}
   - entity.layers_list.each do |layer|
     div class="tab-pane" role="tabpanel" id="layer_#{layer.id}"
       - entity.children.where(layer_id: layer.id).each do |child|
         h4
-          ' #{child.sentence} |
-          = link_to child.name, child, class: 'btn btn-xs btn-warning'
+          = link_to child.name, child, class: 'btn btn-link'
+          ' | #{child.sentence}
