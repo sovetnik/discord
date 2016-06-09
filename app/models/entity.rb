@@ -5,7 +5,7 @@ class Entity < ActiveRecord::Base
   scope :stories, -> { where(kind: 'Story') }
 
   # #const
-  KINDS = %w(Aught Story Domain Layer Model Context).freeze
+  KINDS = %w(Aught Story Domain Layer Model Context Inference).freeze
 
   ## interface
   def sentence
