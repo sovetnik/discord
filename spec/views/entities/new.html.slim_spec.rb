@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe 'entities/new', type: :view do
   before(:each) do
-    assign(:entity, Entity.new(
+    assign(:entity, Entity::Abstract.new(
                       parent_id: nil,
                       sort_order: 1,
                       kind_num: 1,

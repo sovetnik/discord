@@ -1,7 +1,7 @@
 - unless entity.root?
   - entity.ancestors.reverse.each do |anc|
     h5
-      = link_to anc.name, anc, class: 'btn btn-link'
+      = link_to anc.name, entity_path(anc), class: 'btn btn-link'
       ' | #{anc.sentence}
 h3 = entity.sentence
 p.strong Description:

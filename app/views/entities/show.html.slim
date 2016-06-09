@@ -3,7 +3,7 @@
     h2 class='text-muted' Chaos
     - @entity.root.descendants.stories.each do |story|
       h4
-        = link_to story.name, story, class: 'btn btn-lg btn-link'
+        = link_to story.name, entity_path(story), class: 'btn btn-lg btn-link'
       ' #{story.desc}
         
   .col-md-5
