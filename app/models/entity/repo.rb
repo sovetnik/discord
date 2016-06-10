@@ -15,13 +15,14 @@ module Entity
       self.class.layers.find(layer_id) if layer_id
     end
 
-    def deps_list
-      self.class.all
-    end
-
     ## kind num getter
     def kind_num
       Abstract::KINDS.rindex kind
+    end
+
+    ## kind setter by num
+    def kind_num=(num)
+      self.kind = Abstract::KINDS[num.to_i] || ''
     end
 
     def kinds_list
@@ -37,17 +38,16 @@ module Entity
       self.class.all
     end
 
+    def add_child(params)
+      children.create(params)
+    end
+
     def layers_list
       list = []
       list << parent.siblings.layers unless root?
       list << siblings.layers unless root?
       list << children.layers
       list.flatten
-    end
-
-    ## kind setter by num
-    def kind_num=(num)
-      self.kind = KINDS[num.to_i] || ''
     end
   end
 end

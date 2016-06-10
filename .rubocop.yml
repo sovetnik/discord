@@ -11,3 +11,12 @@
 # URISchemes: http, https
 Metrics/LineLength:
   Max: 90
+Style/Documentation:
+  Enabled: false
+Metrics/MethodLength:
+  Exclude:
+    - db/**/*
+Metrics/LineLength:
+  Exclude:
+    - config/**/*
+    - db/**/*

@@ -74,8 +74,8 @@ class EntitiesController < ApplicationController
     @entity = Entity::Repo.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  # FIXME need to set manually param obj name instead entity_repo
   def entity_params
-    params.require(:entity).permit(:parent_id, :layer_id, :sort_order, :kind_num, :name, :desc, :deps)
+    params.require(:entity_repo).permit(:parent_id, :layer_id, :sort_order, :kind_num, :name, :desc, :deps)
   end
 end

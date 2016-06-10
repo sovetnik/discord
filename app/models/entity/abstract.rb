@@ -24,9 +24,5 @@ module Entity
     def producer
       Producer.new self
     end
-
-    def add_child(params)
-      child = children.create(params)
-    end
   end
 end
