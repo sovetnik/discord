@@ -2,7 +2,7 @@
   - entity.ancestors.reverse.each do |anc|
     h5
       = link_to anc.name, entity_path(anc), class: 'btn btn-link'
-      ' | #{anc.sentence}
-h3 = entity.sentence
+      ' | #{anc.abstract.sentence}
+h3 = entity.abstract.sentence
 p.strong Description:
   '  #{entity.desc}

@@ -1,4 +1,4 @@
-= bootstrap_form_for @entity do |form|
+= bootstrap_form_for @entity, url: entity_path(@entity) do |form|
   = form.collection_select :parent_id, @entity.parents_list, :id, :name, 
     include_blank: 'root'
   = form.collection_select :layer_id, @entity.layers_list, :id, :name, 

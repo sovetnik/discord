@@ -13,10 +13,10 @@ div class="tab-content"
       - entity.children.where(layer_id: nil).each do |child|
         h4
           = link_to child.name, entity_path(child), class: 'btn btn-link'
-          ' | #{child.sentence}
+          ' | #{child.abstract.sentence}
   - entity.layers_list.each do |layer|
     div class="tab-pane" role="tabpanel" id="layer_#{layer.id}"
       - entity.children.where(layer_id: layer.id).each do |child|
         h4
           = link_to child.name, entity_path(child), class: 'btn btn-link'
-          ' | #{child.sentence}
+          ' | #{child.abstract.sentence}
