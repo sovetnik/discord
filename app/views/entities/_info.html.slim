@@ -3,8 +3,12 @@ strong Order:
 strong Kind:
 '  #{entity.kind}
 
-= link_to 'Edit', edit_entity_path(entity), class: 'btn btn-xs btn-warning'
+#toggle_child_form.btn.btn-xs.btn-success
+  'Add children 
 '  |
-= link_to 'Back', entities_path, class: 'btn btn-xs btn-info'
-br
+.btn.btn-xs.btn-warning
+  = link_to 'Edit', edit_entity_path(entity)
+'  |
+.btn.btn-xs.btn-warning
+  = link_to 'Back', entities_path
 br
