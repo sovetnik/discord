@@ -9,6 +9,7 @@ ul class="nav nav-tabs" role="tablist"
 
 div class="tab-content"
   div class="tab-pane active" role="tabpanel" id="abstract"
+    p Abstract level of entity
     - unless entity.leaf?
       - entity.children.where(layer_id: nil).each do |child|
         h4
@@ -16,6 +17,7 @@ div class="tab-content"
           ' | #{child.abstract.sentence}
   - entity.layers_list.each do |layer|
     div class="tab-pane" role="tabpanel" id="layer_#{layer.id}"
+      p = layer.desc
       - entity.children.where(layer_id: layer.id).each do |child|
         h4
           = link_to child.name, entity_path(child), class: 'btn btn-link'

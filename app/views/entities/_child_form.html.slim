@@ -6,7 +6,7 @@ h3 class='text-muted' Add child form
     include_blank: 'unlayered'
   = form.number_field :sort_order
   = form.text_field :name
-  = form.text_area :desc
+  = form.text_area :desc, label: 'description', placeholder: 'WTF??!'
   = form.submit 'Add a child'
   
 br
