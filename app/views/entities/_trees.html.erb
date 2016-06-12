@@ -1,10 +1,12 @@
-<div id="treeview1" class=""></div>
+<div id="tree" class="treeview"></div>
 
 <script type="text/javascript">
   $(function() {
     var tree = [<%= raw render(partial: 'entities/tree', formats: :json, locals: {entity: entity}) %>];
-    $('#treeview1').treeview({
-      data: tree
+    $('#tree').treeview({
+      data: tree,
+      showTags: true,
+      enableLinks: true
     });
   });
 </script>

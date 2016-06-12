@@ -1,14 +1,14 @@
 ul class="nav nav-tabs" role="tablist"
   li.active role="presentation"
-    a href="#other" aria-controls="profile" role="tab" data-toggle="tab"
-      'Default
+    a href="#abstract" aria-controls="profile" role="tab" data-toggle="tab"
+      'Abstract
   - entity.layers_list.each do |layer|
     li role="presentation"
       a href="#layer_#{layer.id}" aria-controls="profile" role="tab" data-toggle="tab"
         = layer.name
 
 div class="tab-content"
-  div class="tab-pane active" role="tabpanel" id="other"
+  div class="tab-pane active" role="tabpanel" id="abstract"
     - unless entity.leaf?
       - entity.children.where(layer_id: nil).each do |child|
         h4

@@ -29,7 +29,7 @@ class EntitiesController < ApplicationController
 
     respond_to do |format|
       if @entity.save
-        format.html { redirect_to @entity, notice: 'Entity was successfully created.' }
+        format.html { redirect_to entity_url(@entity), notice: 'Entity was successfully created.' }
         format.json { render :show, status: :created, location: @entity }
       else
         format.html { render :new }
@@ -48,7 +48,7 @@ class EntitiesController < ApplicationController
   def update
     respond_to do |format|
       if @entity.update(entity_params)
-        format.html { redirect_to @entity, notice: 'Entity was successfully updated.' }
+        format.html { redirect_to entity_url(@entity), notice: 'Entity was successfully updated.' }
         format.json { render :show, status: :ok, location: @entity }
       else
         format.html { render :edit }
