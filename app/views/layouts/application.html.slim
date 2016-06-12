@@ -11,7 +11,6 @@ html
     = render "menu"
     .container
       .row
-        .col-md-offset-1
-          p class='notice' = notice
-          p class='alert' = alert
-          = yield
+        p class='notice' = notice
+        p class='alert' = alert
+        = yield

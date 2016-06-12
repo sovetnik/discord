@@ -1,8 +1,5 @@
 - unless entity.root?
   - entity.ancestors.reverse.each do |anc|
-    h5
-      = link_to anc.name, anc, class: 'btn btn-link'
-      ' | #{anc.sentence}
-h3 = entity.sentence
-p.strong Description:
-  '  #{entity.desc}
+    p = anc.abstract.sentence
+h3 = entity.abstract.sentence
+p = entity.desc

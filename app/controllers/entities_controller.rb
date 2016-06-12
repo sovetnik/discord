@@ -5,7 +5,7 @@ class EntitiesController < ApplicationController
   # GET /entities
   # GET /entities.json
   def index
-    @entities = Entity.roots
+    @entities = Entity::Repo.roots
   end
 
   # GET /entities/1
@@ -15,7 +15,7 @@ class EntitiesController < ApplicationController
 
   # GET /entities/new
   def new
-    @entity = Entity.new
+    @entity = Entity::Repo.new
   end
 
   # GET /entities/1/edit
@@ -25,11 +25,11 @@ class EntitiesController < ApplicationController
   # POST /entities
   # POST /entities.json
   def create
-    @entity = Entity.new(entity_params)
+    @entity = Entity::Repo.new(entity_params)
 
     respond_to do |format|
       if @entity.save
-        format.html { redirect_to @entity, notice: 'Entity was successfully created.' }
+        format.html { redirect_to entity_url(@entity), notice: 'Entity was successfully created.' }
         format.json { render :show, status: :created, location: @entity }
       else
         format.html { render :new }
@@ -48,7 +48,7 @@ class EntitiesController < ApplicationController
   def update
     respond_to do |format|
       if @entity.update(entity_params)
-        format.html { redirect_to @entity, notice: 'Entity was successfully updated.' }
+        format.html { redirect_to entity_url(@entity), notice: 'Entity was successfully updated.' }
         format.json { render :show, status: :ok, location: @entity }
       else
         format.html { render :edit }
@@ -71,11 +71,11 @@ class EntitiesController < ApplicationController
 
   # Use callbacks to share common setup or constraints between actions.
   def set_entity
-    @entity = Entity.find(params[:id])
+    @entity = Entity::Repo.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
+  # FIXME need to set manually param obj name instead entity_repo
   def entity_params
-    params.require(:entity).permit(:parent_id, :layer_id, :sort_order, :kind_num, :name, :desc, :deps)
+    params.require(:entity_repo).permit(:parent_id, :layer_id, :sort_order, :kind_num, :name, :desc, :deps)
   end
 end

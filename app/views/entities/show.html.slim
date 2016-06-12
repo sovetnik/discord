@@ -3,7 +3,7 @@
     h2 class='text-muted' Chaos
     - @entity.root.descendants.stories.each do |story|
       h4
-        = link_to story.name, story, class: 'btn btn-lg btn-link'
+        = link_to story.name, entity_path(story), class: 'btn btn-lg btn-link'
       ' #{story.desc}
         
   .col-md-5
@@ -14,6 +14,6 @@
     = render 'tabs', entity: @entity
     = render 'child_form', entity: @entity
     
-  .col-md-3
+  .col-md-4
     h2 class='text-muted' Confusion
-    = render 'trees', entity: @entity.root
+    = render 'trees', entity: @entity.root, entity_id: @entity.id

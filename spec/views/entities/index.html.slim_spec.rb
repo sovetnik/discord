@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe 'entities/index', type: :view do
   before(:each) do
     assign(:entities, [
-             Entity.create!(
+             Entity::Abstract.create!(
                parent_id: 1,
                sort_order: 2,
                kind_num: 3,
@@ -11,7 +11,7 @@ RSpec.describe 'entities/index', type: :view do
                desc: 'MyText',
                deps: ''
              ),
-             Entity.create!(
+             Entity::Abstract.create!(
                parent_id: 1,
                sort_order: 2,
                kind_num: 3,

@@ -20,7 +20,7 @@ require 'rails_helper'
 
 RSpec.describe EntitiesController, type: :controller do
   # This should return the minimal set of attributes required to create a valid
-  # Entity. As you add validations to Entity, be sure to
+  # Entity::Abstract. As you add validations to Entity, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
     skip('Add a hash of attributes valid for your model')
@@ -37,7 +37,7 @@ RSpec.describe EntitiesController, type: :controller do
 
   describe 'GET #index' do
     it 'assigns all entities as @entities' do
-      entity = Entity.create! valid_attributes
+      entity = Entity::Abstract.create! valid_attributes
       get :index, {}, valid_session
       expect(assigns(:entities)).to eq([entity])
     end
@@ -45,7 +45,7 @@ RSpec.describe EntitiesController, type: :controller do
 
   describe 'GET #show' do
     it 'assigns the requested entity as @entity' do
-      entity = Entity.create! valid_attributes
+      entity = Entity::Abstract.create! valid_attributes
       get :show, { id: entity.to_param }, valid_session
       expect(assigns(:entity)).to eq(entity)
     end
@@ -60,7 +60,7 @@ RSpec.describe EntitiesController, type: :controller do
 
   describe 'GET #edit' do
     it 'assigns the requested entity as @entity' do
-      entity = Entity.create! valid_attributes
+      entity = Entity::Abstract.create! valid_attributes
       get :edit, { id: entity.to_param }, valid_session
       expect(assigns(:entity)).to eq(entity)
     end
@@ -82,7 +82,7 @@ RSpec.describe EntitiesController, type: :controller do
 
       it 'redirects to the created entity' do
         post :create, { entity: valid_attributes }, valid_session
-        expect(response).to redirect_to(Entity.last)
+        expect(response).to redirect_to(Entity::Abstract.last)
       end
     end
 
@@ -106,20 +106,20 @@ RSpec.describe EntitiesController, type: :controller do
       end
 
       it 'updates the requested entity' do
-        entity = Entity.create! valid_attributes
+        entity = Entity::Abstract.create! valid_attributes
         put :update, { id: entity.to_param, entity: new_attributes }, valid_session
         entity.reload
         skip('Add assertions for updated state')
       end
 
       it 'assigns the requested entity as @entity' do
-        entity = Entity.create! valid_attributes
+        entity = Entity::Abstract.create! valid_attributes
         put :update, { id: entity.to_param, entity: valid_attributes }, valid_session
         expect(assigns(:entity)).to eq(entity)
       end
 
       it 'redirects to the entity' do
-        entity = Entity.create! valid_attributes
+        entity = Entity::Abstract.create! valid_attributes
         put :update, { id: entity.to_param, entity: valid_attributes }, valid_session
         expect(response).to redirect_to(entity)
       end
@@ -127,13 +127,13 @@ RSpec.describe EntitiesController, type: :controller do
 
     context 'with invalid params' do
       it 'assigns the entity as @entity' do
-        entity = Entity.create! valid_attributes
+        entity = Entity::Abstract.create! valid_attributes
         put :update, { id: entity.to_param, entity: invalid_attributes }, valid_session
         expect(assigns(:entity)).to eq(entity)
       end
 
       it "re-renders the 'edit' template" do
-        entity = Entity.create! valid_attributes
+        entity = Entity::Abstract.create! valid_attributes
         put :update, { id: entity.to_param, entity: invalid_attributes }, valid_session
         expect(response).to render_template('edit')
       end
@@ -142,14 +142,14 @@ RSpec.describe EntitiesController, type: :controller do
 
   describe 'DELETE #destroy' do
     it 'destroys the requested entity' do
-      entity = Entity.create! valid_attributes
+      entity = Entity::Abstract.create! valid_attributes
       expect do
         delete :destroy, { id: entity.to_param }, valid_session
       end.to change(Entity, :count).by(-1)
     end
 
     it 'redirects to the entities list' do
-      entity = Entity.create! valid_attributes
+      entity = Entity::Abstract.create! valid_attributes
       delete :destroy, { id: entity.to_param }, valid_session
       expect(response).to redirect_to(entities_url)
     end
