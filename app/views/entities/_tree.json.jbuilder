@@ -8,8 +8,13 @@ json.selectable false
 json.state {
   json.checked true
   json.expanded true
-  json.selected false
+  json.selected entity.id == entity_id
 }
 json.nodes do
-  json.array! entity.children, partial: 'entities/tree', as: :entity
+  json.array! entity.children do |child|
+    json.partial! 'entities/tree', { entity: child, entity_id: entity_id }
+  end
 end
+
+
+#  json.partial! 'user.json.jbuilder', { user: user}

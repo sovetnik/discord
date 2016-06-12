@@ -2,7 +2,12 @@
 
 <script type="text/javascript">
   $(function() {
-    var tree = [<%= raw render(partial: 'entities/tree', formats: :json, locals: {entity: entity}) %>];
+    var tree = [<%= raw render(
+      partial: 'entities/tree', formats: :json,
+      locals: {
+        entity: entity,
+        entity_id: entity_id
+      }) %>];
     $('#tree').treeview({
       data: tree,
       showTags: true,
