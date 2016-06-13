@@ -6,6 +6,8 @@ module Entity
     scope :layers, -> { where(kind: 'Layer') }
     scope :stories, -> { where(kind: 'Story') }
 
+    attr_accessor :addict
+
     ## way to abstract layer
     def abstract
       Abstract.new self
@@ -34,12 +36,25 @@ module Entity
       self.class.all
     end
 
-    def deps_list
-      self.class.all
-    end
-
     def add_child(params)
       children.create(params)
+    end
+
+    def addictions
+      root.descendants.where(kind: kind, id: deps.addictions)
+    end
+
+    def possibly_deps
+      root.descendants.where(kind: kind) # matches layer
+    end
+
+    ## TODO: write method to store layers of addict too
+    def possibly_deps_attributes= atts
+      addict = []
+      atts.keys.each do |key|
+        addict << atts.dig(key, 'id') if atts.dig(key, 'supply').to_i > 0
+      end
+      layer.deps[:open] = addict
     end
 
     def layers_list

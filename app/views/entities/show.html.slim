@@ -10,9 +10,10 @@
     h2 class='text-muted' Discord
     = render 'preamble', entity: @entity
     = render 'info', entity: @entity
-    = render 'tree_nav_old', entity: @entity
+    / = render 'tree_nav_old', entity: @entity
     = render 'tabs', entity: @entity
     = render 'child_form', entity: @entity
+    = render 'dependency_form', entity: @entity
     
   .col-md-4
     h2 class='text-muted' Confusion
