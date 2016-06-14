@@ -1,7 +1,8 @@
 h3 class='text-muted' Add dependencies form
 
 = bootstrap_form_for entity, url: entity_path(entity) do |form|
-  = form.fields_for :possibly_deps do |d_form|
-    = d_form.check_box :addict, label: d_form.object.name
+  = form.fields_for :possibly_deps do |depend|
+    = depend.hidden_field :id, value: depend.object.id 
+    = depend.check_box :addict, label: depend.object.name
   
-  = form.submit 'Add Dependency'
+  = form.submit 'Save Dependencies'

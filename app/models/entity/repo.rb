@@ -40,29 +40,54 @@ module Entity
       children.create(params)
     end
 
-    def addictions
-      root.descendants.where(kind: kind, id: deps.addictions)
-    end
-
     def possibly_deps
-      root.descendants.where(kind: kind) # matches layer
+      depends = []
+      root.descendants.where(kind: kind).each do |entity|
+        p entity.id
+        depends << Depend.new(entity, addict?(entity))
+      end
+      depends
     end
 
-    ## TODO: write method to store layers of addict too
     def possibly_deps_attributes= atts
       addict = []
       atts.keys.each do |key|
-        addict << atts.dig(key, 'id') if atts.dig(key, 'supply').to_i > 0
+        addict << atts.dig(key, 'id') if atts.dig(key, 'addict') != '0'
       end
-      layer.deps[:open] = addict
+      self.deps[kind.underscore] = addict.uniq
     end
 
     def layers_list
       list = []
       list << parent.siblings.layers unless root?
       list << siblings.layers unless root?
-      list << children.layers
-      list.flatten
+      # list << children.layers
+      list.flatten.uniq
+    end
+
+    private
+
+    def addict? entity
+      deps_ids.include?(entity.id.to_s) ? 1 : 0
+    end
+
+    def deps_ids
+      self.deps[kind.underscore] || []
+    end
+  end
+
+
+  # TODO: separate layer!
+  class Depend
+    attr_reader :id, :layer_id, :name, :addict
+    def initialize entity, addict=1
+      @id = entity.id
+      @layer_id = entity.layer_id
+      @name = "id: #{id} #{entity.kind}::#{entity.layer&.name}.#{entity.name}"
+      @addict = addict
+    end
+    def persisted?
+      true
     end
   end
 end
