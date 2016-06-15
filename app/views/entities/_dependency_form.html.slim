@@ -1,4 +1,4 @@
-h3 class='text-muted' Add dependencies form
+h3 class='text-muted' "Add dependencies from #{layer.name}"
 
 = bootstrap_form_for entity, url: entity_path(entity) do |form|
   = form.fields_for :possibly_deps do |depend|

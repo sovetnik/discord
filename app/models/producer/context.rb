@@ -7,4 +7,8 @@ class Context
   def sentence
     "when #{entity.name}"
   end
+
+  def has_dependencies?
+    false
+  end
 end

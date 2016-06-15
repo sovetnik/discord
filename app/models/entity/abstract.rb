@@ -22,7 +22,7 @@ module Entity
 
     ## define layer
     def producer
-      Producer.new self
+      Producer.new self.repo
     end
   end
 end

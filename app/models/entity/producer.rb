@@ -7,17 +7,27 @@ module Entity
 
     # depends_on :kind, :name
 
-    attr_reader :object
-    def initialize(object)
-      @object = object
+    attr_reader :repo
+    def initialize(repo)
+      @repo = repo
     end
 
     def sentence
       concrete_producer.sentence
     end
 
+    def depends
+      repo.deps[kind.underscore]
+    end
+
+    def has_dependencies?
+      concrete_producer.has_dependencies?
+    end
+
+    private
+
     def concrete_producer
-      object.kind.constantize.new object
+      repo.kind.constantize.new repo
     end
   end
 end

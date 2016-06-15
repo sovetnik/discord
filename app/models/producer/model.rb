@@ -7,4 +7,8 @@ class Model
   def sentence
     "where exist #{object.name}"
   end
+
+  def has_dependencies?
+    false
+  end
 end

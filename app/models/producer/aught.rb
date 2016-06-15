@@ -7,4 +7,8 @@ class Aught
   def sentence
     "where pick out #{entity.name}"
   end
+
+  def has_dependencies?
+    false
+  end
 end

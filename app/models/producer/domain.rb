@@ -7,4 +7,8 @@ class Domain
   def sentence
     "Let's take a look on #{entity.name}"
   end
+
+  def has_dependencies?
+    false
+  end
 end

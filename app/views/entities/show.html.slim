@@ -13,7 +13,9 @@
     / = render 'tree_nav_old', entity: @entity
     = render 'tabs', entity: @entity
     = render 'child_form', entity: @entity
-    = render 'dependency_form', entity: @entity
+    - if @entity.abstract.producer.has_dependencies?
+      - @entity.layers_list.each do |layer|
+        = render 'dependency_form', entity: @entity, layer: layer
     
   .col-md-4
     h2 class='text-muted' Confusion
