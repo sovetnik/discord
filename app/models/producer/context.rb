@@ -3,14 +3,14 @@ class Context
   # it is a condition Entity
 
   # in view:
-  # in preamble nothing
-  # in info name & desc
-  # in layer_tabs  none
+  ## in preamble: nothing
+  ## in info: name & desc
+  ## in layer_tabs: none
 
-  # in tree persist as entity
-  # in code nothing
-  # in spec generates context with same name
-  # in filesystem nothing
+  # in tree: persist as entity
+  # in code: nothing
+  # in spec: generates context with same name
+  # in filesystem: nothing
 
   attr_reader :entity
   def initialize(entity)

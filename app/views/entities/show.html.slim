@@ -5,17 +5,17 @@
       h4
         = link_to story.name, entity_path(story), class: 'btn btn-lg btn-link'
       ' #{story.desc}
-        
+
   .col-md-5
     h2 class='text-muted' Discord
-    = render 'preamble', entity: @entity
-    = render 'info', entity: @entity
-    = render 'layer_tabs', entity: @entity
-    = render 'child_form', entity: @entity
+    = render 'entities/parts/preamble', entity: @entity
+    = render 'entities/parts/info', entity: @entity
+    = render 'entities/parts/layer_tabs', entity: @entity
+    = render 'entities/parts/child_form', entity: @entity
     - if @entity.producer.has_dependencies?
       - @entity.layers_list.each do |layer|
         = render 'dependency_form', entity: @entity, layer: layer
-    
+
   .col-md-4
     h2 class='text-muted' Confusion
     = render 'trees', entity: @entity.root, entity_id: @entity.id
