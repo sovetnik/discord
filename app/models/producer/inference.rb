@@ -2,6 +2,12 @@ class Inference
   # Responsibility
   # it is a root Entity
 
+  # in view:
+  # in preamble sentence
+  # in info name & desc
+  # block of def ... ... end with argument, deps & result
+  # in layer_tabs  none
+
   # in tree persist as entity
   # in code method with same name, including
   # argument(zero or several), dependencies(several) and result(one or more)

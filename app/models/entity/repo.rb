@@ -8,9 +8,12 @@ module Entity
 
     attr_accessor :addict
 
-    ## way to abstract layer
+    ## way to abstract & producer layer
     def abstract
       Abstract.new self
+    end
+    def producer
+      Producer.new self
     end
 
     def layer

@@ -10,10 +10,9 @@
     h2 class='text-muted' Discord
     = render 'preamble', entity: @entity
     = render 'info', entity: @entity
-    / = render 'tree_nav_old', entity: @entity
-    = render 'tabs', entity: @entity
+    = render 'layer_tabs', entity: @entity
     = render 'child_form', entity: @entity
-    - if @entity.abstract.producer.has_dependencies?
+    - if @entity.producer.has_dependencies?
       - @entity.layers_list.each do |layer|
         = render 'dependency_form', entity: @entity, layer: layer
     

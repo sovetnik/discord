@@ -2,6 +2,11 @@ class Domain
   # Something that describe root level concept
   # it is a root Entity
 
+  # in view:
+  # in preamble sentence
+  # in info name & desc & children
+  # in layer_tabs  none
+
   # in tree persist as entity
   # in code module
   # in spec nothing

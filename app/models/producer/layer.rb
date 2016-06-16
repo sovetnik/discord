@@ -1,6 +1,11 @@
 class Layer
   # Point of view what encapsulate some kind of model responsibilities
 
+  # in view
+  # in preamble nothing
+  # in info name & desc
+  # in layer_tabs  none
+
   # in tree persist as entity
   # in code class
   # in spec file with root describe

@@ -2,6 +2,11 @@ class Aught
   # Something we can differ against others
   # it is a basic Entity
 
+  # in view:
+  # in preamble sentence
+  # in info name & desc
+  # in layer_tabs  none
+
   # in tree persist as entity
   # in code nothing
   # in spec nothing
