@@ -1,13 +1,7 @@
 module Entity
   class Producer
-    # at this time producer depends only on
-    # kind attribute method of passed object
-    # but concrete_producer depends on method #name on passed object
-    # so, we have two interface dependencies in object to work with him
-
-    # depends_on :kind, :name
-
     attr_reader :repo
+
     def initialize(repo)
       @repo = repo
     end

@@ -1,4 +1,11 @@
 class Layer
+  # Point of view what encapsulate some kind of model responsibilities
+
+  # in tree persist as entity
+  # in code class
+  # in spec file with root describe
+  # in filesystem is file
+
   attr_reader :entity
   def initialize(entity)
     @entity = entity

@@ -77,12 +77,13 @@ class EntitiesController < ApplicationController
   # FIXME: need to set manually param obj name instead entity_repo
   def entity_params
     params.require(:entity_repo).permit(
-    :parent_id,
-    :layer_id,
-    :sort_order,
-    :kind_num,
-    :name,
-    :desc,
-    possibly_deps_attributes: [:id, :addict])
+      :parent_id,
+      :layer_id,
+      :sort_order,
+      :kind_num,
+      :name,
+      :desc,
+      possibly_deps_attributes: [:id, :addict]
+    )
   end
 end
