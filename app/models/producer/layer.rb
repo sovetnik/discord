@@ -3,7 +3,7 @@ class Layer
 
   # in view:
   ## in preamble: nothing
-  ## in info: name & desc
+  ## in details: name & desc
   ## in layer_tabs: none
 
   # in tree: persist as entity

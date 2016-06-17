@@ -4,7 +4,7 @@ class Domain
 
   # in view:
   ## in preamble: sentence
-  ## in info: name & desc & children
+  ## in details: name & desc & children
   ## in layer_tabs: none
 
   # in tree: persist as entity

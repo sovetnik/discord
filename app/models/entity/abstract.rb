@@ -8,9 +8,6 @@ module Entity
       @repo = obj
     end
 
-    # #const
-    KINDS = %w(Aught Story Domain Layer Model Context Inference).freeze
-
     ## interface
     def sentence
       [producer.sentence, layer_sentence].join ' '

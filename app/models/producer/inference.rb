@@ -5,7 +5,7 @@ class Inference
 
   # in view:
   ## in preamble: sentence
-  ## in info: name & desc
+  ## in details: name & desc
   ## block of def ... ... end with argument, deps & result
   ## in layer_tabs#  none
 

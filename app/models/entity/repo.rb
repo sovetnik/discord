@@ -12,6 +12,7 @@ module Entity
     def abstract
       Abstract.new self
     end
+
     def producer
       Producer.new self
     end
@@ -21,7 +22,7 @@ module Entity
     end
 
     def kinds_list
-      Abstract::KINDS.map.with_index { |obj, index| [index, obj] }
+      Entity::KINDS.map.with_index { |obj, index| [index, obj] }
     end
 
     ## Possible values to collection select & validation
@@ -48,7 +49,7 @@ module Entity
     # set deps hash from attributes
     # income atts = {"0":{"id":"23","addict":"0"},"1":{"id":"7","addict":"1"}}
     # result deps = {"model"=>"[\"7\"]"} no modifying other keys
-    def possibly_deps_attributes= atts
+    def possibly_deps_attributes=(atts)
       addict = []
       atts.keys.each do |key|
         addict << atts.dig(key, 'id') if atts.dig(key, 'addict') != '0'
@@ -58,14 +59,15 @@ module Entity
 
     ## kind num getter
     def kind_num
-      Abstract::KINDS.rindex kind
+      Entity::KINDS.rindex kind
     end
 
     ## kind setter by num
     def kind_num=(num)
-      self.kind = Abstract::KINDS[num.to_i] || ''
+      self.kind = Entity::KINDS[num.to_i] || ''
     end
 
+    # TODO: ~~Code smell~~
     def layers_list
       list = []
       list << parent.siblings.layers unless root?

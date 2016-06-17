@@ -3,7 +3,7 @@ class Model
 
   # in view:
   ## in preamble: sentence
-  ## in info: name & desc
+  ## in details: name & desc
   ## in layer_tabs: layers
 
   # in code: module
@@ -17,6 +17,10 @@ class Model
 
   def sentence
     "where exist #{object.name}"
+  end
+
+  def name
+    object.name
   end
 
   def has_dependencies?

@@ -1,8 +1,9 @@
-h3 class='text-muted' "Add dependencies from #{layer.name}"
+h3 Dependency form
+h4 class='text-muted' "Add dependencies from #{layer.name}"
 
 = bootstrap_form_for entity, url: entity_path(entity) do |form|
   = form.fields_for :possibly_deps do |depend|
-    = depend.hidden_field :id, value: depend.object.id 
+    = depend.hidden_field :id, value: depend.object.id
     = depend.check_box :addict, label: depend.object.name
-  
+
   = form.submit 'Save Dependencies'

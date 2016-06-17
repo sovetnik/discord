@@ -5,8 +5,8 @@ class Aught
   # in view:
   ## in preamble: sentence
   # TODO: Preamble creates context. Describe our entity.
-  ## in info: name & desc
-  ## in layer_tabs:  none
+  ## in details: name & desc
+  ## in layer_tabs: none
 
   # in tree persist: as entity
   # in code: nothing
