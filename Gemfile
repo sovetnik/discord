@@ -18,6 +18,9 @@ gem 'coffee-rails', '~> 4.1.0'
 gem 'slim-rails'
 gem 'bootstrap-sass'
 gem 'bootstrap_form'
+
+# syntax highlighter
+gem 'rouge'
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder

@@ -18,6 +18,17 @@ module Entity
       concrete_producer.has_dependencies?
     end
 
+    def get_code
+      code = <<-GETCODE
+        def initialize(repo)\n
+          @repo = repo\n
+        end
+      GETCODE
+      formatter = Rouge::Formatters::HTML.new
+      lexer = Rouge::Lexers::Ruby.new
+      formatter.format(lexer.lex(code))
+    end
+
     private
 
     def concrete_producer
