@@ -54,6 +54,7 @@ module Entity
       atts.keys.each do |key|
         addict << atts.dig(key, 'id') if atts.dig(key, 'addict') != '0'
       end
+      try_deps_hash!
       self.deps[kind.underscore] = addict.uniq
     end
 
@@ -67,16 +68,18 @@ module Entity
       self.kind = Entity::KINDS[num.to_i] || ''
     end
 
-    # TODO: ~~Code smell~~
     def layers_list
       list = []
-      list << parent.siblings.layers unless root?
+      list << parent&.siblings&.layers unless parent&.root?
       list << siblings.layers unless root?
-      # list << children.layers
-      list.flatten.uniq
+      list.flatten.compact.uniq
     end
 
     private
+
+    def try_deps_hash!
+      self.deps ||= {}
+    end
 
     def addict? entity
       deps_ids.include?(entity.id.to_s) ? 1 : 0
@@ -88,20 +91,6 @@ module Entity
 
     def depends_ids # where each id is integer
       deps_ids.scan(/\d+/).map &:to_i
-    end
-  end
-
-  # TODO: separate class!
-  class Depend
-    attr_reader :id, :layer_id, :name, :addict
-    def initialize entity, addict=1
-      @id = entity.id
-      @layer_id = entity.layer_id
-      @name = "id: #{id} #{entity.kind}::#{entity.layer&.name}.#{entity.name}"
-      @addict = addict
-    end
-    def persisted?
-      true
     end
   end
 end
