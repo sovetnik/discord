@@ -19,18 +19,7 @@ module Entity
     end
 
     def get_code
-      code = %{
-        def get_code
-          code = <<-GETCODE
-            def initialize(repo)
-              @repo = repo
-            end
-          GETCODE
-          formatter = Rouge::Formatters::HTML.new
-          lexer = Rouge::Lexers::Ruby.new
-          formatter.format(lexer.lex(code))
-        end
-      }
+      concrete_producer.generate_code.join("\n")
     end
 
     private

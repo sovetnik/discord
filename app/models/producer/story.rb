@@ -19,6 +19,10 @@ class Story
     "and listen a story about #{entity.name}"
   end
 
+  def generate_code
+    []
+  end
+
   def has_dependencies?
     false
   end

@@ -22,6 +22,10 @@ class Aught
     "where pick out #{entity.name}"
   end
 
+  def generate_code
+    []
+  end
+
   def has_dependencies?
     false
   end

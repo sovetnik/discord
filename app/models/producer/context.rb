@@ -21,6 +21,12 @@ class Context
     "when #{entity.name}"
   end
 
+  def generate_code
+    head = "context '#{entity.name}' do"
+    tail = "\nend"
+    [head, tail]
+  end
+
   def has_dependencies?
     false
   end

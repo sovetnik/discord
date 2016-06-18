@@ -21,6 +21,10 @@ class Domain
     "Let's take a look on #{entity.name}"
   end
 
+  def generate_code
+    []
+  end
+
   def has_dependencies?
     false
   end

@@ -3,6 +3,7 @@ module Entity
     self.table_name = 'entities'
     acts_as_tree order: 'sort_order'
 
+    scope :inferences, -> { where(kind: 'Inference') }
     scope :layers, -> { where(kind: 'Layer') }
     scope :stories, -> { where(kind: 'Story') }
 

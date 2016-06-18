@@ -20,6 +20,10 @@ class Layer
     "from #{entity.name} point of view"
   end
 
+  def generate_code
+    []
+  end
+
   def has_dependencies?
     true
   end

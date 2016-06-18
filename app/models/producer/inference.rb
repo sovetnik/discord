@@ -24,6 +24,12 @@ class Inference
     "Should obey #{entity.name} and return described result"
   end
 
+  def generate_code
+    head = "def #{entity.name}(args)"
+    tail = '  end'
+    [head, tail]
+  end
+
   def has_dependencies?
     true
   end
