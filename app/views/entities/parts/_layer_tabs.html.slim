@@ -1,3 +1,4 @@
+h3 Layer tabs
 ul class="nav nav-tabs" role="tablist"
   li.active role="presentation"
     a href="#abstract" aria-controls="profile" role="tab" data-toggle="tab"
@@ -12,13 +13,13 @@ div class="tab-content"
     p Abstract level of entity
     - unless entity.leaf?
       - entity.children.where(layer_id: nil).each do |child|
-        h4
+        h6
           = link_to child.name, entity_path(child), class: 'btn btn-link'
           ' | #{child.abstract.sentence}
   - entity.layers_list.each do |layer|
     div class="tab-pane" role="tabpanel" id="layer_#{layer.id}"
       p = layer.desc
       - entity.children.where(layer_id: layer.id).each do |child|
-        h4
+        h6
           = link_to child.name, entity_path(child), class: 'btn btn-link'
           ' | #{child.abstract.sentence}

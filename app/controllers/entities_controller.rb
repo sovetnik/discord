@@ -74,8 +74,16 @@ class EntitiesController < ApplicationController
     @entity = Entity::Repo.find(params[:id])
   end
 
-  # FIXME need to set manually param obj name instead entity_repo
+  # FIXME: need to set manually param obj name instead entity_repo
   def entity_params
-    params.require(:entity_repo).permit(:parent_id, :layer_id, :sort_order, :kind_num, :name, :desc, :deps)
+    params.require(:entity_repo).permit(
+      :parent_id,
+      :layer_id,
+      :sort_order,
+      :kind_num,
+      :name,
+      :desc,
+      possibly_deps_attributes: [:id, :addict]
+    )
   end
 end
