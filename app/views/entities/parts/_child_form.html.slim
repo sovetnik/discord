@@ -1,6 +1,5 @@
 #child_form hidden='true'
-  h3 Child form
-  h4 class='text-muted' Add child form
+  h3 class='text-muted' Child form
 
   = bootstrap_form_for entity.children.build, url: add_child_entity_path(entity) do |form|
     = form.collection_select :kind_num, entity.child_kinds_list, :first, :last, label: 'kind'

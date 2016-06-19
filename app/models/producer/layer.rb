@@ -25,10 +25,14 @@ class Layer
   end
 
   def generate_code
-    []
+    head = "class #{entity.parent.name}::#{entity.name}"
+    inferences_code = entity.children.inferences.collect { |i| i.producer.get_code }
+    body = inferences_code.flatten.map! { |i| '  ' + i }
+    tail = 'end'
+    [head, body, tail]
   end
 
-  def has_dependencies?
+  def addictable?
     true
   end
 end

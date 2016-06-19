@@ -26,12 +26,10 @@ class Context
   end
 
   def generate_code
-    head = "context '#{entity.name}' do"
-    tail = "\nend"
-    [head, tail]
+    ["context '#{entity.name}' do"]
   end
 
-  def has_dependencies?
+  def addictable?
     false
   end
 end

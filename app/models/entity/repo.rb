@@ -100,7 +100,7 @@ module Entity
     end
 
     def deps_ids # where each id is string
-      self.deps&.fetch(kind.underscore, []) || []
+      self.deps&.fetch(kind.underscore, []) || '[]'
     end
 
     def depends_ids # where each id is integer

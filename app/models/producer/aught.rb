@@ -30,7 +30,7 @@ class Aught
     []
   end
 
-  def has_dependencies?
+  def addictable?
     false
   end
 end

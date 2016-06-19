@@ -26,16 +26,14 @@ class Model
   def generate_code
     head = "class #{entity.parent.name}::#{entity.name}"
     inferences_code = entity.children.inferences.collect { |i| i.producer.get_code }
-    body = inferences_code.flatten.map! { |i| '  ' + i }
-    tail = 'end'
-    [head, body, tail]
+    [head, inferences_code, 'end'].flatten
   end
 
   def name
     entity.name
   end
 
-  def has_dependencies?
+  def addictable?
     true
   end
 end

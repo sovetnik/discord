@@ -19,18 +19,22 @@ module Entity
       repo.deps[kind.underscore]
     end
 
-    def has_dependencies?
-      concrete_producer.has_dependencies?
+    def addictable?
+      concrete_producer.addictable?
     end
 
     def get_code
-      concrete_producer.generate_code.join("\n")
+      p concrete_producer.generate_code.join("\n")
     end
 
     private
 
     def concrete_producer
-      repo.kind.constantize.new repo
+      safe_kind.constantize.new repo
+    end
+
+    def safe_kind
+      KINDS.include?(repo.kind) ? repo.kind : 'Aught'
     end
   end
 end
