@@ -20,6 +20,10 @@ class Inference
     @entity = entity
   end
 
+  def child_kinds
+    %w(Aught Inference)
+  end
+
   def sentence
     "Should obey #{entity.name} and return described result"
   end

@@ -15,6 +15,10 @@ class Model
     @entity = entity
   end
 
+  def child_kinds
+    %w(Layer Model Inference)
+  end
+
   def sentence
     "where exist #{entity.name}"
   end

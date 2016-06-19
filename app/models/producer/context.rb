@@ -17,6 +17,10 @@ class Context
     @entity = entity
   end
 
+  def child_kinds
+    %w(Context)
+  end
+
   def sentence
     "when #{entity.name}"
   end

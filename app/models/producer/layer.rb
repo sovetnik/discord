@@ -16,6 +16,10 @@ class Layer
     @entity = entity
   end
 
+  def child_kinds
+    %w(Aught Inference)
+  end
+
   def sentence
     "from #{entity.name} point of view"
   end

@@ -22,8 +22,13 @@ module Entity
       self.class.layers.find(layer_id) if layer_id
     end
 
+    def possibly_kinds
+      return ['Domain'] if kind.nil? # no concrete producer without kind
+      Entity::KINDS & producer.child_kinds
+    end
+
     def kinds_list
-      Entity::KINDS.map.with_index { |obj, index| [index, obj] }
+      possibly_kinds.map.with_index { |obj, index| [index, obj] }
     end
 
     ## Possible values to collection select & validation
@@ -61,12 +66,12 @@ module Entity
 
     ## kind num getter
     def kind_num
-      Entity::KINDS.rindex kind
+      possibly_kinds.rindex kind
     end
 
     ## kind setter by num
     def kind_num=(num)
-      self.kind = Entity::KINDS[num.to_i] || ''
+      self.kind = possibly_kinds[num.to_i] || ''
     end
 
     def layers_list
