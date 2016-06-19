@@ -23,12 +23,20 @@ module Entity
     end
 
     def possibly_kinds
-      return ['Domain'] if kind.nil? || parent_id.nil? # no concrete producer without kind
+      return ['Domain'] if parent_id.nil?
+      Entity::KINDS & parent.producer.child_kinds
+    end
+
+    def possibly_child_kinds
       Entity::KINDS & producer.child_kinds
     end
 
     def kinds_list
       possibly_kinds.map.with_index { |obj, index| [index, obj] }
+    end
+
+    def child_kinds_list
+      possibly_child_kinds.map.with_index { |obj, index| [index, obj] }
     end
 
     ## Possible values to collection select & validation

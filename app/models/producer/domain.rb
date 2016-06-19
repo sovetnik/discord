@@ -18,7 +18,7 @@ class Domain
   end
 
   def child_kinds
-    %w(Aught Story Domain Model)
+    %w(Aught Story Model)
   end
 
   def sentence

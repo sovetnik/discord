@@ -27,7 +27,6 @@ class Model
     head = "class #{entity.parent.name}::#{entity.name}"
     inferences_code = entity.children.inferences.collect { |i| i.producer.get_code }
     body = inferences_code.flatten.map! { |i| '  ' + i }
-    p body
     tail = 'end'
     [head, body, tail]
   end
