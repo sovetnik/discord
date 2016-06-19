@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Domain
   # Something that describe root level concept
   # it is a root Entity

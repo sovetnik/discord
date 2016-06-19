@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Inference
   # TODO: Write details about responsibility
   # Responsibility

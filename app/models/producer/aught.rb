@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Aught
   # Something we can differ against others
   # it is a basic Entity

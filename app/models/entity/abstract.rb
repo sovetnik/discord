@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Entity
   class Abstract
     attr_reader :name, :kind, :layer_id, :repo

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CreateEntities < ActiveRecord::Migration
   enable_extension 'hstore' unless extension_enabled?('hstore')
   def change

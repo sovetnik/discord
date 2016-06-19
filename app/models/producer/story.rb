@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Story
   # Use case or accident in described domain
 

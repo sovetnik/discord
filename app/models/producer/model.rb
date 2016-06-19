@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Model
   # Reflection on real world concept, which have identity
 

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module Entity
   class Repo < ActiveRecord::Base
     self.table_name = 'entities'
@@ -69,7 +70,7 @@ module Entity
         addict << atts.dig(key, 'id') if atts.dig(key, 'addict') != '0'
       end
       try_deps_hash!
-      self.deps[kind.underscore] = addict.uniq
+      deps[kind.underscore] = addict.uniq
     end
 
     ## kind num getter
@@ -95,7 +96,7 @@ module Entity
       self.deps ||= {}
     end
 
-    def addict? entity
+    def addict?(entity)
       deps_ids.include?(entity.id.to_s) ? 1 : 0
     end
 

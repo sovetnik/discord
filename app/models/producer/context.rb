@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Context
   # Something that determine variant after bifurcation
   # it is a condition Entity

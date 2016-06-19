@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Layer
   # Point of view what encapsulate some kind of model responsibilities
 
