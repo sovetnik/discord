@@ -15,6 +15,10 @@ class Story
     @entity = entity
   end
 
+  def child_kinds
+    %w(Aught)
+  end
+
   def sentence
     "and listen a story about #{entity.name}"
   end

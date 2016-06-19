@@ -1,5 +1,10 @@
 h1 New entity
 
-= render 'form'
+= bootstrap_form_for @entity, url: entities_path do |form|
+  = form.collection_select :kind_num, @entity.kinds_list, :first, :last,
+    label: 'Kind'
+  = form.text_field :name
+  = form.text_area :desc
+  = form.submit
 
 = link_to 'Back', entities_path

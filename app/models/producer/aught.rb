@@ -18,6 +18,10 @@ class Aught
     @entity = entity
   end
 
+  def child_kinds
+    %w(Aught)
+  end
+
   def sentence
     "where pick out #{entity.name}"
   end

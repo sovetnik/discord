@@ -1,9 +1,14 @@
+# frozen_string_literal: true
 module Entity
   class Producer
     attr_reader :repo
 
     def initialize(repo)
       @repo = repo
+    end
+
+    def child_kinds
+      concrete_producer.child_kinds
     end
 
     def sentence

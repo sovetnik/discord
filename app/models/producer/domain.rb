@@ -17,6 +17,10 @@ class Domain
     @entity = entity
   end
 
+  def child_kinds
+    %w(Aught Story Model)
+  end
+
   def sentence
     "Let's take a look on #{entity.name}"
   end
