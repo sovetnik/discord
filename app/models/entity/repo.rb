@@ -23,7 +23,7 @@ module Entity
     end
 
     def possibly_kinds
-      return ['Domain'] if kind.nil? # no concrete producer without kind
+      return ['Domain'] if kind.nil? || parent_id.nil? # no concrete producer without kind
       Entity::KINDS & producer.child_kinds
     end
 
