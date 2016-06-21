@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 module Entity
-  class Depend
+  class Addict
     # Inference or layer dependency
     # it is a leaf entity
 

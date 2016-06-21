@@ -69,7 +69,7 @@ module Entity
     def addicts
       addicts = []
       root.descendants.where(kind: kind).each do |entity|
-        addicts << Depend.new(entity, addicted?(entity))
+        addicts << Addict.new(entity, addicted?(entity))
       end
       addicts
     end
