@@ -16,7 +16,7 @@
     = render 'entities/parts/child_form', entity: @entity
     - if @entity.producer.addictable?
       - @entity.layers_list.each do |layer|
-        = render 'entities/parts/dependency_form', entity: @entity, layer: layer
+        = render 'entities/parts/addict_form', entity: @entity, layer: layer
 
   .col-md-4
     h2 class='text-muted' Confusion

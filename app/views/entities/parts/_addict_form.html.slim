@@ -1,0 +1,8 @@
+h3 class='text-muted' "Addictions from #{layer.name}"
+
+= bootstrap_form_for entity, url: entity_path(entity) do |form|
+  = form.fields_for :addicts do |ad_form|
+    = ad_form.hidden_field :id, value: ad_form.object.id
+    = ad_form.check_box :addictance, label: ad_form.object.name
+
+  = form.submit 'Save Addicts'

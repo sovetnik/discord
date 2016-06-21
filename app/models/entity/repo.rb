@@ -8,7 +8,7 @@ module Entity
     scope :layers, -> { where(kind: 'Layer') }
     scope :stories, -> { where(kind: 'Story') }
 
-    attr_accessor :addict
+    attr_accessor :addictance
 
     ## way to abstract & producer layer
     def abstract
@@ -49,30 +49,6 @@ module Entity
       children.create(params)
     end
 
-    def depends
-      self.class.where(id: depends_ids)
-    end
-
-    def possibly_deps
-      depends = []
-      root.descendants.where(kind: kind).each do |entity|
-        depends << Depend.new(entity, addict?(entity))
-      end
-      depends
-    end
-
-    # set deps hash from attributes
-    # income atts = {"0":{"id":"23","addict":"0"},"1":{"id":"7","addict":"1"}}
-    # result deps = {"model"=>"[\"7\"]"} no modifying other keys
-    def possibly_deps_attributes=(atts)
-      addict = []
-      atts.keys.each do |key|
-        addict << atts.dig(key, 'id') if atts.dig(key, 'addict') != '0'
-      end
-      try_deps_hash!
-      deps[kind.underscore] = addict.uniq
-    end
-
     ## kind num getter
     def kind_num
       possibly_kinds.rindex kind
@@ -90,22 +66,28 @@ module Entity
       list.flatten.compact.uniq
     end
 
+    def addicts
+      addicts = []
+      root.descendants.where(kind: kind).each do |entity|
+        addicts << Depend.new(entity, addicted?(entity))
+      end
+      addicts
+    end
+
+    def addicts_attributes=(atts)
+      addict_ids = []
+      atts.keys.each do |key|
+        addict_ids << atts.dig(key, 'id') if atts.dig(key, 'addictance') != '0'
+      end
+      self.addict = {} if addict.nil?
+      self.addict = { kind.underscore.to_sym => addict_ids.map!(&:to_i) }
+    end
+
     private
 
-    def try_deps_hash!
-      self.deps ||= {}
-    end
-
-    def addict?(entity)
-      deps_ids.include?(entity.id.to_s) ? 1 : 0
-    end
-
-    def deps_ids # where each id is string
-      self.deps&.fetch(kind.underscore, []) || '[]'
-    end
-
-    def depends_ids # where each id is integer
-      deps_ids.scan(/\d+/).map &:to_i
+    def addicted?(entity)
+      self.addict = { kind.underscore => [] } if addict.nil?
+      addict.fetch(kind.underscore, []).include?(entity.id) ? 1 : 0
     end
   end
 end

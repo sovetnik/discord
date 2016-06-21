@@ -30,15 +30,15 @@ class Inference
   end
 
   def generate_code
-    ["  def #{entity.name}(args)", depends_code, '  end']
+    ["  def #{entity.name}(args)", addicts_code, '  end']
   end
 
-  def depends_code
-    depends = []
-    entity.possibly_deps.each do |dep|
-      depends << ('  ' + dep.code) if dep.addict?
+  def addicts_code
+    addicts = []
+    entity.addicts.each do |ad|
+      addicts << ('  ' + ad.code) if ad.addicted?
     end
-    depends
+    addicts
   end
 
   def addictable?
