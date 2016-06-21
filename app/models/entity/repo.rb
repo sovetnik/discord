@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 module Entity
-  class Repo < ActiveRecord::Base
+  class Repo < Layers::Repo
     self.table_name = 'entities'
     acts_as_tree order: 'sort_order'
 
