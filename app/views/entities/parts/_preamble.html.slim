@@ -1,6 +1,7 @@
-h3 class='text-muted' Preamble
+h4 class='text-muted' Preamble
 - unless entity.root?
   - entity.ancestors.reverse.each do |anc|
-    p = anc.abstract.sentence
-h4 = entity.abstract.sentence
+    p = anc.producer.sentence
+strong = entity.producer.sentence
 p = entity.desc
+br

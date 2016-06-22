@@ -1,4 +1,4 @@
-h3 class='text-muted' Layer tabs
+h4 class='text-muted' Layer tabs
 ul class="nav nav-tabs" role="tablist"
   li.active role="presentation"
     a href="#abstract" aria-controls="profile" role="tab" data-toggle="tab"
@@ -15,11 +15,11 @@ div class="tab-content"
       - entity.children.where(layer_id: nil).each do |child|
         h6
           = link_to child.name, entity_path(child), class: 'btn btn-link'
-          ' | #{child.abstract.sentence}
+          ' | #{child.producer.sentence}
   - entity.layers_list.each do |layer|
     div class="tab-pane" role="tabpanel" id="layer_#{layer.id}"
       p = layer.desc
       - entity.children.where(layer_id: layer.id).each do |child|
         h6
           = link_to child.name, entity_path(child), class: 'btn btn-link'
-          ' | #{child.abstract.sentence}
+          ' | #{child.producer.sentence}

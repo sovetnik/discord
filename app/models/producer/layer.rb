@@ -37,7 +37,7 @@ class Layer
     entity.addicts_exist.each do |ad|
       addicts << (':' + ad.name.underscore)
     end
-    "open_layers: #{addicts.join(', ')}"
+    "open_layers #{addicts.join(', ')}"
   end
 
   def addictable?

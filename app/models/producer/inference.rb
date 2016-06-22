@@ -30,11 +30,11 @@ class Inference
   end
 
   def generate_code
-    ["  def #{entity.name}(args)", addicts_code, '  end']
+    ["def #{entity.name}(args)", addicts_code, '  end']
   end
 
   def dep_code
-    "  # #{entity.parent.name}.#{entity.name}"
+    "  # #{entity.parent.name.underscore}.#{entity.name.underscore}"
   end
 
   def addicts_code

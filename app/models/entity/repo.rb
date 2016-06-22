@@ -63,6 +63,7 @@ module Entity
       list = []
       list << parent&.siblings&.layers unless parent&.root?
       list << siblings.layers unless root?
+      list << children.layers
       list.flatten.compact.uniq
     end
 

@@ -9,15 +9,6 @@ module Entity
       @repo = obj
     end
 
-    ## interface
-    def sentence
-      [producer.sentence, layer_sentence].join ' '
-    end
-
-    def layer_sentence
-      "in #{repo.layer.name}" if repo.layer
-    end
-
     ## define layer
     def producer
       Producer.new repo
