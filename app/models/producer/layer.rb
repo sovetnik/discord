@@ -28,9 +28,16 @@ class Layer
   def generate_code
     head = "class #{entity.parent.name}::#{entity.name}"
     inferences_code = entity.children.inferences.collect { |i| i.producer.get_code }
-    body = inferences_code.flatten.map! { |i| '  ' + i }
-    tail = 'end'
-    [head, body, tail]
+    body = [addicts_code, inferences_code].flatten.map! { |i| '  ' + i }
+    [head, body, 'end']
+  end
+
+  def addicts_code
+    addicts = []
+    entity.addicts_exist.each do |ad|
+      addicts << (':' + ad.name.underscore)
+    end
+    "open_layers: #{addicts.join(', ')}"
   end
 
   def addictable?

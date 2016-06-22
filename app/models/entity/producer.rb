@@ -24,7 +24,11 @@ module Entity
     end
 
     def get_code
-      p concrete_producer.generate_code.join("\n")
+      concrete_producer.generate_code.join("\n")
+    end
+
+    def dep_code
+      concrete_producer.dep_code
     end
 
     private

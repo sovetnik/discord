@@ -33,10 +33,14 @@ class Inference
     ["  def #{entity.name}(args)", addicts_code, '  end']
   end
 
+  def dep_code
+    "  # #{entity.parent.name}.#{entity.name}"
+  end
+
   def addicts_code
     addicts = []
-    entity.addicts.each do |ad|
-      addicts << ('  ' + ad.code) if ad.addicted?
+    entity.addicts_exist.each do |ad|
+      addicts << ('  ' + ad.producer.dep_code)
     end
     addicts
   end

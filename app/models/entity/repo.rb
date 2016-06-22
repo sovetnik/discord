@@ -66,6 +66,10 @@ module Entity
       list.flatten.compact.uniq
     end
 
+    def addicts_exist
+      self.class.where(id: addicts_ids, kind: kind)
+    end
+
     def addicts
       addicts = []
       root.descendants.where(kind: kind).each do |entity|
@@ -87,7 +91,11 @@ module Entity
 
     def addicted?(entity)
       self.addict = { kind.underscore => [] } if addict.nil?
-      addict.fetch(kind.underscore, []).include?(entity.id) ? 1 : 0
+      addicts_ids.include?(entity.id) ? 1 : 0
+    end
+
+    def addicts_ids
+      addict.fetch(kind.underscore, [])
     end
   end
 end

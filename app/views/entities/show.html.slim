@@ -12,11 +12,10 @@
     = render 'entities/parts/details', entity: @entity
     = render 'entities/parts/code', entity: @entity
     / TODO: Combine Layer_tabs and Dependency form
-    = render 'entities/parts/layer_tabs', entity: @entity
+    / = render 'entities/parts/layer_tabs', entity: @entity
     = render 'entities/parts/child_form', entity: @entity
     - if @entity.producer.addictable?
-      - @entity.layers_list.each do |layer|
-        = render 'entities/parts/addict_form', entity: @entity, layer: layer
+      = render 'entities/parts/addict_form', entity: @entity
 
   .col-md-4
     h2 class='text-muted' Confusion
