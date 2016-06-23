@@ -26,7 +26,7 @@ class Layer
   end
 
   def generate_code
-    [head, addicts_code, inferences_code, "end\n"]
+    [path_line, head_line, addicts_code, inferences_code, "end\n"]
   end
 
   def addictable?
@@ -35,7 +35,11 @@ class Layer
 
   private
 
-  def head
+  def path_line
+    "# ~/#{entity.producer.full_path}/#{entity.name.underscore}.rb\n"
+  end
+
+  def head_line
     "class #{entity.parent.name}::#{entity.name}"
   end
 

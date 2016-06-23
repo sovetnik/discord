@@ -36,8 +36,8 @@ module Entity
     end
 
     def full_path
-      '# apps/web/config/routes.rb'
-    end
+      repo.ancestors.collect(&:name).reverse.map(&:underscore).join('/')
+    end # => 'domain/model/layer'
 
     def dep_code
       concrete_producer.dep_code

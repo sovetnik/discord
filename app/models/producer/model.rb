@@ -25,13 +25,7 @@ class Model
   end
 
   def generate_code
-    path = entity.producer.full_path
-    head = "module #{entity.parent.name}::"
-    [path, head, inferences_code, 'end']
-  end
-
-  def const_name
-    [entity.parent.producer.const_name, entity.name].join '::'
+    [head_line, inferences_code, 'end']
   end
 
   def addictable?
@@ -39,6 +33,18 @@ class Model
   end
 
   private
+
+  def head_line
+    "module #{entity.parent.name}::"
+  end
+
+  def path_line
+    "# ~/#{entity.producer.full_path}/#{entity.name.underscore}/*\n"
+  end
+
+  def const_name
+    [entity.parent.producer.const_name, entity.name].join '::'
+  end
 
   def inferences_code
     code = entity.children.layers.collect { |i| i.producer.generate_code }
