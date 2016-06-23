@@ -26,7 +26,7 @@ class Layer
   end
 
   def generate_code
-    [head, addicts_code, inferences_code, 'end']
+    [head, addicts_code, inferences_code, "end\n"]
   end
 
   def addictable?

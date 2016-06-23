@@ -46,7 +46,10 @@ module Entity
     end
 
     def add_child(params)
-      children.create(params)
+      child = children.build(params)
+      child.kind_num = params[:kind_num]
+      child.save
+      child
     end
 
     ## kind num getter
