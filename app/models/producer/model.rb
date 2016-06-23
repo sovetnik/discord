@@ -25,16 +25,23 @@ class Model
   end
 
   def generate_code
-    head = "class #{entity.parent.name}::#{entity.name}"
-    inferences_code = entity.children.inferences.collect { |i| i.producer.get_code }
-    [head, inferences_code, 'end'].flatten
+    path = entity.producer.full_path
+    head = "module #{entity.parent.name}::"
+    [path, head, inferences_code, 'end']
   end
 
-  def name
-    entity.name
+  def const_name
+    [entity.parent.producer.const_name, entity.name].join '::'
   end
 
   def addictable?
     true
+  end
+
+  private
+
+  def inferences_code
+    code = entity.children.layers.collect { |i| i.producer.generate_code }
+    code.flatten(1)
   end
 end

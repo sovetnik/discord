@@ -30,6 +30,10 @@ class Domain
     []
   end
 
+  def const_name
+    nil
+  end
+
   def addictable?
     false
   end

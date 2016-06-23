@@ -30,17 +30,17 @@ class Inference
   end
 
   def generate_code
-    ["def #{entity.name}(args)", addicts_code, '  end']
+    ["def #{entity.name}(args)", addicts_code, "end\n"]
   end
 
   def dep_code
-    "  # #{entity.parent.name.underscore}.#{entity.name.underscore}"
+    "# #{entity.parent.name.underscore}.#{entity.name.underscore}"
   end
 
   def addicts_code
     addicts = []
     entity.addicts_exist.each do |ad|
-      addicts << ('  ' + ad.producer.dep_code)
+      addicts << ad.producer.dep_code
     end
     addicts
   end

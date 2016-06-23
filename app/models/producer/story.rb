@@ -28,6 +28,10 @@ class Story
     []
   end
 
+  def const_name
+    [entity.parent.producer.const_name, entity.name].compact.join '::'
+  end
+
   def addictable?
     false
   end
