@@ -30,11 +30,28 @@ class Inference
   end
 
   def generate_code
-    ["def #{entity.name}(args)", addicts_code, "end\n"]
+    ["def #{entity.name}( #{args_list} )", addicts_code, "end\n"]
+  end
+
+  def addictable?
+    true
   end
 
   def dep_code
     "# #{entity.parent.name.underscore}.#{entity.name.underscore}"
+  end
+
+  private
+
+  def args_list
+    list = []
+    entity.addicts_exist.each do |addict|
+      unless entity.parent.siblings.layers.ids.include? addict.parent.id
+        list << addict.parent.name
+      end
+    end
+    args = list.map(&:underscore).uniq.collect { |ar| p ':' + ar }
+    args.join ', '
   end
 
   def addicts_code
@@ -43,9 +60,5 @@ class Inference
       addicts << ad.producer.dep_code
     end
     addicts
-  end
-
-  def addictable?
-    true
   end
 end
