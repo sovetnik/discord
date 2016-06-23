@@ -26,7 +26,7 @@ class Layer
   end
 
   def generate_code
-    [path_line, head_line, addicts_code, inferences_code, "end\n"]
+    [path_line, head_line, addicts_code, inferences_code, footer_code]
   end
 
   def addictable?
@@ -43,16 +43,24 @@ class Layer
     "class #{entity.parent.name}::#{entity.name}"
   end
 
-  def addicts_code
+  def addicts
     addicts = []
     entity.addicts_exist.each do |ad|
       addicts << (':' + ad.name.underscore)
     end
+    addicts
+  end
+
+  def addicts_code
     ["open_layers #{addicts.join(', ')}\n"]
   end
 
   def inferences_code
     code = entity.children.inferences.collect { |i| i.producer.generate_code }
     code.flatten 1
+  end
+
+  def footer_code
+    "end\n"
   end
 end
