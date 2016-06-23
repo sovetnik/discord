@@ -30,7 +30,7 @@ class Inference
   end
 
   def generate_code
-    ["def #{entity.name}( #{args_list} )", addicts_code, "end\n"]
+    ["def #{entity.name}#{args_list}", addicts_code, "end\n"]
   end
 
   def addictable?
@@ -41,8 +41,6 @@ class Inference
     "# #{entity.parent.name.underscore}.#{entity.name.underscore}"
   end
 
-  private
-
   def args_list
     list = []
     entity.addicts_exist.each do |addict|
@@ -50,8 +48,8 @@ class Inference
         list << addict.parent.name
       end
     end
-    args = list.map(&:underscore).uniq.collect { |ar| p ':' + ar }
-    args.join ', '
+    line = list.map(&:underscore).uniq.join ', '
+    line.empty? ? '' : "( #{line} )"
   end
 
   def addicts_code
