@@ -15,12 +15,16 @@ module Entity
       concrete_producer.sentence
     end
 
-    def depends
+    def depends # TODO: Zombie code?
       repo.deps[kind.underscore]
     end
 
     def addictable?
       concrete_producer.addictable?
+    end
+
+    def addicts_list
+      repo.addict if addictable?
     end
 
     def const_name

@@ -44,12 +44,12 @@ class Inference
   def args_list
     list = []
     entity.addicts_exist.each do |addict|
-      unless entity.parent.siblings.layers.ids.include? addict.parent.id
+      unless entity.parent.producer.addicts_list["layer"].include? addict.parent.id
         list << addict.parent.name
       end
     end
     line = list.map(&:underscore).uniq.join ', '
-    line.empty? ? '' : "( #{line} )"
+    line.empty? ? '' : "(#{line})"
   end
 
   def addicts_code

@@ -43,7 +43,7 @@ class Layer
     "class #{entity.parent.name}::#{entity.name}"
   end
 
-  def addicts
+  def addicts_list
     addicts = []
     entity.addicts_exist.each do |ad|
       addicts << (':' + ad.name.underscore)
@@ -52,7 +52,7 @@ class Layer
   end
 
   def addicts_code
-    ["open_layers #{addicts.join(', ')}\n"]
+    ["open_layers #{addicts_list.join(', ')}\n"] if addicts_list.any?
   end
 
   def inferences_code
