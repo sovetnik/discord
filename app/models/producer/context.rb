@@ -13,9 +13,9 @@ class Context
   # in spec: generates context with same name
   # in filesystem: nothing
 
-  attr_reader :entity
-  def initialize(entity)
-    @entity = entity
+  attr_reader :repo
+  def initialize(repo)
+    @repo = repo
   end
 
   def child_kinds
@@ -23,11 +23,11 @@ class Context
   end
 
   def sentence
-    "when #{entity.name}"
+    "when #{repo.name}"
   end
 
   def generate_code
-    ["context '#{entity.name}' do"]
+    ["context '#{repo.name}' do"]
   end
 
   def addictable?

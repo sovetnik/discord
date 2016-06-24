@@ -11,9 +11,9 @@ class Model
   # in spec: folder (or file if model is very compact)
   # in filesystem: is folder (or file if model is very compact)
 
-  attr_reader :entity
-  def initialize(entity)
-    @entity = entity
+  attr_reader :repo
+  def initialize(repo)
+    @repo = repo
   end
 
   def child_kinds
@@ -21,7 +21,7 @@ class Model
   end
 
   def sentence
-    "where exist #{entity.name}"
+    "where exist #{repo.name}"
   end
 
   def generate_code
@@ -35,19 +35,19 @@ class Model
   private
 
   def head_line
-    "module #{entity.parent.name}::"
+    "module #{repo.parent.name}::"
   end
 
   def path_line
-    "# ~/#{entity.producer.full_path}/#{entity.name.underscore}/*\n"
+    "# ~/#{repo.producer.full_path}/#{repo.name.underscore}/*\n"
   end
 
   def const_name
-    [entity.parent.producer.const_name, entity.name].join '::'
+    [repo.parent.producer.const_name, repo.name].join '::'
   end
 
   def inferences_code
-    code = entity.children.layers.collect { |i| i.producer.generate_code }
+    code = repo.children.layers.collect { |i| i.producer.generate_code }
     code.flatten(1)
   end
 end

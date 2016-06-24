@@ -10,15 +10,15 @@ class Inference
   ## block of def ... ... end with argument, deps & result
   ## in layer_tabs#  none
 
-  # in tree: persist as entity
+  # in tree: persist as repo
   # in code: method with same name, including
   # argument(zero or several), dependencies(several) and result(one or more)
   # in spec: generates describe
   # in filesystem: nothing
 
-  attr_reader :entity
-  def initialize(entity)
-    @entity = entity
+  attr_reader :repo
+  def initialize(repo)
+    @repo = repo
   end
 
   def child_kinds
@@ -26,11 +26,11 @@ class Inference
   end
 
   def sentence
-    "Should obey #{entity.name} and return described result"
+    "Should obey #{repo.name} and return described result"
   end
 
   def generate_code
-    ["def #{entity.name}#{args_list}", addicts_code, "end\n"]
+    ["def #{repo.name}#{args_list}", addicts_code, "end\n"]
   end
 
   def addictable?
@@ -38,13 +38,13 @@ class Inference
   end
 
   def dep_code
-    "# #{entity.parent.name.underscore}.#{entity.name.underscore}"
+    "# #{repo.parent.name.underscore}.#{repo.name.underscore}"
   end
 
   def args_list
     list = []
-    entity.addicts_exist.each do |addict|
-      unless entity.parent.producer.addicts_list["layer"].include? addict.parent.id
+    repo.addicts_exist.each do |addict|
+      unless repo.parent.producer.addicts_list['layer'].include? addict.parent.id
         list << addict.parent.name
       end
     end
@@ -54,7 +54,7 @@ class Inference
 
   def addicts_code
     addicts = []
-    entity.addicts_exist.each do |ad|
+    repo.addicts_exist.each do |ad|
       addicts << ad.producer.dep_code
     end
     addicts

@@ -11,9 +11,9 @@ class Story
   # in spec: feature spec
   # in filesystem: nothing
 
-  attr_reader :entity
-  def initialize(entity)
-    @entity = entity
+  attr_reader :repo
+  def initialize(repo)
+    @repo = repo
   end
 
   def child_kinds
@@ -21,7 +21,7 @@ class Story
   end
 
   def sentence
-    "and listen a story about #{entity.name}"
+    "and listen a story about #{repo.name}"
   end
 
   def generate_code
@@ -29,7 +29,7 @@ class Story
   end
 
   def const_name
-    [entity.parent.producer.const_name, entity.name].compact.join '::'
+    [repo.parent.producer.const_name, repo.name].compact.join '::'
   end
 
   def addictable?

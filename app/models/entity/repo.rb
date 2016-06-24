@@ -12,7 +12,7 @@ module Entity
 
     ## way to abstract & producer layer
     def abstract
-      Abstract.new self
+      Abstract.new attributes
     end
 
     def producer

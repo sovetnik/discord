@@ -14,9 +14,9 @@ class Aught
   # in spec: nothing
   # in filesystem: nothing
 
-  attr_reader :entity
-  def initialize(entity)
-    @entity = entity
+  attr_reader :repo
+  def initialize(repo)
+    @repo = repo
   end
 
   def child_kinds
@@ -24,7 +24,7 @@ class Aught
   end
 
   def sentence
-    "where pick out #{entity.name}"
+    "where pick out #{repo.name}"
   end
 
   def generate_code

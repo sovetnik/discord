@@ -13,9 +13,9 @@ class Domain
   # in spec: nothing
   # in filesystem: folder
 
-  attr_reader :entity
-  def initialize(entity)
-    @entity = entity
+  attr_reader :repo
+  def initialize(repo)
+    @repo = repo
   end
 
   def child_kinds
@@ -23,7 +23,7 @@ class Domain
   end
 
   def sentence
-    "Let's take a look on #{entity.name}"
+    "Let's take a look on #{repo.name}"
   end
 
   def generate_code

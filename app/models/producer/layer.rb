@@ -12,9 +12,9 @@ class Layer
   # in spec: file with root describe
   # in filesystem: is file
 
-  attr_reader :entity
-  def initialize(entity)
-    @entity = entity
+  attr_reader :repo
+  def initialize(repo)
+    @repo = repo
   end
 
   def child_kinds
@@ -22,7 +22,7 @@ class Layer
   end
 
   def sentence
-    "from #{entity.name} point of view"
+    "from #{repo.name} point of view"
   end
 
   def generate_code
@@ -36,16 +36,16 @@ class Layer
   private
 
   def path_line
-    "# ~/#{entity.producer.full_path}/#{entity.name.underscore}.rb\n"
+    "# ~/#{repo.producer.full_path}/#{repo.name.underscore}.rb\n"
   end
 
   def head_line
-    "class #{entity.parent.name}::#{entity.name}"
+    "class #{repo.parent.name}::#{repo.name}"
   end
 
   def addicts_list
     addicts = []
-    entity.addicts_exist.each do |ad|
+    repo.addicts_exist.each do |ad|
       addicts << (':' + ad.name.underscore)
     end
     addicts
@@ -56,7 +56,7 @@ class Layer
   end
 
   def inferences_code
-    code = entity.children.inferences.collect { |i| i.producer.generate_code }
+    code = repo.children.inferences.collect { |i| i.producer.generate_code }
     code.flatten 1
   end
 
