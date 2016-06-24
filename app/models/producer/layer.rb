@@ -45,8 +45,8 @@ class Layer
 
   def addicts_list
     addicts = []
-    repo.addicts_exist.each do |ad|
-      addicts << (':' + ad.name.underscore)
+    repo.addicts_exist.collect(&:name).each do |ad|
+      addicts << (':' + ad.underscore)
     end
     addicts
   end

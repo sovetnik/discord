@@ -54,8 +54,8 @@ class Inference
 
   def addicts_code
     addicts = []
-    repo.addicts_exist.each do |ad|
-      addicts << ad.producer.dep_code
+    repo.addicts_exist.collect(&:producer).each do |ad|
+      addicts << ad.dep_code
     end
     addicts
   end

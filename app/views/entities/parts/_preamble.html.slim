@@ -1,7 +1,7 @@
 h4 class='text-muted' Preamble
 - unless entity.root?
-  - entity.ancestors.reverse.each do |anc|
-    p = anc.producer.sentence
+  - entity.ancestors.reverse.collect(&:producer).each do |anc|
+    p = anc.sentence
 strong = entity.producer.sentence
 p = entity.desc
 br
