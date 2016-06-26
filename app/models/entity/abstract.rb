@@ -1,20 +1,12 @@
+# frozen_string_literal: true
 module Entity
   class Abstract
-    attr_reader :name, :kind, :layer_id, :repo
-    def initialize(obj)
-      @name = obj.name
-      @kind = obj.kind
-      @layer_id = obj.layer_id
-      @repo = obj
-    end
-
-    ## interface
-    def sentence
-      [producer.sentence, layer_sentence].join ' '
-    end
-
-    def layer_sentence
-      "in #{repo.layer.name}" if repo.layer
+    attr_reader :id, :name, :kind, :layer_id
+    def initialize(atts)
+      @id = atts['id']
+      @name = atts['name']
+      @kind = atts['kind']
+      @layer_id = atts['layer_id']
     end
 
     ## define layer

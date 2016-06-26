@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 json.text entity.name
 json.tags [entity.kind]
 json.selectedIcon 'glyphicon glyphicon-stop'

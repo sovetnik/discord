@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class EntitiesController < ApplicationController
   before_action :authenticate_user!
   before_action :set_entity, only: [:add_child, :show, :edit, :update, :destroy]
@@ -83,7 +84,7 @@ class EntitiesController < ApplicationController
       :kind_num,
       :name,
       :desc,
-      possibly_deps_attributes: [:id, :addict]
+      addicts_attributes: [:id, :addictance]
     )
   end
 end

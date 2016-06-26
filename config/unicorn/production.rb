@@ -1,4 +1,5 @@
 
+# frozen_string_literal: true
 # paths
 app_path = '/var/www/discordian'
 socket_dir = "#{app_path}/current/tmp/sockets"

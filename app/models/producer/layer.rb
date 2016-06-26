@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Layer
   # Point of view what encapsulate some kind of model responsibilities
 
@@ -11,9 +12,9 @@ class Layer
   # in spec: file with root describe
   # in filesystem: is file
 
-  attr_reader :entity
-  def initialize(entity)
-    @entity = entity
+  attr_reader :repo
+  def initialize(repo)
+    @repo = repo
   end
 
   def child_kinds
@@ -21,14 +22,45 @@ class Layer
   end
 
   def sentence
-    "from #{entity.name} point of view"
+    "from #{repo.name} point of view"
   end
 
   def generate_code
-    []
+    [path_line, head_line, addicts_code, inferences_code, footer_code]
   end
 
-  def has_dependencies?
+  def addictable?
     true
+  end
+
+  private
+
+  def path_line
+    "# ~/#{repo.producer.full_path}/#{repo.name.underscore}.rb\n"
+  end
+
+  def head_line
+    "class #{repo.parent.name}::#{repo.name}"
+  end
+
+  def addicts_list
+    addicts = []
+    repo.addicts_exist.collect(&:name).each do |ad|
+      addicts << (':' + ad.underscore)
+    end
+    addicts
+  end
+
+  def addicts_code
+    ["open_layers #{addicts_list.join(', ')}\n"] if addicts_list.any?
+  end
+
+  def inferences_code
+    code = repo.children.inferences.collect { |i| i.producer.generate_code }
+    code.flatten 1
+  end
+
+  def footer_code
+    "end\n"
   end
 end

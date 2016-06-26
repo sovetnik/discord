@@ -15,22 +15,63 @@ module Entity
       concrete_producer.sentence
     end
 
-    def depends
+    def depends # TODO: Zombie code?
       repo.deps[kind.underscore]
     end
 
-    def has_dependencies?
-      concrete_producer.has_dependencies?
+    def addictable?
+      concrete_producer.addictable?
+    end
+
+    def addicts_list
+      repo.addict if addictable?
+    end
+
+    def const_name
+      concrete_producer.const_name
     end
 
     def get_code
-      concrete_producer.generate_code.join("\n")
+      indent_code(generate_code).join("\n")
+    end
+
+    def generate_code
+      concrete_producer.generate_code
+    end
+
+    def full_path
+      repo.ancestors.collect(&:name).reverse.map(&:underscore).join('/')
+    end # => 'domain/model/layer'
+
+    def dep_code
+      concrete_producer.dep_code
     end
 
     private
 
     def concrete_producer
-      repo.kind.constantize.new repo
+      safe_kind.constantize.new repo
+    end
+
+    def safe_kind
+      KINDS.include?(repo.kind) ? repo.kind : 'Aught'
+    end
+
+    def indent_code(unindented_array, depth = 0)
+      indented_array = []
+      unindented_array.each do |element|
+        case element
+        when String
+          indented_array << indent_line(element, depth)
+        when Array
+          indented_array << indent_code(element, (depth + 2))
+        end
+      end
+      indented_array.flatten
+    end
+
+    def indent_line(line, depth = 0)
+      ' ' * depth + line
     end
   end
 end

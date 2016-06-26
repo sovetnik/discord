@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Model
   # Reflection on real world concept, which have identity
 
@@ -10,9 +11,9 @@ class Model
   # in spec: folder (or file if model is very compact)
   # in filesystem: is folder (or file if model is very compact)
 
-  attr_reader :entity
-  def initialize(entity)
-    @entity = entity
+  attr_reader :repo
+  def initialize(repo)
+    @repo = repo
   end
 
   def child_kinds
@@ -20,22 +21,33 @@ class Model
   end
 
   def sentence
-    "where exist #{entity.name}"
+    "where exist #{repo.name}"
   end
 
   def generate_code
-    head = "class #{entity.parent.name}::#{entity.name}"
-    inferences_code = entity.children.inferences.collect { |i| i.producer.get_code }
-    body = inferences_code.flatten.map! { |i| '  ' + i }
-    tail = 'end'
-    [head, body, tail]
+    [head_line, inferences_code, 'end']
   end
 
-  def name
-    entity.name
-  end
-
-  def has_dependencies?
+  def addictable?
     true
+  end
+
+  private
+
+  def head_line
+    "module #{repo.parent.name}::"
+  end
+
+  def path_line
+    "# ~/#{repo.producer.full_path}/#{repo.name.underscore}/*\n"
+  end
+
+  def const_name
+    [repo.parent.producer.const_name, repo.name].join '::'
+  end
+
+  def inferences_code
+    code = repo.children.layers.collect { |i| i.producer.generate_code }
+    code.flatten(1)
   end
 end

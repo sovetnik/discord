@@ -9,6 +9,12 @@
 # Offense count: 31
 # Configuration parameters: AllowHeredoc, AllowURI, URISchemes.
 # URISchemes: http, https
+
+AllCops:
+  TargetRubyVersion: 2.3
+  Exclude:
+    - db/**/*
+
 Metrics/LineLength:
   Max: 90
 Style/Documentation:
@@ -19,4 +25,3 @@ Metrics/MethodLength:
 Metrics/LineLength:
   Exclude:
     - config/**/*
-    - db/**/*

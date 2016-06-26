@@ -5,8 +5,7 @@ table class="table table-hover"
     - @entities.each do |entity|
       tr.h4
         td = entity.parent_id
-        td = entity.abstract.sentence
-        td = entity.deps
+        td = entity.producer.sentence
         td = link_to 'Show', entity_path(entity)
         td = link_to 'Edit', edit_entity_path(entity)
         td = link_to 'Destroy', entity_path(entity), data: {:confirm => 'Are you sure?'}, :method => :delete

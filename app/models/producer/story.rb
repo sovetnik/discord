@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Story
   # Use case or accident in described domain
 
@@ -10,9 +11,9 @@ class Story
   # in spec: feature spec
   # in filesystem: nothing
 
-  attr_reader :entity
-  def initialize(entity)
-    @entity = entity
+  attr_reader :repo
+  def initialize(repo)
+    @repo = repo
   end
 
   def child_kinds
@@ -20,14 +21,18 @@ class Story
   end
 
   def sentence
-    "and listen a story about #{entity.name}"
+    "and listen a story about #{repo.name}"
   end
 
   def generate_code
     []
   end
 
-  def has_dependencies?
+  def const_name
+    [repo.parent.producer.const_name, repo.name].compact.join '::'
+  end
+
+  def addictable?
     false
   end
 end

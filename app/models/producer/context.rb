@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class Context
   # Something that determine variant after bifurcation
   # it is a condition Entity
@@ -12,9 +13,9 @@ class Context
   # in spec: generates context with same name
   # in filesystem: nothing
 
-  attr_reader :entity
-  def initialize(entity)
-    @entity = entity
+  attr_reader :repo
+  def initialize(repo)
+    @repo = repo
   end
 
   def child_kinds
@@ -22,16 +23,14 @@ class Context
   end
 
   def sentence
-    "when #{entity.name}"
+    "when #{repo.name}"
   end
 
   def generate_code
-    head = "context '#{entity.name}' do"
-    tail = "\nend"
-    [head, tail]
+    ["context '#{repo.name}' do"]
   end
 
-  def has_dependencies?
+  def addictable?
     false
   end
 end

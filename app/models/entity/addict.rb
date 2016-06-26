@@ -1,6 +1,6 @@
+# frozen_string_literal: true
 module Entity
-  class Depend
-
+  class Addict
     # Inference or layer dependency
     # it is a leaf entity
 
@@ -10,12 +10,17 @@ module Entity
     # in spec: maybe let ?
     # in filesystem: nothing
 
-    attr_reader :id, :layer_id, :name, :addict
-    def initialize entity, addict=1
+    attr_reader :id, :layer_id, :name, :code, :addictance
+    def initialize(entity, addictance = 1)
       @id = entity.id
       @layer_id = entity.layer_id
       @name = "id: #{id} #{entity.kind}::#{entity.layer&.name}.#{entity.name}"
-      @addict = addict
+      @code = "  # #{entity.parent.name}.#{entity.name}"
+      @addictance = addictance
+    end
+
+    def addicted?
+      addictance != 0
     end
 
     # used from dependency_form

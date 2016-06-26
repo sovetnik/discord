@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 class CreateEntityHierarchies < ActiveRecord::Migration
   def change
     create_table :entity_hierarchies, id: false do |t|
