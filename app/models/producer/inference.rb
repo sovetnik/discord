@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class Inference
+class Inference < Struct.new 'Inference', :repo
   # TODO: Write details about responsibility
   # Responsibility
   # it is a root Entity
@@ -15,11 +15,6 @@ class Inference
   # argument(zero or several), dependencies(several) and result(one or more)
   # in spec: generates describe
   # in filesystem: nothing
-
-  attr_reader :repo
-  def initialize(repo)
-    @repo = repo
-  end
 
   def child_kinds
     %w(Aught Inference)

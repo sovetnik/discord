@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class Domain
+class Domain < Struct.new 'Domain', :repo
   # Something that describe root level concept
   # it is a root Entity
 
@@ -12,11 +12,6 @@ class Domain
   # in code: module
   # in spec: nothing
   # in filesystem: folder
-
-  attr_reader :repo
-  def initialize(repo)
-    @repo = repo
-  end
 
   def child_kinds
     %w(Aught Story Model)

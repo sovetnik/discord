@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class Model
+class Model < Struct.new 'Model', :repo
   # Reflection on real world concept, which have identity
 
   # in view:
@@ -10,11 +10,6 @@ class Model
   # in code: module
   # in spec: folder (or file if model is very compact)
   # in filesystem: is folder (or file if model is very compact)
-
-  attr_reader :repo
-  def initialize(repo)
-    @repo = repo
-  end
 
   def child_kinds
     %w(Layer Model Inference)

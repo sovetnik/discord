@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class Layer
+class Layer < Struct.new 'Layer', :repo
   # Point of view what encapsulate some kind of model responsibilities
 
   # in view:
@@ -11,11 +11,6 @@ class Layer
   # in code: class
   # in spec: file with root describe
   # in filesystem: is file
-
-  attr_reader :repo
-  def initialize(repo)
-    @repo = repo
-  end
 
   def child_kinds
     %w(Aught Inference)

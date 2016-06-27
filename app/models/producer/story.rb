@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class Story
+class Story < Struct.new 'Story', :repo
   # Use case or accident in described domain
 
   # in view:
@@ -10,11 +10,6 @@ class Story
   # in code: nothing
   # in spec: feature spec
   # in filesystem: nothing
-
-  attr_reader :repo
-  def initialize(repo)
-    @repo = repo
-  end
 
   def child_kinds
     %w(Aught)

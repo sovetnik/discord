@@ -5,18 +5,31 @@ module Entity
     # it is a leaf entity
 
     # in tree: persist as deps in hash like
-    # { inference: { depends: [23, 42] }} where first key inference
     # in code: dependency line
     # in spec: maybe let ?
     # in filesystem: nothing
 
-    attr_reader :id, :layer_id, :name, :code, :addictance
+    attr_reader :entity, :addictance
     def initialize(entity, addictance = 1)
-      @id = entity.id
-      @layer_id = entity.layer_id
-      @name = "id: #{id} #{entity.kind}::#{entity.layer&.name}.#{entity.name}"
-      @code = "  # #{entity.parent.name}.#{entity.name}"
+      @entity = entity
       @addictance = addictance
+    end
+
+    def id
+      entity.id
+    end
+
+    def layer_id
+      entity.layer_id
+    end
+
+    def code
+      "  # #{entity.parent.name}.#{entity.name}"
+    end
+
+    # TODO: this is like a shit
+    def name
+      "#{entity.kind}::#{entity.layer&.name}.#{entity.name}"
     end
 
     def addicted?

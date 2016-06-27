@@ -1,51 +1,26 @@
 # frozen_string_literal: true
 module Entity
-  class Producer
-    attr_reader :repo
-
-    def initialize(repo)
-      @repo = repo
-    end
-
-    def child_kinds
-      concrete_producer.child_kinds
-    end
-
-    def sentence
-      concrete_producer.sentence
-    end
-
-    def depends # TODO: Zombie code?
-      repo.deps[kind.underscore]
-    end
-
-    def addictable?
-      concrete_producer.addictable?
-    end
+  class Producer < Struct.new 'Producer', :repo
+    extend Forwardable
+    def_delegators :concrete_producer,
+                   :child_kinds,
+                   :sentence,
+                   :addictable?,
+                   :const_name,
+                   :generate_code,
+                   :dep_code
 
     def addicts_list
       repo.addict if addictable?
-    end
-
-    def const_name
-      concrete_producer.const_name
     end
 
     def get_code
       indent_code(generate_code).join("\n")
     end
 
-    def generate_code
-      concrete_producer.generate_code
-    end
-
     def full_path
       repo.ancestors.collect(&:name).reverse.map(&:underscore).join('/')
     end # => 'domain/model/layer'
-
-    def dep_code
-      concrete_producer.dep_code
-    end
 
     private
 

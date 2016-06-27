@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class Aught
+class Aught < Struct.new 'Aught', :repo
   # Something we can differ against others
   # it is a basic Entity
 
@@ -13,11 +13,6 @@ class Aught
   # in code: nothing
   # in spec: nothing
   # in filesystem: nothing
-
-  attr_reader :repo
-  def initialize(repo)
-    @repo = repo
-  end
 
   def child_kinds
     %w(Aught)

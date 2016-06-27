@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class Context
+class Context < Struct.new 'Context', :repo
   # Something that determine variant after bifurcation
   # it is a condition Entity
 
@@ -12,11 +12,6 @@ class Context
   # in code: nothing
   # in spec: generates context with same name
   # in filesystem: nothing
-
-  attr_reader :repo
-  def initialize(repo)
-    @repo = repo
-  end
 
   def child_kinds
     %w(Context)
