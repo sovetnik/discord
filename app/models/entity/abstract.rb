@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 module Entity
-  class Abstract < Struct.new 'Abstract', :id, :name, :kind, :layer_id
+  class Abstract < ABSTRACT
     ## define layer
     def producer
       Producer.new self

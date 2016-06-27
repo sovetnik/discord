@@ -25,7 +25,11 @@ module Entity
     private
 
     def concrete_producer
-      safe_kind.constantize.new repo
+      full_kind.constantize.new repo
+    end
+
+    def full_kind
+      'Produce::' + safe_kind
     end
 
     def safe_kind
