@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 module Produce
-  class Domain < REPO
+  class Domain < ConcreteProducer
     # Something that describe root level concept
     # it is a root Entity
 

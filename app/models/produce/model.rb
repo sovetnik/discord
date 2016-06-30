@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 module Produce
-  class Model < REPO
+  class Model < ConcreteProducer
     # Reflection on real world concept, which have identity
 
     # in view:
@@ -13,7 +13,7 @@ module Produce
     # in filesystem: is folder (or file if model is very compact)
 
     def child_kinds
-      %w(Layer Model Inference)
+      %w(Layer Inference)
     end
 
     def sentence

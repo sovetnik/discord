@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 module Produce
-  class Context < REPO
+  class Context < ConcreteProducer
     # Something that determine variant after bifurcation
     # it is a condition Entity
 
@@ -15,7 +15,8 @@ module Produce
     # in filesystem: nothing
 
     def child_kinds
-      %w(Context)
+      []
+      # %w(Context)
     end
 
     def sentence

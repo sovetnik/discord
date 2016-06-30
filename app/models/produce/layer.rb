@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 module Produce
-  class Layer < REPO
+  class Layer < ConcreteProducer
     # Point of view what encapsulate some kind of model responsibilities
 
     # in view:

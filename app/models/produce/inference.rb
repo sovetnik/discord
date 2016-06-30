@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 module Produce
-  class Inference < REPO
+  class Inference < ConcreteProducer
     # TODO: Write details about responsibility
     # Responsibility
     # it is a root Entity
@@ -18,7 +18,8 @@ module Produce
     # in filesystem: nothing
 
     def child_kinds
-      %w(Aught Inference)
+      []
+      # %w(Aught Inference)
     end
 
     def sentence

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 module Produce
-  class Story < REPO
+  class Story < ConcreteProducer
     # Use case or accident in described domain
 
     # in view:

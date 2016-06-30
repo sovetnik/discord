@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 module Produce
-  class Aught < REPO
+  class Aught < ConcreteProducer
     # Something we can differ against others
     # it is a basic Entity
 
@@ -16,7 +16,7 @@ module Produce
     # in filesystem: nothing
 
     def child_kinds
-      %w(Aught)
+      []
     end
 
     def sentence
