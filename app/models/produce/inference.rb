@@ -1,60 +1,38 @@
 # frozen_string_literal: true
 module Produce
   class Inference < ConcreteProducer
-    # TODO: Write details about responsibility
-    # Responsibility
-    # it is a root Entity
+    # Reflection on real world concept, which have identity
 
     # in view:
     ## in preamble: sentence
     ## in details: name & desc
-    ## block of def ... ... end with argument, deps & result
-    ## in layer_tabs#  none
+    ## in layer_tabs: layers
 
-    # in tree: persist as repo
-    # in code: method with same name, including
-    # argument(zero or several), dependencies(several) and result(one or more)
-    # in spec: generates describe
-    # in filesystem: nothing
+    # in code: module
+    # in spec: folder (or file if model is very compact)
+    # in filesystem: is folder (or file if model is very compact)
 
     def child_kinds
       []
-      # %w(Aught Inference)
+      # %w(Layer Ability)
     end
 
     def sentence
-      "Should obey #{repo.name} and return described result"
+      "Should return #{repo.name}, #{repo.name}"
     end
 
     def generate_code
-      ["def #{repo.name}#{args_list}", addicts_code, "end\n"]
+      ["# => #{repo.name.underscore}"]
     end
 
     def addictable?
       true
     end
 
-    def dep_code
-      "# #{repo.parent.name.underscore}.#{repo.name.underscore}"
-    end
+    private
 
-    def args_list
-      list = []
-      repo.addicts_exist.each do |addict|
-        unless repo.parent.producer.addicts_list['layer'].include? addict.parent.id
-          list << addict.parent.name
-        end
-      end
-      line = list.map(&:underscore).uniq.join ', '
-      line.empty? ? '' : "(#{line})"
-    end
-
-    def addicts_code
-      addicts = []
-      repo.addicts_exist.collect(&:producer).each do |ad|
-        addicts << ad.dep_code
-      end
-      addicts
+    def path_line
+      "# ~/#{repo.producer.full_path}/#{repo.name.underscore}/*\n"
     end
   end
 end

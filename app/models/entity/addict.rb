@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 module Entity
   class Addict
-    # Inference or layer dependency
+    # Ability or layer dependency
     # it is a leaf entity
 
     # in tree: persist as deps in hash like

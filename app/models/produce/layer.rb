@@ -14,7 +14,7 @@ module Produce
     # in filesystem: is file
 
     def child_kinds
-      %w(Aught Inference)
+      %w(Aught Ability)
     end
 
     def sentence
@@ -22,7 +22,7 @@ module Produce
     end
 
     def generate_code
-      [path_line, head_line, addicts_code, inferences_code, footer_code]
+      [path_line, head_line, addicts_code, abilities_code, footer_code]
     end
 
     def addictable?
@@ -51,8 +51,8 @@ module Produce
       ["open_layers #{addicts_list.join(', ')}\n"] if addicts_list.any?
     end
 
-    def inferences_code
-      code = repo.children.inferences.collect { |i| i.producer.generate_code }
+    def abilities_code
+      code = repo.children.abilities.collect { |i| i.producer.generate_code }
       code.flatten 1
     end
 

@@ -4,9 +4,11 @@ module Entity
     self.table_name = 'entities'
     acts_as_tree order: 'sort_order'
 
-    scope :inferences, -> { where(kind: 'Inference') }
+    scope :abilities, -> { where(kind: 'Ability') }
     scope :layers, -> { where(kind: 'Layer') }
     scope :stories, -> { where(kind: 'Story') }
+    scope :axioms, -> { where(kind: 'Axiom') }
+    scope :inferences, -> { where(kind: 'Inference') }
 
     attr_accessor :addictance
 
