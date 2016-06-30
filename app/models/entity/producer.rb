@@ -18,6 +18,10 @@ module Entity
       indent_code(generate_code).join("\n")
     end
 
+    def get_tree
+      concrete_producer.indented_tree
+    end
+
     def full_path
       repo.ancestors.collect(&:name).reverse.map(&:underscore).join('/')
     end # => 'domain/model/layer'
