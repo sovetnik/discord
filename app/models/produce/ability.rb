@@ -1,19 +1,13 @@
 # frozen_string_literal: true
 module Produce
   class Ability < ConcreteProducer
-    # TODO: Write details about responsibility
-    # Responsibility
-    # it is a root Entity
+    # it is a function or method Entity
 
-    # in view:
-    ## in preamble: sentence
-    ## in details: name & desc
     ## block of def ... ... end with argument, deps & result
     ## in layer_tabs#  none
 
-    # in tree: persist as repo
     # in code: method with same name, including
-    # argument(zero or several), dependencies(several) and result(one or more)
+    # argument(zero or several), axiom(several) and inference(one or more)
     # in spec: generates describe
     # in filesystem: nothing
 

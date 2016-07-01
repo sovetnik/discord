@@ -3,11 +3,6 @@ module Produce
   class Model < ConcreteProducer
     # Reflection on real world concept, which have identity
 
-    # in view:
-    ## in preamble: sentence
-    ## in details: name & desc
-    ## in layer_tabs: layers
-
     # in code: module
     # in spec: folder (or file if model is very compact)
     # in filesystem: is folder (or file if model is very compact)

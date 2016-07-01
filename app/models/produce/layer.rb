@@ -3,12 +3,6 @@ module Produce
   class Layer < ConcreteProducer
     # Point of view what encapsulate some kind of model responsibilities
 
-    # in view:
-    ## in preamble: nothing
-    ## in details: name & desc
-    ## in layer_tabs: none
-
-    # in tree: persist as entity
     # in code: class
     # in spec: file with root describe
     # in filesystem: is file

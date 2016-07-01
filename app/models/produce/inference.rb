@@ -1,16 +1,11 @@
 # frozen_string_literal: true
 module Produce
   class Inference < ConcreteProducer
-    # Reflection on real world concept, which have identity
+    # Result and meaning for ability
 
-    # in view:
-    ## in preamble: sentence
-    ## in details: name & desc
-    ## in layer_tabs: layers
-
-    # in code: module
-    # in spec: folder (or file if model is very compact)
-    # in filesystem: is folder (or file if model is very compact)
+    # in code: method
+    # in spec: expectation( it )
+    # in filesystem: nothing
 
     def child_kinds
       []

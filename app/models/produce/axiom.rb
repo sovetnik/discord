@@ -1,20 +1,11 @@
 # frozen_string_literal: true
 module Produce
   class Axiom < ConcreteProducer
-    # TODO: Write details about responsibility
-    # Responsibility
-    # it is a root Entity
+    # it is a source for ability
 
-    # in view:
-    ## in preamble: sentence
-    ## in details: name & desc
-    ## block of def ... ... end with argument, deps & result
-    ## in layer_tabs#  none
-
-    # in tree: persist as repo
-    # in code: method with same name, including
-    # argument(zero or several), dependencies(several) and result(one or more)
-    # in spec: generates describe
+    # in code: method dependency, from same class (private),
+    # from opened layers (common) or from abstract layers (contracts)
+    # in spec: generates let
     # in filesystem: nothing
 
     def child_kinds

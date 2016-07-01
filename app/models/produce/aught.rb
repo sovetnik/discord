@@ -2,15 +2,8 @@
 module Produce
   class Aught < ConcreteProducer
     # Something we can differ against others
-    # it is a basic Entity
+    # it is a basic Entity, without any effects
 
-    # in view:
-    ## in preamble: sentence
-    # TODO: Preamble creates context. Describe our entity.
-    ## in details: name & desc
-    ## in layer_tabs: none
-
-    # in tree persist: as entity
     # in code: nothing
     # in spec: nothing
     # in filesystem: nothing
