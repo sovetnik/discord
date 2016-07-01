@@ -17,8 +17,7 @@ module Produce
     end
 
     def generate_code
-      ['# axiom: layer.ability']
-      # ["def #{repo.name}#{args_list}", addicts_code, "end\n"]
+      [axiom_line]
     end
 
     def addictable?
@@ -27,6 +26,16 @@ module Produce
 
     def dep_code
       "# #{repo.parent.name.underscore}.#{repo.name.underscore}"
+    end
+
+    private
+
+    def axiom_line
+      repo.abstract.nil? ? repo.name : inference_line
+    end
+
+    def inference_line
+      "# #{repo.abstract.parent.parent.name}.#{repo.abstract.parent.name} => #{repo.abstract.name}"
     end
 
     def args_list
@@ -38,14 +47,6 @@ module Produce
       end
       line = list.map(&:underscore).uniq.join ', '
       line.empty? ? '' : "(#{line})"
-    end
-
-    def addicts_code
-      addicts = []
-      repo.addicts_exist.collect(&:producer).each do |ad|
-        addicts << ad.dep_code
-      end
-      addicts
     end
   end
 end

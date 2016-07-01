@@ -4,6 +4,8 @@ module Entity
     self.table_name = 'entities'
     acts_as_tree order: 'sort_order'
 
+    belongs_to :abstract, class_name: "Repo"
+
     scope :abilities, -> { where(kind: 'Ability') }
     scope :layers, -> { where(kind: 'Layer') }
     scope :stories, -> { where(kind: 'Story') }
@@ -12,17 +14,8 @@ module Entity
 
     attr_accessor :addictance
 
-    ## way to abstract & producer layer
-    def abstract
-      Abstract.new attributes
-    end
-
     def producer
       Producer.new self
-    end
-
-    def layer
-      self.class.layers.find(layer_id) if layer_id
     end
 
     def possibly_kinds

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160621022818) do
+ActiveRecord::Schema.define(version: 20160701120746) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,10 +22,10 @@ ActiveRecord::Schema.define(version: 20160621022818) do
     t.string   "kind"
     t.string   "name"
     t.text     "desc"
-    t.datetime "created_at",              null: false
-    t.datetime "updated_at",              null: false
-    t.integer  "layer_id"
-    t.json     "addict",     default: {}, null: false
+    t.datetime "created_at",               null: false
+    t.datetime "updated_at",               null: false
+    t.integer  "abstract_id"
+    t.json     "addict",      default: {}, null: false
   end
 
   create_table "entity_hierarchies", id: false, force: :cascade do |t|

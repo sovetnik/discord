@@ -29,7 +29,7 @@ module Entity
 
     # TODO: this is like a shit
     def name
-      "#{entity.kind}::#{entity.layer&.name}.#{entity.name}"
+      "#{entity.kind}:#{entity.name}"
     end
 
     def addicted?
