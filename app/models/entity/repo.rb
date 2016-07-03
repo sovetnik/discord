@@ -4,7 +4,7 @@ module Entity
     self.table_name = 'entities'
     acts_as_tree order: 'sort_order'
 
-    belongs_to :abstract, class_name: "Repo"
+    belongs_to :abstract, class_name: 'Repo'
 
     scope :abilities, -> { where(kind: 'Ability') }
     scope :layers, -> { where(kind: 'Layer') }

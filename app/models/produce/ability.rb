@@ -32,15 +32,15 @@ module Produce
     end
 
     def args_list
-    #   list = []
-    #   repo.addicts_exist.each do |addict|
-    #     unless repo.parent.producer.addicts_list['layer'].include? addict.parent.id
-    #       list << addict.parent.name
-    #     end
-    #   end
-    #   line = list.map(&:underscore).uniq.join ', '
-    #   line.empty? ? '' : "(#{line})"
-    '(args)'
+      #   list = []
+      #   repo.addicts_exist.each do |addict|
+      #     unless repo.parent.producer.addicts_list['layer'].include? addict.parent.id
+      #       list << addict.parent.name
+      #     end
+      #   end
+      #   line = list.map(&:underscore).uniq.join ', '
+      #   line.empty? ? '' : "(#{line})"
+      '(args)'
     end
 
     def axiom_code

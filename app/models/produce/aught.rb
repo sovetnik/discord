@@ -9,7 +9,7 @@ module Produce
     # in filesystem: nothing
 
     def child_kinds
-      []
+      ['Aught']
     end
 
     def sentence
