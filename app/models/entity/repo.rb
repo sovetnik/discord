@@ -8,6 +8,7 @@ module Entity
 
     scope :abilities, -> { where(kind: 'Ability') }
     scope :layers, -> { where(kind: 'Layer') }
+    scope :stocks, -> { where(kind: 'Stock') }
     scope :stories, -> { where(kind: 'Story') }
     scope :axioms, -> { where(kind: 'Axiom') }
     scope :inferences, -> { where(kind: 'Inference') }

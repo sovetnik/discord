@@ -8,7 +8,7 @@ module Produce
     # in filesystem: is file
 
     def child_kinds
-      %w(Aught Ability)
+      %w(Ability Stock)
     end
 
     def sentence
@@ -33,6 +33,15 @@ module Produce
       "class #{repo.parent.name}::#{repo.name}"
     end
 
+    def stocked_layers
+      stocks = []
+      repo.children.stocks.collect(&:name).each do |stock|
+        stocks << (':' + stock.underscore)
+      end
+      stocks
+    end
+
+    # TODO: remove this shit
     def addicts_list
       addicts = []
       repo.addicts_exist.collect(&:name).each do |ad|
@@ -42,7 +51,7 @@ module Produce
     end
 
     def addicts_code
-      ["open_layers #{addicts_list.join(', ')}\n"] if addicts_list.any?
+      ["open_layers #{stocked_layers.join(', ')}\n"] if addicts_list.any?
     end
 
     def abilities_code
