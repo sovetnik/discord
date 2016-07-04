@@ -7,8 +7,7 @@ module Entity
                    :sentence,
                    :addictable?,
                    :const_name,
-                   :generate_code,
-                   :dep_code
+                   :generate_code
 
     def addicts_list
       repo.addict if addictable?

@@ -24,10 +24,6 @@ module Produce
       true
     end
 
-    def dep_code
-      "# #{repo.parent.name.underscore}.#{repo.name.underscore}"
-    end
-
     private
 
     def axiom_line

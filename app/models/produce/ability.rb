@@ -27,10 +27,6 @@ module Produce
       true
     end
 
-    def dep_code
-      "# #{repo.parent.name.underscore}.#{repo.name.underscore}"
-    end
-
     def args_list
       #   list = []
       #   repo.addicts_exist.each do |addict|
