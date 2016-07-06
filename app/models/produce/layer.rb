@@ -26,7 +26,7 @@ module Produce
     private
 
     def path_line
-      "# ~/#{repo.producer.full_path}/#{repo.name.underscore}.rb\n"
+      "# ~/#{[repo.producer.full_path, repo.name.underscore].join('/')}.rb\n"
     end
 
     def head_line

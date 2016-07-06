@@ -17,7 +17,7 @@ module Produce
     end
 
     def generate_code
-      []
+      [path_line]
     end
 
     def const_name
@@ -26,6 +26,12 @@ module Produce
 
     def addictable?
       false
+    end
+
+    private
+
+    def path_line
+      "# ~/#{repo.producer.full_path}#{repo.name.underscore}/*\n"
     end
   end
 end

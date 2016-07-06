@@ -16,7 +16,7 @@ module Produce
     end
 
     def generate_code
-      [head_line, abilities_code, 'end']
+      [path_line, head_line, abilities_code, 'end']
     end
 
     def addictable?
