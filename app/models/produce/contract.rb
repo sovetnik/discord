@@ -13,11 +13,11 @@ module Produce
     # in filesystem: is file
 
     def child_kinds
-      %w(Aught Ability)
+      %w(Guaranty)
     end
 
     def sentence
-      "from #{repo.name} point of view"
+      "in #{repo.name} contract"
     end
 
     def generate_code

@@ -1,7 +1,8 @@
 # frozen_string_literal: true
 module Produce
-  class Ability < ConcreteProducer
-    # it is a function or method Entity
+  class Guaranty < ConcreteProducer
+    # it is a function or method which must be implemented in
+    # ability from layer which abstract is guaranty contract
 
     ## block of def ... ... end with argument, deps & result
     ## in layer_tabs#  none
@@ -12,15 +13,15 @@ module Produce
     # in filesystem: nothing
 
     def child_kinds
-      %w(Aught Axiom Inference)
+      %w(Axiom Inference)
     end
 
     def sentence
-      "can understand #{repo.name}"
+      "Should obey #{repo.name}"
     end
 
     def generate_code
-      ["def #{repo.name}#{args_list}", axiom_code, inference_code]
+      ["def #{repo.name}#{args_list}", imp_code, axiom_code, inference_code]
     end
 
     def addictable?
@@ -28,15 +29,11 @@ module Produce
     end
 
     def args_list
-      #   list = []
-      #   repo.addicts_exist.each do |addict|
-      #     unless repo.parent.producer.addicts_list['layer'].include? addict.parent.id
-      #       list << addict.parent.name
-      #     end
-      #   end
-      #   line = list.map(&:underscore).uniq.join ', '
-      #   line.empty? ? '' : "(#{line})"
       '(args)'
+    end
+
+    def imp_code
+      "raise 'Must be implemented in concrete layer'"
     end
 
     def axiom_code
