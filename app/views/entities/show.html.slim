@@ -16,11 +16,7 @@
     = render 'entities/parts/preamble', entity: @entity
     
     - if @entity.kind == 'Axiom'
-      = bootstrap_form_for @entity, url: entity_path(@entity), layout: :inline do |form|
-        = form.collection_select :abstract_id, @entity.root.descendants.inferences, :id, :name, 
-          include_blank: 'unsupplied', hide_label: true
-        = form.submit 'inherit!', class: 'btn btn-success'
-      br 
+      = render 'entities/parts/inherit', entity: @entity
     
     = render 'entities/parts/code', entity: @entity
     / TODO: Combine Layer_tabs and Dependency form

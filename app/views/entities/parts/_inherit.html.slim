@@ -1,0 +1,8 @@
+h4 class='text-muted' Generated code
+
+
+  = bootstrap_form_for entity, url: entity_path(entity), layout: :inline do |form|
+    = form.collection_select :abstract_id, entity.root.descendants.inferences, :id, :name, 
+      include_blank: 'unsupplied', hide_label: true
+    = form.submit 'inherit!', class: 'btn btn-success'
+  br 
