@@ -13,8 +13,6 @@ module Entity
     scope :axioms, -> { where(kind: 'Axiom') }
     scope :inferences, -> { where(kind: 'Inference') }
 
-    attr_accessor :addictance
-
     def producer
       Producer.new self
     end
@@ -60,46 +58,6 @@ module Entity
     ## kind setter by num
     def kind_num=(num)
       self.kind = possibly_kinds[num.to_i] || ''
-    end
-
-    def layers_list
-      list = []
-      list << parent&.siblings&.layers unless parent&.root?
-      list << siblings.layers unless root?
-      list << children.layers
-      list.flatten.compact.uniq
-    end
-
-    def addicts_exist
-      self.class.where(id: addicts_ids, kind: kind)
-    end
-
-    def addicts
-      addicts = []
-      root.descendants.where(kind: kind).each do |entity|
-        addicts << Addict.new(entity, addicted?(entity))
-      end
-      addicts
-    end
-
-    def addicts_attributes=(atts)
-      addict_ids = []
-      atts.keys.each do |key|
-        addict_ids << atts.dig(key, 'id') if atts.dig(key, 'addictance') != '0'
-      end
-      self.addict = {} if addict.nil?
-      self.addict = { kind.underscore.to_sym => addict_ids.map!(&:to_i) }
-    end
-
-    private
-
-    def addicted?(entity)
-      self.addict = { kind.underscore => [] } if addict.nil?
-      addicts_ids.include?(entity.id) ? 1 : 0
-    end
-
-    def addicts_ids
-      addict.fetch(kind.underscore, [])
     end
   end
 end

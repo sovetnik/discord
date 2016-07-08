@@ -19,10 +19,6 @@ module Produce
       []
     end
 
-    def addictable?
-      false
-    end
-
     def abstractable?
       true
     end

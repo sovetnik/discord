@@ -23,10 +23,6 @@ module Produce
       [repo.parent.producer.const_name, repo.name].compact.join '::'
     end
 
-    def addictable?
-      false
-    end
-
     def abstractable?
       false
     end

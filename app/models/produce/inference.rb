@@ -20,10 +20,6 @@ module Produce
       ["# => #{repo.name.underscore}"]
     end
 
-    def addictable?
-      true
-    end
-
     def abstractable?
       false
     end

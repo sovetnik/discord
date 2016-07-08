@@ -24,10 +24,6 @@ module Produce
       nil
     end
 
-    def addictable?
-      false
-    end
-
     def abstractable?
       false
     end

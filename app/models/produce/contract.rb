@@ -21,11 +21,7 @@ module Produce
     end
 
     def generate_code
-      [path_line, head_line, addicts_code, abilities_code, footer_code]
-    end
-
-    def addictable?
-      true
+      [path_line, head_line, abilities_code, footer_code]
     end
 
     def abstractable?
@@ -40,18 +36,6 @@ module Produce
 
     def head_line
       "class #{repo.parent.name}::#{repo.name}"
-    end
-
-    def addicts_list
-      addicts = []
-      repo.addicts_exist.collect(&:name).each do |ad|
-        addicts << (':' + ad.underscore)
-      end
-      addicts
-    end
-
-    def addicts_code
-      ["open_layers #{addicts_list.join(', ')}\n"] if addicts_list.any?
     end
 
     def abilities_code

@@ -12,7 +12,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20_160_701_120_746) do
+ActiveRecord::Schema.define(version: 20_160_708_140_321) do
   # These are extensions that must be enabled in order to support this database
   enable_extension 'plpgsql'
 
@@ -22,10 +22,9 @@ ActiveRecord::Schema.define(version: 20_160_701_120_746) do
     t.string   'kind'
     t.string   'name'
     t.text     'desc'
-    t.datetime 'created_at',               null: false
-    t.datetime 'updated_at',               null: false
+    t.datetime 'created_at',  null: false
+    t.datetime 'updated_at',  null: false
     t.integer  'abstract_id'
-    t.json     'addict', default: {}, null: false
   end
 
   create_table 'entity_hierarchies', id: false, force: :cascade do |t|

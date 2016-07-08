@@ -16,11 +16,7 @@ module Produce
     end
 
     def generate_code
-      [path_line, head_line, addicts_code, abilities_code, footer_code]
-    end
-
-    def addictable?
-      true
+      [path_line, head_line, stocks_line, abilities_code, footer_code]
     end
 
     def abstractable?
@@ -49,17 +45,8 @@ module Produce
       stocks
     end
 
-    # TODO: remove this shit
-    def addicts_list
-      addicts = []
-      repo.addicts_exist.collect(&:name).each do |ad|
-        addicts << (':' + ad.underscore)
-      end
-      addicts
-    end
-
-    def addicts_code
-      ["open_layers #{stocked_layers.join(', ')}\n"] if addicts_list.any?
+    def stocks_line
+      ["open_layers #{stocked_layers.join(', ')}\n"] if stocked_layers.any?
     end
 
     def abilities_code

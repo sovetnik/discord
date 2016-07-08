@@ -22,10 +22,6 @@ module Produce
       ["context '#{repo.name}' do"]
     end
 
-    def addictable?
-      false
-    end
-
     def abstractable?
       false
     end

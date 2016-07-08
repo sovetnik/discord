@@ -23,10 +23,6 @@ module Produce
       ["def #{repo.name}#{args_list}", axiom_code, inference_code]
     end
 
-    def addictable?
-      true
-    end
-
     def abstractable?
       true
     end
@@ -36,14 +32,6 @@ module Produce
     end
 
     def args_list
-      #   list = []
-      #   repo.addicts_exist.each do |addict|
-      #     unless repo.parent.producer.addicts_list['layer'].include? addict.parent.id
-      #       list << addict.parent.name
-      #     end
-      #   end
-      #   line = list.map(&:underscore).uniq.join ', '
-      #   line.empty? ? '' : "(#{line})"
       '(args)'
     end
 

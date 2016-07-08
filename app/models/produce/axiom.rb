@@ -20,10 +20,6 @@ module Produce
       [axiom_line]
     end
 
-    def addictable?
-      true
-    end
-
     private
 
     def axiom_line
@@ -32,17 +28,6 @@ module Produce
 
     def inference_line
       "# #{repo.abstract.parent.parent.name}.#{repo.abstract.parent.name} => #{repo.abstract.name}"
-    end
-
-    def args_list
-      list = []
-      repo.addicts_exist.each do |addict|
-        unless repo.parent.producer.addicts_list['layer'].include? addict.parent.id
-          list << addict.parent.name
-        end
-      end
-      line = list.map(&:underscore).uniq.join ', '
-      line.empty? ? '' : "(#{line})"
     end
   end
 end

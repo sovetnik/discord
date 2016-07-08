@@ -1,8 +1,6 @@
 = bootstrap_form_for @entity, url: entity_path(@entity) do |form|
   = form.collection_select :parent_id, @entity.parents_list, :id, :name, 
     include_blank: 'root'
-  = form.collection_select :abstract_id, @entity.layers_list, :id, :name, 
-    include_blank: 'unlayered'
   = form.collection_select :kind_num, @entity.kinds_list, :first, :last,
     label: 'Kind'
   = form.number_field :sort_order

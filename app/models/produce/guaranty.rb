@@ -24,10 +24,6 @@ module Produce
       ["def #{repo.name}#{args_list}", imp_code, axiom_code, inference_code]
     end
 
-    def addictable?
-      true
-    end
-
     def abstractable?
       false
     end

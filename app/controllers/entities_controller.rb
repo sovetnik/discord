@@ -83,8 +83,7 @@ class EntitiesController < ApplicationController
       :sort_order,
       :kind_num,
       :name,
-      :desc,
-      addicts_attributes: [:id, :addictance]
+      :desc
     )
   end
 end

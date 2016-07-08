@@ -19,10 +19,6 @@ module Produce
       [path_line, head_line, abilities_code, 'end']
     end
 
-    def addictable?
-      true
-    end
-
     def abstractable?
       false
     end
