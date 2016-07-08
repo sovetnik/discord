@@ -23,6 +23,10 @@ module Produce
       true
     end
 
+    def abstractable?
+      false
+    end
+
     private
 
     def head_line

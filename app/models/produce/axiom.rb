@@ -27,7 +27,7 @@ module Produce
     private
 
     def axiom_line
-      repo.abstract.nil? ? repo.name : inference_line
+      repo.abstract.nil? ? [repo.name, 'udefined'] : inference_line
     end
 
     def inference_line

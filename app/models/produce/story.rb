@@ -26,5 +26,9 @@ module Produce
     def addictable?
       false
     end
+
+    def abstractable?
+      false
+    end
   end
 end

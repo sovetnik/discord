@@ -15,8 +15,8 @@
     h2 class='text-muted' Discord
     = render 'entities/parts/preamble', entity: @entity
     
-    - if @entity.kind == 'Axiom'
-      = render 'entities/parts/inherit', entity: @entity
+    - if @entity.producer.abstractable?
+      = render 'entities/parts/abstract_form', entity: @entity
     
     = render 'entities/parts/code', entity: @entity
     / TODO: Combine Layer_tabs and Dependency form

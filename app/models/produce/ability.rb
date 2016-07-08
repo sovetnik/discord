@@ -27,6 +27,14 @@ module Produce
       true
     end
 
+    def abstractable?
+      true
+    end
+
+    def abstract_kind
+      'Guaranty'
+    end
+
     def args_list
       #   list = []
       #   repo.addicts_exist.each do |addict|

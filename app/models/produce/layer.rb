@@ -23,6 +23,14 @@ module Produce
       true
     end
 
+    def abstractable?
+      true
+    end
+
+    def abstract_kind
+      'Contract'
+    end
+
     private
 
     def path_line

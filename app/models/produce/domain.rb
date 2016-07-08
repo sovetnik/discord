@@ -28,6 +28,10 @@ module Produce
       false
     end
 
+    def abstractable?
+      false
+    end
+
     private
 
     def path_line

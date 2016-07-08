@@ -28,6 +28,10 @@ module Entity
       Entity::KINDS & producer.child_kinds
     end
 
+    def possibly_abstract_list
+      root.descendants.where(kind: producer.abstract_kind)
+    end
+
     def kinds_list
       possibly_kinds.map.with_index { |obj, index| [index, obj] }
     end

@@ -22,5 +22,13 @@ module Produce
     def addictable?
       false
     end
+
+    def abstractable?
+      true
+    end
+
+    def abstract_kind
+      'Layer'
+    end
   end
 end
