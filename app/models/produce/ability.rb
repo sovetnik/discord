@@ -20,7 +20,7 @@ module Produce
     end
 
     def generate_code
-      ["def #{repo.name}#{args_list}", axiom_code, inference_code]
+      ["def #{repo.name}#{args_line}", axiom_code, inference_code]
     end
 
     def abstractable?
@@ -31,8 +31,23 @@ module Produce
       'Guaranty'
     end
 
+    private
+
+    def args_line
+      "(#{args_list.compact.uniq.map(&:underscore).join(', ')})" unless args_list.empty?
+    end
+
     def args_list
-      '(args)'
+      axiom_layers_list - stock_list
+    end
+    # '(args, args)'
+
+    def axiom_layers_list
+      repo.children.axioms.collect &:abstract_layer_name
+    end
+
+    def stock_list
+      repo.parent.children.stocks.collect &:abstract_layer_name
     end
 
     def axiom_code
