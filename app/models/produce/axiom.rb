@@ -20,14 +20,26 @@ module Produce
       [axiom_line]
     end
 
+    def abstractable?
+      true
+    end
+
+    def abstract_kind
+      'Ability'
+    end
+
     private
 
     def axiom_line
-      repo.abstract.nil? ? [repo.name, 'udefined'] : inference_line
+      repo.abstract.nil? ? inference_undefined : inference_abstract
     end
 
-    def inference_line
-      "# #{repo.abstract.parent.parent.name}.#{repo.abstract.parent.name} => #{repo.abstract.name}"
+    def inference_undefined
+      "# undefined => #{repo.name}"
+    end
+
+    def inference_abstract
+      "# #{repo.abstract.parent.name}.#{repo.abstract.name} => #{repo.name}"
     end
   end
 end
