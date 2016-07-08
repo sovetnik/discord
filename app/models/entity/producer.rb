@@ -5,14 +5,10 @@ module Entity
     def_delegators :concrete_producer,
                    :child_kinds,
                    :sentence,
-                   :addictable?,
                    :const_name,
                    :generate_code,
-                   :dep_code
-
-    def addicts_list
-      repo.addict if addictable?
-    end
+                   :abstract_kind,
+                   :abstractable?
 
     def get_code
       indent_code(generate_code).join("\n")

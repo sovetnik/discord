@@ -3,7 +3,6 @@
     h2 class='text-muted' Chaos
     = render 'entities/parts/details', entity: @entity
     = render 'entities/parts/child_form', entity: @entity
-    = render 'entities/parts/addict_form', entity: @entity
     - @entity.root.descendants.stories.each do |story|
       h4
         = link_to story.name, entity_path(story), class: 'btn btn-lg btn-link'
@@ -14,10 +13,11 @@
   .col-md-5
     h2 class='text-muted' Discord
     = render 'entities/parts/preamble', entity: @entity
+    
+    - if @entity.producer.abstractable?
+      = render 'entities/parts/abstract_form', entity: @entity
+    
     = render 'entities/parts/code', entity: @entity
-    / TODO: Combine Layer_tabs and Dependency form
-    = render 'entities/parts/layer_tabs', entity: @entity
-    - if @entity.producer.addictable?
 
   .col-md-4
     h2 class='text-muted' Confusion

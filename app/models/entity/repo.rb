@@ -4,23 +4,21 @@ module Entity
     self.table_name = 'entities'
     acts_as_tree order: 'sort_order'
 
-    scope :inferences, -> { where(kind: 'Inference') }
+    belongs_to :abstract, class_name: 'Repo'
+
+    scope :abilities, -> { where(kind: 'Ability') }
     scope :layers, -> { where(kind: 'Layer') }
+    scope :stocks, -> { where(kind: 'Stock') }
     scope :stories, -> { where(kind: 'Story') }
-
-    attr_accessor :addictance
-
-    ## way to abstract & producer layer
-    def abstract
-      Abstract.new attributes
-    end
+    scope :axioms, -> { where(kind: 'Axiom') }
+    scope :inferences, -> { where(kind: 'Inference') }
 
     def producer
       Producer.new self
     end
 
-    def layer
-      self.class.layers.find(layer_id) if layer_id
+    def abstract_layer_name
+      abstract&.parent&.name
     end
 
     def possibly_kinds
@@ -30,6 +28,10 @@ module Entity
 
     def possibly_child_kinds
       Entity::KINDS & producer.child_kinds
+    end
+
+    def possibly_abstract_list
+      root.descendants.where(kind: producer.abstract_kind)
     end
 
     def kinds_list
@@ -60,46 +62,6 @@ module Entity
     ## kind setter by num
     def kind_num=(num)
       self.kind = possibly_kinds[num.to_i] || ''
-    end
-
-    def layers_list
-      list = []
-      list << parent&.siblings&.layers unless parent&.root?
-      list << siblings.layers unless root?
-      list << children.layers
-      list.flatten.compact.uniq
-    end
-
-    def addicts_exist
-      self.class.where(id: addicts_ids, kind: kind)
-    end
-
-    def addicts
-      addicts = []
-      root.descendants.where(kind: kind).each do |entity|
-        addicts << Addict.new(entity, addicted?(entity))
-      end
-      addicts
-    end
-
-    def addicts_attributes=(atts)
-      addict_ids = []
-      atts.keys.each do |key|
-        addict_ids << atts.dig(key, 'id') if atts.dig(key, 'addictance') != '0'
-      end
-      self.addict = {} if addict.nil?
-      self.addict = { kind.underscore.to_sym => addict_ids.map!(&:to_i) }
-    end
-
-    private
-
-    def addicted?(entity)
-      self.addict = { kind.underscore => [] } if addict.nil?
-      addicts_ids.include?(entity.id) ? 1 : 0
-    end
-
-    def addicts_ids
-      addict.fetch(kind.underscore, [])
     end
   end
 end

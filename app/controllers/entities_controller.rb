@@ -79,12 +79,11 @@ class EntitiesController < ApplicationController
   def entity_params
     params.require(:entity_repo).permit(
       :parent_id,
-      :layer_id,
+      :abstract_id,
       :sort_order,
       :kind_num,
       :name,
-      :desc,
-      addicts_attributes: [:id, :addictance]
+      :desc
     )
   end
 end

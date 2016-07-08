@@ -3,18 +3,12 @@ module Produce
   class Layer < ConcreteProducer
     # Point of view what encapsulate some kind of model responsibilities
 
-    # in view:
-    ## in preamble: nothing
-    ## in details: name & desc
-    ## in layer_tabs: none
-
-    # in tree: persist as entity
     # in code: class
     # in spec: file with root describe
     # in filesystem: is file
 
     def child_kinds
-      %w(Aught Inference)
+      %w(Ability Stock)
     end
 
     def sentence
@@ -22,37 +16,41 @@ module Produce
     end
 
     def generate_code
-      [path_line, head_line, addicts_code, inferences_code, footer_code]
+      [path_line, head_line, stocks_line, abilities_code, footer_code]
     end
 
-    def addictable?
+    def abstractable?
       true
+    end
+
+    def abstract_kind
+      'Contract'
     end
 
     private
 
     def path_line
-      "# ~/#{repo.producer.full_path}/#{repo.name.underscore}.rb\n"
+      "# ~/#{[repo.producer.full_path, repo.name.underscore].join('/')}.rb\n"
     end
 
     def head_line
       "class #{repo.parent.name}::#{repo.name}"
     end
 
-    def addicts_list
-      addicts = []
-      repo.addicts_exist.collect(&:name).each do |ad|
-        addicts << (':' + ad.underscore)
+    def stocked_layers
+      stocks = []
+      repo.children.stocks.collect(&:name).each do |stock|
+        stocks << (':' + stock.underscore)
       end
-      addicts
+      stocks
     end
 
-    def addicts_code
-      ["open_layers #{addicts_list.join(', ')}\n"] if addicts_list.any?
+    def stocks_line
+      ["open_layers #{stocked_layers.join(', ')}\n"] if stocked_layers.any?
     end
 
-    def inferences_code
-      code = repo.children.inferences.collect { |i| i.producer.generate_code }
+    def abilities_code
+      code = repo.children.abilities.collect { |i| i.producer.generate_code }
       code.flatten 1
     end
 

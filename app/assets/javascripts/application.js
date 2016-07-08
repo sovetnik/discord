@@ -14,4 +14,5 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require bootstrap-treeview
+//= require keymaster
 //= require_tree .

@@ -1,8 +1,7 @@
 # frozen_string_literal: true
 module Produce
-  class Aught < ConcreteProducer
-    # Something we can differ against others
-    # it is a basic Entity, without any effects
+  class Stock < ConcreteProducer
+    # Avaliable layer from this layer
 
     # in code: nothing
     # in spec: nothing
@@ -21,7 +20,11 @@ module Produce
     end
 
     def abstractable?
-      false
+      true
+    end
+
+    def abstract_kind
+      'Layer'
     end
   end
 end
