@@ -6,7 +6,8 @@
       partial: 'entities/tree', formats: :json,
       locals: {
         entity: entity,
-        entity_id: entity_id
+        entity_id: entity_id,
+        hash_tree: hash_tree
       }) %>];
     $('#tree').treeview({
       data: tree,

@@ -1,5 +1,4 @@
 # frozen_string_literal: true
-
 json.text entity.name
 json.tags [entity.kind]
 json.selectedIcon 'glyphicon glyphicon-stop'
@@ -12,10 +11,8 @@ json.state do
   json.expanded true
   json.selected entity.id == entity_id
 end
-if hash_tree[entity]
-  json.nodes do
-    json.array! hash_tree[entity].keys.each do |key|
-      json.partial! 'entities/tree', entity: key, entity_id: entity_id, hash_tree: hash_tree[entity]
-    end
+json.nodes do
+  json.array! entity.children do |child|
+    json.partial! 'entities/tree', entity: child, entity_id: entity_id
   end
 end

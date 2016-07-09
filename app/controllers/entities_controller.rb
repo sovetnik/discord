@@ -12,6 +12,8 @@ class EntitiesController < ApplicationController
   # GET /entities/1
   # GET /entities/1.json
   def show
+    @root = @entity.root
+    @hash = @root.hash_tree
   end
 
   # GET /entities/new
