@@ -24,9 +24,13 @@ module Entity
       indent(producer.to_tree)
     end
 
+    def path_line
+      producer.path_line
+    end
+
     def produced_code
       indent(producer.generate_code)
-     end
+    end
 
     def abstractable?
       producer.abstractable?

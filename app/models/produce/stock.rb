@@ -19,6 +19,10 @@ module Produce
       []
     end
 
+    def path_line
+      ''
+    end
+
     def abstractable?
       true
     end

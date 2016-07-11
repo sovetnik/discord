@@ -19,6 +19,10 @@ module Produce
       []
     end
 
+    def path_line
+      ''
+    end
+
     def const_name
       [repo.parent.producer.const_name, repo.name].compact.join '::'
     end

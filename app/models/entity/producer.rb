@@ -7,6 +7,7 @@ module Entity
                    :sentence,
                    :const_name,
                    :generate_code,
+                   :path_line,
                    :to_tree,
                    :abstract_kind,
                    :abstractable?

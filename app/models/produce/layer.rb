@@ -15,8 +15,12 @@ module Produce
       "from #{repo.name} point of view"
     end
 
+    def path_line
+      "# ~/#{[repo.producer.full_path, repo.name.underscore].join('/')}.rb\n"
+    end
+
     def generate_code
-      [path_line, head_line, stocks_line, abilities_code, footer_code]
+      [head_line, stocks_line, abilities_code, footer_code]
     end
 
     def abstractable?
@@ -27,14 +31,14 @@ module Produce
       'Contract'
     end
 
+    def module_name
+      repo.ancestors.models.reverse.collect(&:name).join '::'
+    end #  => ["Chaos", "Message"]
+
     private
 
-    def path_line
-      "# ~/#{[repo.producer.full_path, repo.name.underscore].join('/')}.rb\n"
-    end
-
     def head_line
-      "class #{repo.parent.name}::#{repo.name}"
+      "class #{module_name}::#{repo.name}"
     end
 
     def stocked_layers

@@ -20,6 +20,10 @@ module Produce
       ["# => #{repo.name.underscore}"]
     end
 
+    def path_line
+      ''
+    end
+
     def abstractable?
       false
     end

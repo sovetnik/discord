@@ -20,6 +20,10 @@ module Produce
       [axiom_line]
     end
 
+    def path_line
+      repo.parent.producer.path_line
+    end
+
     def abstractable?
       true
     end

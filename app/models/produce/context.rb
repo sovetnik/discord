@@ -22,6 +22,10 @@ module Produce
       ["context '#{repo.name}' do"]
     end
 
+    def path_line
+      ''
+    end
+
     def abstractable?
       false
     end

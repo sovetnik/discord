@@ -16,21 +16,25 @@ module Produce
     end
 
     def generate_code
-      [path_line, head_line, abilities_code, 'end']
+      [head_line, abilities_code, 'end']
     end
 
     def abstractable?
       false
     end
 
-    private
-
-    def head_line
-      "module #{repo.parent.name}::"
-    end
+    def module_name
+      repo.self_and_ancestors.models.reverse.collect(&:name).join '::'
+    end #  => ["Chaos", "Message"]
 
     def path_line
       "# ~/#{repo.producer.full_path}/#{repo.name.underscore}/*\n"
+    end
+
+    private
+
+    def head_line
+      "module #{module_name}"
     end
 
     def const_name

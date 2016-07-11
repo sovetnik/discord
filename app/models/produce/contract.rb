@@ -24,6 +24,10 @@ module Produce
       [path_line, head_line, abilities_code, footer_code]
     end
 
+    def path_line
+      ''
+    end
+
     def abstractable?
       false
     end
