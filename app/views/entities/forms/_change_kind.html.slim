@@ -1,0 +1,5 @@
+= bootstrap_form_for entity, url: entity_path(entity), layout: :inline do |form|
+  = form.collection_select :kind_num, entity.kinds_list, :first, :last,
+    label: 'Kind', hide_label: true
+  = form.submit 'change kind!', class: 'btn btn-default'
+br
