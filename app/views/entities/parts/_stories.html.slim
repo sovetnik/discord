@@ -1,0 +1,4 @@
+- presenter.stories.each do |story|
+  h4
+    = link_to story.name, entity_path(story), class: 'btn btn-lg btn-link'
+  ' #{story.desc}

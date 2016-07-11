@@ -13,6 +13,10 @@ module Entity
     scope :axioms, -> { where(kind: 'Axiom') }
     scope :inferences, -> { where(kind: 'Inference') }
 
+    def presenter
+      Presenter.new self, producer
+    end
+
     def producer
       Producer.new self
     end

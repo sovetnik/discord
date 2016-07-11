@@ -2,23 +2,22 @@
   .col-md-3.col-md-offset-0
     h2 class='text-muted' Chaos
     = render 'entities/parts/details', entity: @entity
-    = render 'entities/parts/child_form', entity: @entity
-    - @entity.root.descendants.stories.each do |story|
-      h4
-        = link_to story.name, entity_path(story), class: 'btn btn-lg btn-link'
-      ' #{story.desc}
-
-    = render 'entities/parts/map', entity: @entity
+    = render 'entities/forms/child', entity: @entity
+    = render 'entities/parts/stories', presenter: @presenter
+    = render 'entities/parts/map', presenter: @presenter
 
   .col-md-5
     h2 class='text-muted' Discord
-    = render 'entities/parts/preamble', entity: @entity
+    = render 'entities/parts/preamble', presenter: @presenter
     
-    - if @entity.producer.abstractable?
-      = render 'entities/parts/abstract_form', entity: @entity
+    - if @presenter.abstractable?
+      = render 'entities/forms/abstract', entity: @entity
     
-    = render 'entities/parts/code', entity: @entity
+    = render 'entities/parts/code', presenter: @presenter
 
   .col-md-4
     h2 class='text-muted' Confusion
-    = render 'tree_nav', entity: @root, entity_id: @entity.id, hash_tree: @hash
+    = render 'entities/parts/tree_nav', 
+    entity: @entity.root, 
+    entity_id: @entity.id, 
+    hash_tree: @presenter.hash_tree
