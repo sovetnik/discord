@@ -15,10 +15,6 @@ module Produce
       "where exist #{repo.name}"
     end
 
-    def generate_code
-      [head_line, layers_code, 'end']
-    end
-
     def generate_spec
       ["describe #{repo.name}"]
     end
@@ -28,26 +24,11 @@ module Produce
     end
 
     def module_name
-      repo.self_and_ancestors.models.reverse.collect(&:name).join '::'
+      Code.new(repo).generate_code
     end #  => ["Chaos", "Message"]
 
     def path_line
       "# ~/#{repo.producer.full_path}/#{repo.name.underscore}/*\n"
-    end
-
-    private
-
-    def head_line
-      "module #{module_name}"
-    end
-
-    def const_name
-      [repo.parent.producer.const_name, repo.name].join '::'
-    end
-
-    def layers_code
-      code = repo.children.layers.collect { |l| l.producer.generate_code }
-      code.flatten(1)
     end
   end
 end

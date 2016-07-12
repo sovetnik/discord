@@ -7,6 +7,10 @@ module Produce
       expanded_childs.unshift self.class
     end
 
+    def generate_code
+      Code.new(repo).generate_code
+    end
+
     private
 
     def expanded_childs

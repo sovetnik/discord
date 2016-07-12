@@ -16,10 +16,6 @@ module Produce
       "Should supply #{repo.desc} and return #{repo.name}"
     end
 
-    def generate_code
-      [axiom_line]
-    end
-
     def generate_spec
       ["let #{repo.name}"]
     end
@@ -34,20 +30,6 @@ module Produce
 
     def abstract_kind
       'Ability'
-    end
-
-    private
-
-    def axiom_line
-      repo.abstract.nil? ? inference_undefined : inference_abstract
-    end
-
-    def inference_undefined
-      "# undefined => #{repo.name}"
-    end
-
-    def inference_abstract
-      "# #{repo.abstract.parent.name}.#{repo.abstract.name} => #{repo.name}"
     end
   end
 end
