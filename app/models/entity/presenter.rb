@@ -9,7 +9,7 @@ module Entity
     end
 
     def context_sentences
-      repo.root.ancestors.reverse.collect(&:producer).map(&:sentence)
+      repo.ancestors.reverse.collect(&:producer).map(&:sentence)
     end
 
     def sentence

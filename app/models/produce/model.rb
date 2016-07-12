@@ -16,7 +16,7 @@ module Produce
     end
 
     def generate_code
-      [head_line, abilities_code, 'end']
+      [head_line, layers_code, 'end']
     end
 
     def abstractable?
@@ -41,8 +41,8 @@ module Produce
       [repo.parent.producer.const_name, repo.name].join '::'
     end
 
-    def abilities_code
-      code = repo.children.layers.collect { |i| i.producer.generate_code }
+    def layers_code
+      code = repo.children.layers.collect { |l| l.producer.generate_code }
       code.flatten(1)
     end
   end
