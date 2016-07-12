@@ -32,6 +32,10 @@ module Entity
       indent(producer.generate_code)
     end
 
+    def produced_spec
+      indent(producer.generate_spec)
+    end
+
     def abstractable?
       producer.abstractable?
     end

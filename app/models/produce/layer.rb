@@ -23,6 +23,10 @@ module Produce
       [head_line, stocks_line, abilities_code, footer_code]
     end
 
+    def generate_spec
+      ["describe #{repo.name}"]
+    end
+
     def abstractable?
       true
     end

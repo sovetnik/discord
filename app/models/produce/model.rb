@@ -19,6 +19,10 @@ module Produce
       [head_line, layers_code, 'end']
     end
 
+    def generate_spec
+      ["describe #{repo.name}"]
+    end
+
     def abstractable?
       false
     end

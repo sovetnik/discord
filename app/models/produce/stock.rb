@@ -19,6 +19,10 @@ module Produce
       []
     end
 
+    def generate_spec
+      ["describe #{repo.name}"]
+    end
+
     def path_line
       ''
     end

@@ -20,6 +20,10 @@ module Produce
       []
     end
 
+    def generate_spec
+      []
+    end
+
     def path_line
       ''
     end

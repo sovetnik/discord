@@ -20,6 +20,10 @@ module Produce
       []
     end
 
+    def generate_spec
+      ["describe #{repo.name}"]
+    end
+
     def const_name
       nil
     end

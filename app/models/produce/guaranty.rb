@@ -24,6 +24,10 @@ module Produce
       ["def #{repo.name}#{args_list}", imp_code, axiom_code, inference_code]
     end
 
+    def generate_spec
+      ["describe #{repo.name}"]
+    end
+
     def path_line
       ''
     end

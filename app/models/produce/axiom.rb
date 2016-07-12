@@ -20,6 +20,10 @@ module Produce
       [axiom_line]
     end
 
+    def generate_spec
+      ["let #{repo.name}"]
+    end
+
     def path_line
       repo.parent.producer.path_line
     end

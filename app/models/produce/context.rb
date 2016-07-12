@@ -22,6 +22,10 @@ module Produce
       ["context '#{repo.name}' do"]
     end
 
+    def generate_spec
+      ["context #{repo.name}"]
+    end
+
     def path_line
       ''
     end
