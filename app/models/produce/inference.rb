@@ -16,7 +16,7 @@ module Produce
       "Should return #{repo.name}, #{repo.name}"
     end
 
-    def generate_code
+    def to_ruby
       ["# => #{repo.name.underscore}"]
     end
 

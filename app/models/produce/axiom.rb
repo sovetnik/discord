@@ -16,6 +16,10 @@ module Produce
       "Should supply #{repo.desc} and return #{repo.name}"
     end
 
+    def to_ruby
+      Code.new(repo).generate_code
+    end
+
     def generate_spec
       ["let #{repo.name}"]
     end

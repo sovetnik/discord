@@ -16,7 +16,7 @@ module Produce
       "Let's take a look on #{repo.name}"
     end
 
-    def generate_code
+    def to_ruby
       []
     end
 

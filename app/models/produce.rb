@@ -6,10 +6,10 @@ module Produce
     def to_tree
       expanded_childs.unshift self.class
     end
-
-    def generate_code
-      Code.new(repo).generate_code
-    end
+    #
+    # def to_ruby
+    #   Code.new(repo).generate_code
+    # end
 
     private
 

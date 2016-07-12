@@ -18,7 +18,7 @@ module Produce
       "when #{repo.name}"
     end
 
-    def generate_code
+    def to_ruby
       ["context '#{repo.name}' do"]
     end
 

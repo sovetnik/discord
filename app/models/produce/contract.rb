@@ -20,6 +20,10 @@ module Produce
       "in #{repo.name} contract"
     end
 
+    def to_ruby
+      Code.new(repo).generate_code
+    end
+
     def generate_spec
       ["describe #{repo.name}"]
     end

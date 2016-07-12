@@ -16,7 +16,7 @@ module Produce
       "where pick out #{repo.name}"
     end
 
-    def generate_code
+    def to_ruby
       []
     end
 

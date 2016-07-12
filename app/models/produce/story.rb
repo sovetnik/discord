@@ -15,7 +15,7 @@ module Produce
       "and listen a story about #{repo.name}"
     end
 
-    def generate_code
+    def to_ruby
       []
     end
 

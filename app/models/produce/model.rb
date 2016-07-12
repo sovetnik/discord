@@ -19,6 +19,10 @@ module Produce
       ["describe #{repo.name}"]
     end
 
+    def to_ruby
+      Code.new(repo).generate_code
+    end
+
     def abstractable?
       false
     end

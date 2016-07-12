@@ -33,7 +33,7 @@ class Produce::Layer::Code
   end
 
   def abilities_code
-    code = repo.children.abilities.collect { |i| i.producer.generate_code }
+    code = repo.children.abilities.collect { |i| i.producer.to_ruby }
     code.flatten 1
   end
 

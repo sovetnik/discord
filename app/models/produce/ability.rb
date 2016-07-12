@@ -23,6 +23,10 @@ module Produce
       ["describe #{repo.name}"]
     end
 
+    def to_ruby
+      Code.new(repo).generate_code
+    end
+
     def path_line
       repo.parent.producer.path_line
     end

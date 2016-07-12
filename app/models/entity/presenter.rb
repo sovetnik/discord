@@ -29,7 +29,7 @@ module Entity
     end
 
     def produced_code
-      indent(producer.generate_code)
+      indent(producer.to_ruby)
     end
 
     def produced_spec

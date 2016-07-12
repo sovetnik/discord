@@ -10,6 +10,10 @@ class Produce::Ability::Code
     ["def #{repo.name}#{args_line}", axiom_code, inference_code]
   end
 
+  def to_ruby
+    Code.new(repo).generate_code
+  end
+
   private
 
   def args_line
@@ -29,12 +33,12 @@ class Produce::Ability::Code
   end
 
   def axiom_code
-    code = repo.children.axioms.collect { |i| i.producer.generate_code }
+    code = repo.children.axioms.collect { |i| i.producer.to_ruby }
     code.flatten 1
   end
 
   def inference_code
-    code = repo.children.inferences.collect { |i| i.producer.generate_code }
+    code = repo.children.inferences.collect { |i| i.producer.to_ruby }
     "end #{code.flatten.first} \n"
   end
 end

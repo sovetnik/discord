@@ -6,9 +6,9 @@ module Entity
                    :child_kinds,
                    :sentence,
                    :const_name,
-                   :generate_code,
                    :generate_spec,
                    :path_line,
+                   :to_ruby,
                    :to_tree,
                    :abstract_kind,
                    :abstractable?
