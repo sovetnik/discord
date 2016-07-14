@@ -6,10 +6,10 @@ module Produce
     def to_tree
       expanded_childs.unshift self.class
     end
-    #
-    # def to_ruby
-    #   Code.new(repo).generate_code
-    # end
+
+    def full_path
+      repo.ancestors.collect(&:name).reverse.map(&:underscore).join('/')
+    end # => 'domain/model/layer'
 
     private
 

@@ -1,9 +1,6 @@
 # frozen_string_literal: true
 module Entity
   class Presenter < Struct.new 'Presenter', :repo, :producer
-    extend Forwardable
-    # def_delegators :concrete_producer
-
     def stories
       repo.root.descendants.stories
     end

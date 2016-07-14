@@ -19,7 +19,7 @@ module Entity
     end
 
     def producer
-      Producer.new self
+      Producer.wrap(self)
     end
 
     def abstract_layer_name
