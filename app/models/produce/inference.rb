@@ -31,11 +31,5 @@ module Produce
     def abstractable?
       false
     end
-
-    private
-
-    def path_line
-      "# ~/#{repo.producer.full_path}/#{repo.name.underscore}/*\n"
-    end
   end
 end

@@ -7,20 +7,24 @@ class Produce::Axiom::Code
   end
 
   def generate_code
-    [axiom_line]
+    repo.abstract.nil? ? inference_undefined : inference_abstract
   end
 
   private
 
-  def axiom_line
-    repo.abstract.nil? ? inference_undefined : inference_abstract
-  end
-
   def inference_undefined
-    "# undefined => #{repo.name}"
+    ["# undefined => #{repo.name}"]
   end
 
   def inference_abstract
-    "# #{repo.abstract.parent.name}.#{repo.abstract.name} => #{repo.name}"
+    [inference_name, contexts]
+  end
+
+  def inference_name
+    "# #{[repo.abstract.parent.name.underscore, repo.abstract.name].join('.')}:"
+  end
+
+  def contexts
+    repo.abstract.descendants.inferences.collect(&:name).map { |c| "# => #{c}" }
   end
 end

@@ -25,7 +25,7 @@ class Produce::Model::Code
   end
 
   def layers_code
-    code = repo.children.layers.collect { |l| l.producer.generate_code }
+    code = repo.children.layers.collect { |l| l.producer.to_ruby }
     code.flatten(1)
   end
 end

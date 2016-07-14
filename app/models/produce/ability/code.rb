@@ -7,11 +7,7 @@ class Produce::Ability::Code
   end
 
   def generate_code
-    ["def #{repo.name}#{args_line}", axiom_code, inference_code]
-  end
-
-  def to_ruby
-    Code.new(repo).generate_code
+    ["def #{repo.name}#{args_line}", axiom_code, 'end', inference_code, context_code]
   end
 
   private
@@ -38,7 +34,10 @@ class Produce::Ability::Code
   end
 
   def inference_code
-    code = repo.children.inferences.collect { |i| i.producer.to_ruby }
-    "end #{code.flatten.first} \n"
+    repo.children.inferences.collect(&:name).map { |line| '# => ' + line }
+  end
+
+  def context_code
+    repo.children.axioms.collect(&:name).map { |e| "# context #{e}" }
   end
 end

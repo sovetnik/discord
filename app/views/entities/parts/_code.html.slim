@@ -4,6 +4,11 @@ pre.highlight
     == highlighter(presenter.path_line)
     br
     == highlighter(presenter.produced_code)
-    br
+- if presenter.build_context?
+  h4 class='text-muted' Generated contexts
+  - presenter.builded_context.each do |context|
+    p = context.name
+h4 class='text-muted' Generated spec
+pre.highlight
+  code
     == highlighter(presenter.produced_spec)
-br

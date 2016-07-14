@@ -11,8 +11,12 @@ module Produce
     # in spec: generates describe
     # in filesystem: nothing
 
+    def possibly_contexts
+      repo.descendants.axioms.collect(&:producer).collect(&:contexts)
+    end
+
     def child_kinds
-      %w(Aught Axiom Inference)
+      %w(Axiom Context Inference)
     end
 
     def sentence

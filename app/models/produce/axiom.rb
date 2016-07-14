@@ -8,6 +8,14 @@ module Produce
     # in spec: generates let
     # in filesystem: nothing
 
+    def contexts
+      if repo.abstract.nil?
+        []
+      else
+        repo.abstract.descendants.inferences.collect(&:name)
+      end
+    end
+
     def child_kinds
       %w(Aught)
     end
