@@ -10,6 +10,10 @@ class Produce::Layer::Code
     [head_line, stocks_line, abilities_code, footer_code]
   end
 
+  def generate_path
+    "# ~/#{[repo.producer.full_path, repo.name.underscore].join('/')}.rb\n"
+  end
+
   private
 
   def head_line

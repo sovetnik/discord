@@ -23,7 +23,7 @@ module Produce
       ["describe #{repo.name}"]
     end
 
-    def path_line
+    def to_ruby_path
       ''
     end
 

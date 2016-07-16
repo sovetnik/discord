@@ -20,6 +20,10 @@ module Produce
       []
     end
 
+    def to_ruby_path
+      ''
+    end
+
     def generate_spec
       ["describe #{repo.name}"]
     end

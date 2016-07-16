@@ -10,6 +10,10 @@ class Produce::Guaranty::Code
     ["def #{repo.name}#{args_list}", imp_code, inference_code]
   end
 
+  def generate_path
+    repo.parent.producer.to_ruby_path
+  end
+
   private
 
   def args_list

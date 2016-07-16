@@ -33,7 +33,7 @@ module Entity
     end
 
     def path_line
-      producer.path_line
+      producer.to_ruby_path
     end
 
     def produced_code

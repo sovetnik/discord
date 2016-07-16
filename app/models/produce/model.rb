@@ -23,6 +23,10 @@ module Produce
       Code.new(repo).generate_code
     end
 
+    def to_ruby_path
+      Code.new(repo).generate_path
+    end
+
     def abstractable?
       false
     end
@@ -30,9 +34,5 @@ module Produce
     def module_name
       Code.new(repo).generate_code
     end #  => ["Chaos", "Message"]
-
-    def path_line
-      "# ~/#{repo.producer.full_path}/#{repo.name.underscore}/*\n"
-    end
   end
 end

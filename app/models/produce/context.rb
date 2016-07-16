@@ -21,12 +21,12 @@ module Produce
       ["context '#{repo.name}' do"]
     end
 
-    def generate_spec
-      ["context #{repo.name}"]
+    def to_ruby_path
+      ''
     end
 
-    def path_line
-      ''
+    def generate_spec
+      ["context #{repo.name}"]
     end
 
     def abstractable?

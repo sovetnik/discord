@@ -11,6 +11,10 @@ class Produce::Contract::Code
     [path_line, head_line, concretes_code, abilities_code, footer_code]
   end
 
+  def generate_path
+    "# ~/#{[repo.producer.full_path, repo.name.underscore].join('/')}.rb\n"
+  end
+
   private
 
   def concretes_code

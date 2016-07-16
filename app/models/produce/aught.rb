@@ -24,7 +24,7 @@ module Produce
       []
     end
 
-    def path_line
+    def to_ruby_path
       ''
     end
 

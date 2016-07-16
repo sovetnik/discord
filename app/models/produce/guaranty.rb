@@ -28,8 +28,8 @@ module Produce
       Code.new(repo).generate_code
     end
 
-    def path_line
-      ''
+    def to_ruby_path
+      Code.new(repo).generate_path
     end
 
     def abstractable?

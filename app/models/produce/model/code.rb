@@ -10,6 +10,10 @@ class Produce::Model::Code
     [head_line, layers_code, 'end']
   end
 
+  def generate_path
+    "# ~/#{repo.producer.full_path}/#{repo.name.underscore}/*\n"
+  end
+
   private
 
   def module_name

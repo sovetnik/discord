@@ -10,6 +10,10 @@ class Produce::Ability::Code
     ["def #{repo.name}#{args_line}", axiom_code, 'end', inference_code, context_code]
   end
 
+  def generate_path
+    repo.parent.producer.to_ruby_path
+  end
+
   private
 
   def args_line

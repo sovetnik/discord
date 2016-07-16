@@ -15,16 +15,16 @@ module Produce
       "from #{repo.name} point of view"
     end
 
-    def path_line
-      "# ~/#{[repo.producer.full_path, repo.name.underscore].join('/')}.rb\n"
-    end
-
     def generate_spec
       ["describe #{repo.name}"]
     end
 
     def to_ruby
       Code.new(repo).generate_code
+    end
+
+    def to_ruby_path
+      Code.new(repo).generate_path
     end
 
     def abstractable?

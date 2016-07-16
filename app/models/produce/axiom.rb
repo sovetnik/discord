@@ -28,12 +28,12 @@ module Produce
       Code.new(repo).generate_code
     end
 
-    def generate_spec
-      ["let #{repo.name}"]
+    def to_ruby_path
+      ''
     end
 
-    def path_line
-      repo.parent.producer.path_line
+    def generate_spec
+      ["let #{repo.name}"]
     end
 
     def abstractable?
