@@ -10,6 +10,7 @@ module Entity
     scope :axioms, -> { where(kind: 'Axiom') }
     scope :contexts, -> { where(kind: 'Context') }
     scope :inferences, -> { where(kind: 'Inference') }
+    scope :guaranties, -> { where(kind: 'Guaranty') }
     scope :layers, -> { where(kind: 'Layer') }
     scope :models, -> { where(kind: 'Model') }
     scope :stocks, -> { where(kind: 'Stock') }
@@ -25,6 +26,10 @@ module Entity
 
     def abstract_layer_name
       abstract&.parent&.name
+    end
+
+    def concretes
+      root.descendants.where(abstract: self)
     end
 
     def possibly_kinds

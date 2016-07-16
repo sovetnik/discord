@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+# frozen_string_literal: true
 class Produce::Contract::Code
   attr_reader :repo
 
@@ -7,10 +8,20 @@ class Produce::Contract::Code
   end
 
   def generate_code
-    [path_line, head_line, abilities_code, footer_code]
+    [path_line, head_line, concretes_code, abilities_code, footer_code]
   end
 
   private
+
+  def concretes_code
+    cc = ['# You must redefine this method in', '# listed concrete layers:']
+    concretes_names.each { |name| cc << "# #{name}" }
+    cc
+  end
+
+  def concretes_names
+    repo.concretes.collect(&:name)
+  end
 
   def path_line
     "# ~/#{repo.producer.full_path}/#{repo.name.underscore}.rb\n"
@@ -21,7 +32,7 @@ class Produce::Contract::Code
   end
 
   def abilities_code
-    code = repo.children.abilities.collect { |i| i.producer.generate_code }
+    code = repo.children.guaranties.collect { |i| i.producer.to_ruby }
     code.flatten 1
   end
 
