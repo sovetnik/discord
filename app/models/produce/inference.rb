@@ -21,7 +21,7 @@ module Produce
     end
 
     def generate_spec
-      ["describe #{repo.name}"]
+      ["it '#{repo.name}'", 'end']
     end
 
     def to_ruby_path

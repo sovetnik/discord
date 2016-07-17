@@ -16,7 +16,11 @@ module Produce
     end
 
     def generate_spec
-      ["describe #{repo.name}"]
+      ["describe #{repo.name}", ability_spec, 'end']
+    end
+
+    def ability_spec
+      repo.descendants.abilities.collect(&:producer).collect(&:generate_spec).flatten
     end
 
     def to_ruby

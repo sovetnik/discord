@@ -24,7 +24,15 @@ module Produce
     end
 
     def generate_spec
-      ["describe #{repo.name}"]
+      ["describe '##{repo.name}'", axiom_spec, inf_spec, 'end']
+    end
+
+    def axiom_spec
+      repo.descendants.axioms.collect(&:producer).collect(&:generate_spec).flatten
+    end
+
+    def inf_spec
+      repo.descendants.inferences.collect(&:producer).collect(&:generate_spec).flatten
     end
 
     def to_ruby

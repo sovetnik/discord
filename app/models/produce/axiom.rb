@@ -33,7 +33,7 @@ module Produce
     end
 
     def generate_spec
-      ["let #{repo.name}"]
+      ["let { #{repo.name} }"]
     end
 
     def abstractable?
