@@ -33,7 +33,7 @@ module Produce
     end
 
     def generate_spec
-      ["let { #{repo.name} }"]
+      ["let(:#{repo.abstract&.parent&.name}) {#{repo.abstract&.name}: #{repo.name} }"]
     end
 
     def abstractable?

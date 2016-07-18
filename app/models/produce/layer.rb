@@ -20,7 +20,7 @@ module Produce
     end
 
     def ability_spec
-      repo.descendants.abilities.collect(&:producer).collect(&:generate_spec).flatten
+      repo.descendants.abilities.flat_map(&:producer).flat_map(&:generate_spec)
     end
 
     def to_ruby
