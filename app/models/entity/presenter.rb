@@ -41,7 +41,7 @@ module Entity
     end
 
     def produced_spec
-      indent(producer.generate_spec)
+      indent(producer.to_spec)
     end
 
     def abstractable?

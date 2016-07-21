@@ -20,8 +20,8 @@ module Produce
       "Should obey #{repo.name}"
     end
 
-    def generate_spec
-      ["describe #{repo.name}"]
+    def to_spec
+      []
     end
 
     def to_ruby

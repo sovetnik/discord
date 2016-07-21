@@ -19,7 +19,7 @@ module Produce
       []
     end
 
-    def generate_spec
+    def to_spec
       ["describe #{repo.name}"]
     end
 

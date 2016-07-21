@@ -23,20 +23,12 @@ module Produce
       "can understand #{repo.name}"
     end
 
-    def generate_spec
-      ["describe '##{repo.name}'", axiom_spec, inf_spec, 'end']
-    end
-
-    def axiom_spec
-      repo.descendants.axioms.collect(&:producer).collect(&:generate_spec).flatten
-    end
-
-    def inf_spec
-      repo.descendants.inferences.collect(&:producer).collect(&:generate_spec).flatten
-    end
-
     def to_ruby
       Code.new(repo).generate_code
+    end
+
+    def to_spec
+      Spec.new(repo).generate_spec
     end
 
     def to_ruby_path

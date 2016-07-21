@@ -15,12 +15,8 @@ module Produce
       "from #{repo.name} point of view"
     end
 
-    def generate_spec
-      ["describe #{repo.name}", ability_spec, 'end']
-    end
-
-    def ability_spec
-      repo.descendants.abilities.flat_map(&:producer).flat_map(&:generate_spec)
+    def to_spec
+      Spec.new(repo).generate_spec
     end
 
     def to_ruby

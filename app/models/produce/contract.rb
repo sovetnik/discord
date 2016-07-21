@@ -28,7 +28,7 @@ module Produce
       Code.new(repo).generate_path
     end
 
-    def generate_spec
+    def to_spec
       ["describe #{repo.name}"]
     end
 

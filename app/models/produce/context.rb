@@ -25,7 +25,7 @@ module Produce
       ''
     end
 
-    def generate_spec
+    def to_spec
       ["context #{repo.name}"]
     end
 

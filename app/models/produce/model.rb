@@ -15,8 +15,8 @@ module Produce
       "where exist #{repo.name}"
     end
 
-    def generate_spec
-      ["describe #{repo.name}"]
+    def to_spec
+      Spec.new(repo).generate_spec
     end
 
     def to_ruby
@@ -33,6 +33,7 @@ module Produce
 
     def module_name
       Code.new(repo).generate_code
-    end #  => ["Chaos", "Message"]
+    end
+    #  => ["Chaos", "Message"]
   end
 end

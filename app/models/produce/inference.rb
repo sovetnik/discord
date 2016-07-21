@@ -20,7 +20,7 @@ module Produce
       ["# => #{repo.name.underscore}"]
     end
 
-    def generate_spec
+    def to_spec
       ["it '#{repo.desc}'", 'end']
     end
 
