@@ -9,5 +9,4 @@ class Produce::Model::Spec
   def generate_spec
     ["describe #{repo.name}"]
   end
-
 end

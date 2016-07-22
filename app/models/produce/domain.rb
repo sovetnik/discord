@@ -9,7 +9,7 @@ module Produce
     # in filesystem: folder
 
     def child_kinds
-      %w(Aught Story Contract Model Domain)
+      %w(Story Model Domain)
     end
 
     def sentence

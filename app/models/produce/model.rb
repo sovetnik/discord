@@ -8,7 +8,7 @@ module Produce
     # in filesystem: is folder (or file if model is very compact)
 
     def child_kinds
-      %w(Layer Model Contract)
+      %w(Model Layer)
     end
 
     def sentence
