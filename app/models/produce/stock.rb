@@ -15,11 +15,15 @@ module Produce
       "where pick out #{repo.name}"
     end
 
-    def generate_code
+    def to_ruby
       []
     end
 
-    def path_line
+    def to_spec
+      ["describe #{repo.name}"]
+    end
+
+    def to_ruby_path
       ''
     end
 

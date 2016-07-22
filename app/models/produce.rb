@@ -7,6 +7,10 @@ module Produce
       expanded_childs.unshift self.class
     end
 
+    def full_path
+      repo.ancestors.collect(&:name).reverse.map(&:underscore).join('/')
+    end # => 'domain/model/layer'
+
     private
 
     def expanded_childs

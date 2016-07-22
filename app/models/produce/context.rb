@@ -11,19 +11,22 @@ module Produce
 
     def child_kinds
       []
-      # %w(Context)
     end
 
     def sentence
       "when #{repo.name}"
     end
 
-    def generate_code
+    def to_ruby
       ["context '#{repo.name}' do"]
     end
 
-    def path_line
+    def to_ruby_path
       ''
+    end
+
+    def to_spec
+      ["context #{repo.name}"]
     end
 
     def abstractable?

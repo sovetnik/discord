@@ -1,9 +1,0 @@
-= bootstrap_form_for @entity, url: entity_path(@entity) do |form|
-  = form.collection_select :parent_id, @entity.parents_list, :id, :name, 
-    include_blank: 'root'
-  = form.collection_select :kind_num, @entity.kinds_list, :first, :last,
-    label: 'Kind'
-  = form.number_field :sort_order
-  = form.text_field :name
-  = form.text_area :desc
-  = form.submit

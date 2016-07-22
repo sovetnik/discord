@@ -1,5 +1,5 @@
 # frozen_string_literal: true
 module Entity
-  KINDS = %w(Aught Story Domain Contract Guaranty Layer Stock Model Context Ability Axiom Inference).freeze
+  KINDS = %w(Ability Axiom Context Domain Inference Layer Model Stock Story).freeze
   ABSTRACT = Struct.new 'Abstract', :id, :name, :kind, :layer_id
 end

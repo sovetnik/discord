@@ -16,22 +16,24 @@ module Produce
       "Should return #{repo.name}, #{repo.name}"
     end
 
-    def generate_code
+    def to_ruby
       ["# => #{repo.name.underscore}"]
     end
 
-    def path_line
+    def to_spec
+      ["it '#{repo.desc}'", 'end']
+    end
+
+    def to_ruby_path
       ''
     end
 
     def abstractable?
-      false
+      true
     end
 
-    private
-
-    def path_line
-      "# ~/#{repo.producer.full_path}/#{repo.name.underscore}/*\n"
+    def abstract_kind
+      'Context'
     end
   end
 end

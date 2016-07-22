@@ -8,18 +8,22 @@ module Produce
     # in filesystem: nothing
 
     def child_kinds
-      %w(Aught)
+      %w(Story)
     end
 
     def sentence
       "and listen a story about #{repo.name}"
     end
 
-    def generate_code
+    def to_ruby
       []
     end
 
-    def path_line
+    def to_spec
+      []
+    end
+
+    def to_ruby_path
       ''
     end
 

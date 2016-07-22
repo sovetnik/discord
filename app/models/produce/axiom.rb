@@ -8,20 +8,32 @@ module Produce
     # in spec: generates let
     # in filesystem: nothing
 
+    def contexts
+      if repo.abstract.nil?
+        []
+      else
+        repo.abstract.descendants.inferences.collect(&:name)
+      end
+    end
+
     def child_kinds
-      %w(Aught)
+      []
     end
 
     def sentence
       "Should supply #{repo.desc} and return #{repo.name}"
     end
 
-    def generate_code
-      [axiom_line]
+    def to_ruby
+      Code.new(repo).generate_code
     end
 
-    def path_line
-      repo.parent.producer.path_line
+    def to_ruby_path
+      ''
+    end
+
+    def to_spec
+      Spec.new(repo).generate_spec
     end
 
     def abstractable?
@@ -30,20 +42,6 @@ module Produce
 
     def abstract_kind
       'Ability'
-    end
-
-    private
-
-    def axiom_line
-      repo.abstract.nil? ? inference_undefined : inference_abstract
-    end
-
-    def inference_undefined
-      "# undefined => #{repo.name}"
-    end
-
-    def inference_abstract
-      "# #{repo.abstract.parent.name}.#{repo.abstract.name} => #{repo.name}"
     end
   end
 end

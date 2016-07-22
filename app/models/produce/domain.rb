@@ -9,15 +9,23 @@ module Produce
     # in filesystem: folder
 
     def child_kinds
-      %w(Aught Story Contract Model Domain)
+      %w(Story Model Domain)
     end
 
     def sentence
       "Let's take a look on #{repo.name}"
     end
 
-    def generate_code
+    def to_ruby
       []
+    end
+
+    def to_ruby_path
+      ''
+    end
+
+    def to_spec
+      ["describe #{repo.name}"]
     end
 
     def const_name

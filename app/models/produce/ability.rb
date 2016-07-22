@@ -11,20 +11,28 @@ module Produce
     # in spec: generates describe
     # in filesystem: nothing
 
+    def possibly_contexts
+      repo.descendants.axioms.collect(&:producer).collect(&:contexts)
+    end
+
     def child_kinds
-      %w(Aught Axiom Inference)
+      %w(Axiom Context Inference)
     end
 
     def sentence
       "can understand #{repo.name}"
     end
 
-    def generate_code
-      ["def #{repo.name}#{args_line}", axiom_code, inference_code]
+    def to_ruby
+      Code.new(repo).generate_code
     end
 
-    def path_line
-      repo.parent.producer.path_line
+    def to_spec
+      Spec.new(repo).generate_spec
+    end
+
+    def to_ruby_path
+      Code.new(repo).generate_path
     end
 
     def abstractable?
@@ -33,35 +41,6 @@ module Produce
 
     def abstract_kind
       'Guaranty'
-    end
-
-    private
-
-    def args_line
-      "(#{args_list.compact.uniq.map(&:underscore).join(', ')})" unless args_list.empty?
-    end
-
-    def args_list
-      axiom_layers_list - stock_list
-    end
-    # '(args, args)'
-
-    def axiom_layers_list
-      repo.children.axioms.collect &:abstract_layer_name
-    end
-
-    def stock_list
-      repo.parent.children.stocks.collect &:abstract_layer_name
-    end
-
-    def axiom_code
-      code = repo.children.axioms.collect { |i| i.producer.generate_code }
-      code.flatten 1
-    end
-
-    def inference_code
-      code = repo.children.inferences.collect { |i| i.producer.generate_code }
-      "end #{code.flatten.first} \n"
     end
   end
 end

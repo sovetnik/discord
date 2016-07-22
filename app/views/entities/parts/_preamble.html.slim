@@ -1,6 +1,6 @@
 h4 class='text-muted' Preamble
-- if presenter.context_sentences?
-  - presenter.context_sentences.each do |sentence|
+- if presenter.sentences?
+  - presenter.sentences.each do |sentence|
     p = sentence
 strong = presenter.sentence
 p = presenter.description

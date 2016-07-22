@@ -1,14 +1,22 @@
 # frozen_string_literal: true
 module Entity
   class Presenter < Struct.new 'Presenter', :repo, :producer
-    extend Forwardable
-    # def_delegators :concrete_producer
+    def builded_context
+      producer.possibly_contexts.each do |line|
+        repo.children.find_or_initialize_by(name: line.join(' and '), kind: 'Context')
+      end
+      repo.children.to_a.keep_if { |c| c.kind == 'Context' }
+    end
+
+    def build_context?
+      repo.kind == 'Ability'
+    end
 
     def stories
       repo.root.descendants.stories
     end
 
-    def context_sentences
+    def sentences
       repo.ancestors.reverse.collect(&:producer).map(&:sentence)
     end
 
@@ -25,18 +33,22 @@ module Entity
     end
 
     def path_line
-      producer.path_line
+      producer.to_ruby_path
     end
 
     def produced_code
-      indent(producer.generate_code)
+      indent(producer.to_ruby)
+    end
+
+    def produced_spec
+      indent(producer.to_spec)
     end
 
     def abstractable?
       producer.abstractable?
     end
 
-    def context_sentences?
+    def sentences?
       !repo.root?
     end
 

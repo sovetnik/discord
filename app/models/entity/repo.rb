@@ -7,23 +7,28 @@ module Entity
     belongs_to :abstract, class_name: 'Repo'
 
     scope :abilities, -> { where(kind: 'Ability') }
+    scope :axioms, -> { where(kind: 'Axiom') }
+    scope :contexts, -> { where(kind: 'Context') }
+    scope :inferences, -> { where(kind: 'Inference') }
     scope :layers, -> { where(kind: 'Layer') }
     scope :models, -> { where(kind: 'Model') }
     scope :stocks, -> { where(kind: 'Stock') }
     scope :stories, -> { where(kind: 'Story') }
-    scope :axioms, -> { where(kind: 'Axiom') }
-    scope :inferences, -> { where(kind: 'Inference') }
 
     def presenter
       Presenter.new self, producer
     end
 
     def producer
-      Producer.new self
+      Producer.wrap(self)
     end
 
     def abstract_layer_name
       abstract&.parent&.name
+    end
+
+    def concretes
+      root.descendants.where(abstract: self)
     end
 
     def possibly_kinds
