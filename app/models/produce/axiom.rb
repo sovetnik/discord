@@ -17,7 +17,7 @@ module Produce
     end
 
     def child_kinds
-      %w(Aught)
+      []
     end
 
     def sentence

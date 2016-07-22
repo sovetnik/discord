@@ -10,7 +10,7 @@ module Produce
     # in filesystem: nothing
 
     def child_kinds
-      %w(Inference)
+      []
     end
 
     def sentence

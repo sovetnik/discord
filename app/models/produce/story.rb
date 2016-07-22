@@ -8,7 +8,7 @@ module Produce
     # in filesystem: nothing
 
     def child_kinds
-      %w(Aught)
+      %w(Story)
     end
 
     def sentence

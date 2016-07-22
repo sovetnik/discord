@@ -29,7 +29,11 @@ module Produce
     end
 
     def abstractable?
-      false
+      true
+    end
+
+    def abstract_kind
+      'Context'
     end
   end
 end
