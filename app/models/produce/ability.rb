@@ -15,6 +15,10 @@ module Produce
       repo.descendants.axioms.collect(&:producer).collect(&:contexts)
     end
 
+    def to_axiom
+      [repo.name, repo.parent.name].join('.')
+    end
+
     def child_kinds
       %w(Axiom Context Inference)
     end
@@ -40,7 +44,7 @@ module Produce
     end
 
     def abstract_kind
-      'Guaranty'
+      'Ability'
     end
   end
 end

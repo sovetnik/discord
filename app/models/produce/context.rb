@@ -30,7 +30,11 @@ module Produce
     end
 
     def abstractable?
-      false
+      true
+    end
+
+    def abstract_kind
+      'Inference'
     end
   end
 end

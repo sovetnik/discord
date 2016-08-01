@@ -32,7 +32,7 @@ module Produce
     end
 
     def abstract_kind
-      'Contract'
+      'Layer'
     end
   end
 end
