@@ -1,15 +1,18 @@
 # frozen_string_literal: true
 module Produce
   class Ability < ConcreteProducer
-    # it is a function or method Entity
 
-    ## block of def ... ... end with argument, deps & result
-    ## in layer_tabs#  none
+    def to_ruby
+      Code.new(repo).generate_code
+    end
 
-    # in code: method with same name, including
-    # argument(zero or several), axiom(several) and inference(one or more)
-    # in spec: generates describe
-    # in filesystem: nothing
+    def to_spec
+      Spec.new(repo).generate_spec
+    end
+
+    def to_ruby_path
+      Code.new(repo).generate_path
+    end
 
     def possibly_contexts
       repo.descendants.axioms.collect(&:producer).collect(&:contexts)
@@ -25,18 +28,6 @@ module Produce
 
     def sentence
       "can understand #{repo.name}"
-    end
-
-    def to_ruby
-      Code.new(repo).generate_code
-    end
-
-    def to_spec
-      Spec.new(repo).generate_spec
-    end
-
-    def to_ruby_path
-      Code.new(repo).generate_path
     end
 
     def abstractable?

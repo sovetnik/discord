@@ -1,12 +1,12 @@
 # frozen_string_literal: true
 # config valid only for current version of Capistrano
-lock '3.5.0'
+lock '3.6.0'
 
 set :application, 'discordian'
 set :scm, :git
 set :repo_url, 'git@github.com:sovetnik/discordian.git'
 ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
-set :branch, 'master'
+set :branch, 'spec'
 
 set :deploy_to, '/var/www/discordian'
 set :deploy_user, 'doppler'

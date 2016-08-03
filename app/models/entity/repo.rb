@@ -41,7 +41,7 @@ module Entity
     end
 
     def possibly_abstract_list
-      root.descendants.where(kind: producer.abstract_kind)
+      parent.siblings.where(kind: producer.abstract_kind)
     end
 
     def kinds_list
