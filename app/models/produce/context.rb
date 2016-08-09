@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 module Produce
   class Context < ConcreteProducer
-
     def to_ruby
       ["context '#{repo.name}' do"]
     end

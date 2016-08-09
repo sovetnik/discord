@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 module Produce
   class Model < ConcreteProducer
-
     def to_spec
       Spec.new(repo).generate_spec
     end

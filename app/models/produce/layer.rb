@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 module Produce
   class Layer < ConcreteProducer
-
     def to_spec
       Spec.new(repo).generate_spec
     end

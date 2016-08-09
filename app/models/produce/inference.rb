@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 module Produce
   class Inference < ConcreteProducer
-
     def to_ruby
       ["# => #{repo.name.underscore}"]
     end

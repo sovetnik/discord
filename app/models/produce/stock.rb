@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 module Produce
   class Stock < ConcreteProducer
-
     def to_ruby
       []
     end
