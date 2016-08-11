@@ -34,29 +34,15 @@ module Produce
       'Ability'
     end
 
-    def build_contexts_for(nodes)
+    def create_contexts_for(nodes)
       if inferences.count.positive?
         contexts = []
         nodes.each do |node|
-          inferences.each { |inf| contexts << node.children.contexts.find_or_initialize_by(abstract: inf) }
+          inferences.each { |inf| contexts << node.children.contexts.find_or_create_by(abstract: inf) }
         end
         contexts
       else
         nodes
-      end
-    end
-
-    # TODO: maybe deprecate
-    def contextable?
-      inferences ? inferences.count > 1 : false
-    end
-
-    # TODO: maybe deprecate
-    def contexts
-      if repo.abstract.nil?
-        []
-      else
-        repo.abstract.descendants.inferences.collect(&:name)
       end
     end
   end

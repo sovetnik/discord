@@ -33,17 +33,12 @@ module Produce
       'Ability'
     end
 
-    def build_context_tree
+    def create_context_tree!
       nodes = [repo]
       repo.children.axioms.each do |axiom|
-        nodes = axiom.producer.build_contexts_for(nodes)
+        nodes = axiom.producer.create_contexts_for(nodes)
       end
       nodes
-    end
-
-    # TODO: maybe deprecate
-    def possibly_contexts
-      repo.descendants.axioms.collect(&:producer).collect(&:contexts)
     end
 
     # TODO: maybe deprecate

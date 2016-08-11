@@ -10,7 +10,7 @@ module Produce
     end
 
     def to_spec
-      ["context #{repo.name}"]
+      Spec.new(repo).generate_spec
     end
 
     def child_kinds
@@ -27,6 +27,14 @@ module Produce
 
     def abstract_kind
       'Inference'
+    end
+
+    def ability_body
+      repo.abstract.parent.name
+    end
+
+    def inference_body
+      repo.abstract.name
     end
   end
 end

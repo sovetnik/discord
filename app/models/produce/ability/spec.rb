@@ -7,11 +7,15 @@ class Produce::Ability::Spec
   end
 
   def generate_spec
-    ["describe '##{repo.name}'", axiom_spec, inf_spec, 'end']
+    ["describe '##{repo.name}'", axiom_spec, context_spec, inf_spec, 'end']
   end
 
   def axiom_spec
     repo.descendants.axioms.collect(&:producer).collect(&:to_spec).flatten
+  end
+
+  def context_spec
+    repo.children.contexts.collect(&:producer).collect(&:to_spec)
   end
 
   def inf_spec

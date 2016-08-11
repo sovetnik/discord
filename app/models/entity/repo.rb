@@ -87,10 +87,10 @@ module Entity
     def try_update_context_tree
       case kind
       when 'Axiom'
-        parent.producer.build_context_tree
+        parent.producer.create_context_tree!
       when 'Inference'
         concretes.each do |con|
-          con.parent.producer.build_context_tree
+          con.parent.producer.create_context_tree!
         end
       end
     end
