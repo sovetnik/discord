@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-json.text entity.name
+json.text entity.title
 json.tags [entity.kind]
 json.selectedIcon 'glyphicon glyphicon-stop'
 # json.color "#000000"

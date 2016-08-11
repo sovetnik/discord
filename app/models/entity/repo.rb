@@ -15,12 +15,18 @@ module Entity
     scope :stocks, -> { where(kind: 'Stock') }
     scope :stories, -> { where(kind: 'Story') }
 
+    after_commit :try_update_context_tree, on: :create
+
     def presenter
       Presenter.new self, producer
     end
 
     def producer
       Producer.wrap(self)
+    end
+
+    def title
+      name || abstract&.name
     end
 
     def abstract_layer_name
@@ -54,7 +60,7 @@ module Entity
 
     ## Possible values to collection select & validation
     def parents_list
-      self.class.all
+      root.descendants
     end
 
     def add_child(params)
@@ -71,7 +77,22 @@ module Entity
 
     ## kind setter by num
     def kind_num=(num)
-      self.kind = possibly_kinds[num.to_i] || ''
+      self.kind = kind_by_num(num)
+    end
+
+    def kind_by_num(num)
+      possibly_kinds[num.to_i] || 'Story'
+    end
+
+    def try_update_context_tree
+      case kind
+      when 'Axiom'
+        parent.producer.build_context_tree
+      when 'Inference'
+        concretes.each do |con|
+          con.parent.producer.build_context_tree
+        end
+      end
     end
   end
 end
