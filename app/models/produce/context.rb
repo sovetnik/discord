@@ -29,12 +29,16 @@ module Produce
       'Inference'
     end
 
+    def wiredrawn?
+      repo.abstract.nil?
+    end
+
     def ability_body
-      repo.abstract.parent.name
+      wiredrawn? ? 'undefined' : repo.abstract.parent.name
     end
 
     def inference_body
-      repo.abstract.name
+      wiredrawn? ? 'nothing' : repo.abstract.name
     end
   end
 end

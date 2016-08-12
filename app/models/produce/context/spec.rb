@@ -19,7 +19,7 @@ class Produce::Context::Spec
   end
 
   def context_spec
-    repo.children.contexts.flat_map(&:producer).collect(&:to_spec)
+    repo.children.contexts.flat_map(&:producer).flat_map(&:to_spec)
   end
 
   def inference_spec

@@ -2,9 +2,10 @@
 module Entity
   class Repo < Layers::Repo
     self.table_name = 'entities'
-    acts_as_tree order: 'sort_order'
+    acts_as_tree dependent: :destroy, order: 'sort_order'
 
     belongs_to :abstract, class_name: 'Repo'
+    has_many :examples, class_name: 'Repo', foreign_key: 'abstract_id', dependent: :nullify
 
     scope :abilities, -> { where(kind: 'Ability') }
     scope :axioms, -> { where(kind: 'Axiom') }
@@ -15,7 +16,7 @@ module Entity
     scope :stocks, -> { where(kind: 'Stock') }
     scope :stories, -> { where(kind: 'Story') }
 
-    after_commit :try_update_context_tree, on: :create
+    after_update :try_update_context_tree
 
     def presenter
       Presenter.new self, producer
@@ -31,10 +32,6 @@ module Entity
 
     def abstract_layer_name
       abstract&.parent&.name
-    end
-
-    def concretes
-      root.descendants.where(abstract: self)
     end
 
     def possibly_kinds
@@ -67,6 +64,7 @@ module Entity
       child = children.build(params)
       child.kind_num = params[:kind_num]
       child.save
+      child.try_update_context_tree
       child
     end
 
@@ -89,8 +87,8 @@ module Entity
       when 'Axiom'
         parent.producer.create_context_tree!
       when 'Inference'
-        concretes.each do |con|
-          con.parent.producer.create_context_tree!
+        parent.examples.axioms.each do |axi|
+          axi.parent.producer.create_context_tree!
         end
       end
     end
