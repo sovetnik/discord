@@ -5,7 +5,7 @@ module Entity
     acts_as_tree dependent: :destroy, order: 'sort_order'
 
     belongs_to :abstract, class_name: 'Repo'
-    has_many :examples, class_name: 'Repo', foreign_key: 'abstract_id', dependent: :nullify
+    has_many :examples, class_name: 'Repo', foreign_key: 'abstract_id'
 
     scope :abilities, -> { where(kind: 'Ability') }
     scope :axioms, -> { where(kind: 'Axiom') }
@@ -16,7 +16,7 @@ module Entity
     scope :stocks, -> { where(kind: 'Stock') }
     scope :stories, -> { where(kind: 'Story') }
 
-    after_update :try_update_context_tree
+    after_commit :try_update_context_tree
 
     def presenter
       Presenter.new self, producer
@@ -85,10 +85,10 @@ module Entity
     def try_update_context_tree
       case kind
       when 'Axiom'
-        parent.producer.create_context_tree!
+        parent.producer.update_context_tree!
       when 'Inference'
         parent.examples.axioms.each do |axi|
-          axi.parent.producer.create_context_tree!
+          axi.parent.producer.update_context_tree!
         end
       end
     end

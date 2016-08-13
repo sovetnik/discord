@@ -17,11 +17,6 @@ module Produce
       []
     end
 
-    def inferences
-      return [] if repo.abstract.nil?
-      repo.abstract&.producer&.inferences
-    end
-
     def sentence
       "Should supply #{repo.desc} and return #{repo.name}"
     end
@@ -34,16 +29,26 @@ module Produce
       'Ability'
     end
 
-    def create_contexts_for(nodes)
+    def inferences
+      return [] if repo.abstract.nil?
+      repo.abstract&.producer&.inferences
+    end
+
+    def refresh_context_tree_for(nodes)
       if inferences.count.positive?
-        contexts = []
-        nodes.each do |node|
-          inferences.each { |inf| contexts << node.children.contexts.find_or_create_by(abstract: inf) }
-        end
-        contexts
+        refresh_context_tree(nodes)
       else
         nodes
       end
+    end
+
+    def refresh_context_tree(nodes)
+      contexts = []
+      nodes.each do |node|
+        inferences.each { |i| contexts << node.children.contexts.find_or_create_by(abstract: i) }
+        node.children.contexts.where.not(id: contexts.map(&:id)).each(&:destroy)
+      end
+      contexts
     end
   end
 end

@@ -33,10 +33,10 @@ module Produce
       'Ability'
     end
 
-    def create_context_tree!
+    def update_context_tree!
       nodes = [repo]
       repo.children.axioms.each do |axiom|
-        nodes = axiom.producer.create_contexts_for(nodes)
+        nodes = axiom.producer.refresh_context_tree_for(nodes)
       end
       nodes
     end

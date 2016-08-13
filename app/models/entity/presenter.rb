@@ -1,7 +1,6 @@
 # frozen_string_literal: true
 module Entity
   class Presenter < Struct.new 'Presenter', :repo, :producer
-
     def stories
       repo.root.descendants.stories
     end
