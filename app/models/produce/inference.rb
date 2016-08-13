@@ -6,7 +6,7 @@ module Produce
     end
 
     def to_spec
-      ["it '#{repo.desc}'", 'end']
+      Spec.new(repo).generate_spec
     end
 
     def to_ruby_path

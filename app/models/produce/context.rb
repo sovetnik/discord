@@ -14,7 +14,7 @@ module Produce
     end
 
     def child_kinds
-      []
+      ['Inference']
     end
 
     def sentence
