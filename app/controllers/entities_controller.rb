@@ -66,7 +66,7 @@ class EntitiesController < ApplicationController
     respond_to do |format|
       format.html do
         redirect_to entity_path @entity.root? ? entities_url : @entity.parent,
-          notice: 'Entity was successfully destroyed.'
+                                notice: 'Entity was successfully destroyed.'
       end
       format.json { head :no_content }
     end

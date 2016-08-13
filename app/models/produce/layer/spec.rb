@@ -7,10 +7,18 @@ class Produce::Layer::Spec
   end
 
   def generate_spec
-    ["describe #{repo.name}", ability_spec, 'end']
+    [head_line, abilites_lines, 'end']
   end
 
-  def ability_spec
+  def head_line
+    "Rspec.describe  #{module_name}::#{repo.name} do"
+  end
+
+  def module_name
+    repo.ancestors.models.reverse.collect(&:name).join '::'
+  end #  => ["Chaos", "Message"]
+
+  def abilites_lines
     repo.descendants.abilities.flat_map(&:producer).flat_map(&:to_spec)
   end
 end
