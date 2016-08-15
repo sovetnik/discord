@@ -13,6 +13,7 @@ module Entity
     scope :inferences, -> { where(kind: 'Inference') }
     scope :layers, -> { where(kind: 'Layer') }
     scope :models, -> { where(kind: 'Model') }
+    scope :origins, -> { where(kind: 'Origin') }
     scope :stocks, -> { where(kind: 'Stock') }
     scope :stories, -> { where(kind: 'Story') }
 
@@ -87,9 +88,11 @@ module Entity
       when 'Axiom'
         parent.producer.update_context_tree!
       when 'Inference'
-        parent.examples.axioms.each do |axi|
-          axi.parent.producer.update_context_tree!
+        producer.axioms.each do |axiom|
+          axiom.parent.producer.update_context_tree!
         end
+      when 'Origin'
+        ancestors.abilities.first.producer.update_context_tree!
       end
     end
   end

@@ -10,8 +10,12 @@ class Produce::Inference::Spec
     [head_line, content_lines, 'end']
   end
 
+  def generate_stub
+    "allow(#{layer_name}).to receive(:#{ability_name}).and_return(#{repo.name})"
+  end
+
   def head_line
-    "it 'returnes #{repo.name}'"
+    "it \"returnes #{repo.name}\""
   end
 
   def content_lines

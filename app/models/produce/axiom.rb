@@ -14,7 +14,7 @@ module Produce
     end
 
     def child_kinds
-      []
+      ['Origin']
     end
 
     def sentence
@@ -29,13 +29,16 @@ module Produce
       'Ability'
     end
 
-    def inferences
-      return [] if repo.abstract.nil?
-      repo.abstract&.producer&.inferences
+    def abstracts
+      if repo.abstract.nil?
+        repo.children.origins
+      else
+        repo.abstract.producer.inferences
+      end
     end
 
     def refresh_context_tree_for(nodes)
-      if inferences.count.positive?
+      if abstracts.count > 1
         refresh_context_tree(nodes)
       else
         nodes
@@ -45,7 +48,7 @@ module Produce
     def refresh_context_tree(nodes)
       contexts = []
       nodes.each do |node|
-        inferences.each { |i| contexts << node.children.contexts.find_or_create_by(abstract: i) }
+        abstracts.each { |i| contexts << node.children.contexts.find_or_create_by(abstract: i) }
         node.children.contexts.where.not(id: contexts.map(&:id)).each(&:destroy)
       end
       contexts

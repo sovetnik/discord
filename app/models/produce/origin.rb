@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 module Produce
-  class Inference < ConcreteProducer
+  class Origin < ConcreteProducer
     def to_ruby
       ["# => #{repo.name.underscore}"]
     end
@@ -19,7 +19,6 @@ module Produce
 
     def child_kinds
       []
-      # %w(Layer Ability)
     end
 
     def sentence
@@ -31,11 +30,19 @@ module Produce
     end
 
     def axioms
-      repo.parent.examples.axioms
+      if repo.parent.kind == 'Axiom'
+        [repo.parent]
+      else
+        repo.parent.examples.axioms
+      end
     end
 
     def origin_name
-      repo.ancestors.abilities.first.name
+      if repo.parent.kind == 'Axiom'
+        repo.parent.name
+      else
+        repo.ancestors.abilities.first.name
+      end
     end
   end
 end

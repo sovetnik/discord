@@ -11,20 +11,22 @@ class Produce::Context::Spec
   end
 
   def head_line
-    "context 'when #{repo.producer.ability_body} is #{repo.producer.inference_body}'"
+    "context 'when #{repo.abstract.producer.origin_name} is #{repo.producer.inference_body}'"
   end
 
   def stub_line
-    if repo.abstract
-      "allow(#{layer_name}).to receive(:#{ability_name}).and_return(#{abstract_name})"
-    end
+    repo.abstract.producer.to_stub
   end
 
   def content
-    repo.children.inferences.any? ? inference_spec : context_spec
+    repo.children.inferences.any? ? inference_spec : common_lines
   end
 
-  def context_spec
+  def common_lines
+    context_lines.any? ? context_lines : ['#=> expectation not defined yet']
+  end
+
+  def context_lines
     repo.children.contexts.flat_map(&:producer).flat_map(&:to_spec)
   end
 
