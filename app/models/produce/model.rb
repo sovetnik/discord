@@ -18,7 +18,7 @@ module Produce
     end
 
     def sentence
-      "where exist #{repo.name}"
+      "where #{repo.name}"
     end
 
     def abstractable?

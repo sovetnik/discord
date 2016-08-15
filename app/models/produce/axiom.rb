@@ -18,7 +18,7 @@ module Produce
     end
 
     def sentence
-      "Should supply #{repo.desc} and return #{repo.name}"
+      "know #{repo.title}"
     end
 
     def abstractable?

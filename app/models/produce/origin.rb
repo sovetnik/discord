@@ -22,7 +22,7 @@ module Produce
     end
 
     def sentence
-      "Should return #{repo.name}, #{repo.name}"
+      "return #{repo.name}"
     end
 
     def abstractable?

@@ -22,7 +22,7 @@ module Produce
     end
 
     def sentence
-      "can understand #{repo.name}"
+      "tell #{repo.name}"
     end
 
     def abstractable?
@@ -34,11 +34,20 @@ module Produce
     end
 
     def update_context_tree!
+      clean_dead_contexts
       nodes = [repo]
       repo.children.axioms.each do |axiom|
         nodes = axiom.producer.refresh_context_tree_for(nodes)
       end
       nodes
+    end
+
+    def clean_dead_contexts
+      repo.children.contexts.where.not(id: all_abstracts_ids).each(&:destroy)
+    end
+
+    def all_abstracts_ids
+      repo.children.axioms.collect(&:producer).flat_map(&:abstracts).collect(&:id)
     end
 
     # TODO: maybe deprecate

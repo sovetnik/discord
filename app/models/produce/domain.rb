@@ -18,7 +18,7 @@ module Produce
     end
 
     def sentence
-      "Let's take a look on #{repo.name}"
+      "look at #{repo.name}"
     end
 
     def const_name

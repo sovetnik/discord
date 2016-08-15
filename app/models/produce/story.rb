@@ -18,7 +18,7 @@ module Produce
     end
 
     def sentence
-      "and listen a story about #{repo.name}"
+      "story of #{repo.name}"
     end
 
     def const_name

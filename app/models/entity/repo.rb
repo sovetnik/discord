@@ -5,7 +5,7 @@ module Entity
     acts_as_tree dependent: :destroy, order: 'sort_order'
 
     belongs_to :abstract, class_name: 'Repo'
-    has_many :examples, class_name: 'Repo', foreign_key: 'abstract_id'
+    has_many :examples, class_name: 'Repo', foreign_key: 'abstract_id', dependent: :destroy
 
     scope :abilities, -> { where(kind: 'Ability') }
     scope :axioms, -> { where(kind: 'Axiom') }
@@ -17,7 +17,7 @@ module Entity
     scope :stocks, -> { where(kind: 'Stock') }
     scope :stories, -> { where(kind: 'Story') }
 
-    after_commit :try_update_context_tree
+    after_commit :try_update_context_tree, on: [:create, :update]
 
     def presenter
       Presenter.new self, producer

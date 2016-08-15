@@ -18,7 +18,7 @@ module Produce
     end
 
     def sentence
-      "when #{repo.name}"
+      "when #{repo.title}"
     end
 
     def abstractable?

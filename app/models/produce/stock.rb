@@ -18,7 +18,7 @@ module Produce
     end
 
     def sentence
-      "where pick out #{repo.name}"
+      "with #{repo.name}"
     end
 
     def abstractable?

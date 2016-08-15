@@ -18,7 +18,7 @@ module Produce
     end
 
     def sentence
-      "from #{repo.name} point of view"
+      "from #{repo.name}"
     end
 
     def abstractable?
