@@ -7,6 +7,6 @@ class Produce::Model::Spec
   end
 
   def generate_spec
-    ["describe #{repo.name}"]
+    []
   end
 end

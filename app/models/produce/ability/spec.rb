@@ -7,7 +7,7 @@ class Produce::Ability::Spec
   end
 
   def generate_spec
-    ["describe '##{repo.name}'", context_spec, 'end']
+    ["describe '##{repo.name}' do", context_spec, 'end']
   end
 
   def axiom_spec

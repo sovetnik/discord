@@ -19,7 +19,7 @@ class Produce::Inference::Spec
   end
 
   def content_lines
-    ["expect(#{layer_name}.#{ability_name}).to equal(#{repo.name})"]
+    ["expect(subject.#{ability_name}).to equal(#{repo.name})"]
   end
 
   def ability_name

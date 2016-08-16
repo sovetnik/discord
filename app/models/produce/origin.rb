@@ -22,7 +22,7 @@ module Produce
     end
 
     def sentence
-      "return #{repo.name}"
+      "happens #{repo.name}"
     end
 
     def abstractable?

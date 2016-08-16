@@ -3,6 +3,8 @@
 json.text entity.producer.sentence
 json.tags [entity.kind]
 json.selectedIcon 'glyphicon glyphicon-stop'
+json.collapseIcon 'glyphicon glyphicon-chevron-down'
+json.expandIcon 'glyphicon glyphicon-chevron-right'
 # json.color "#000000"
 # json.backColor "#F5F5F5"
 json.href entity_url(entity)

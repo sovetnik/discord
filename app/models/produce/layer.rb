@@ -14,11 +14,11 @@ module Produce
     end
 
     def child_kinds
-      %w(Ability Stock)
+      %w(Ability Axiom Stock)
     end
 
     def sentence
-      "from #{repo.name}"
+      "as #{repo.name}"
     end
 
     def abstractable?
