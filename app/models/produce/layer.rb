@@ -28,5 +28,9 @@ module Produce
     def abstract_kind
       'Layer'
     end
+
+    def init_args
+      repo.children.init_args
+    end
   end
 end
