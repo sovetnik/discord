@@ -87,7 +87,7 @@ module Entity
     def try_update_context_tree
       case kind
       when 'Axiom'
-        ancesors.abilities.first&.producer&.update_context_tree!
+        ancestors.abilities.first&.producer&.update_context_tree!
       when 'Inference'
         producer.axioms.each do |axiom|
           axiom.parent.producer.update_context_tree!
