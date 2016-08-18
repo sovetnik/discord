@@ -13,7 +13,7 @@ module Entity
     scope :inferences, -> { where(kind: 'Inference') }
     scope :layers, -> { where(kind: 'Layer') }
     scope :models, -> { where(kind: 'Model') }
-    scope :origins, -> { where(kind: 'Origin') }
+    scope :examples, -> { where(kind: 'Example') }
     scope :stocks, -> { where(kind: 'Stock') }
     scope :stories, -> { where(kind: 'Story') }
     scope :init_args, -> { where(kind: %w(Stock Axiom)) }
@@ -59,7 +59,7 @@ module Entity
 
     ## Possible values to collection select & validation
     def parents_list
-      root.descendants
+      root.self_and_descendants
     end
 
     def add_child(params)
@@ -92,7 +92,7 @@ module Entity
         producer.axioms.each do |axiom|
           axiom.parent.producer.update_context_tree!
         end
-      when 'Origin'
+      when 'Example'
         ancestors.abilities.first.producer.update_context_tree!
       end
     end

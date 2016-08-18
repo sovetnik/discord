@@ -34,7 +34,7 @@ module Produce
       repo.parent.examples.axioms
     end
 
-    def origin_name
+    def example_name
       repo.ancestors.abilities.first.name
     end
   end

@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 module Produce
-  class Origin < ConcreteProducer
+  class Example < ConcreteProducer
     def to_ruby
       ["# => #{repo.name.underscore}"]
     end
@@ -37,7 +37,7 @@ module Produce
       end
     end
 
-    def origin_name
+    def example_name
       if repo.parent.kind == 'Axiom'
         repo.parent.name
       else

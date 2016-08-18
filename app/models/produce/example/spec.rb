@@ -1,5 +1,5 @@
 # frozen_string_literal: true
-class Produce::Origin::Spec
+class Produce::Example::Spec
   attr_reader :repo
 
   def initialize(repo)

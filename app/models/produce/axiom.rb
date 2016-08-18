@@ -14,7 +14,7 @@ module Produce
     end
 
     def child_kinds
-      ['Origin']
+      ['Example']
     end
 
     def sentence
@@ -31,7 +31,7 @@ module Produce
 
     def abstracts
       if repo.abstract.nil?
-        repo.children.origins
+        repo.children.examples
       else
         repo.abstract.producer.inferences
       end
