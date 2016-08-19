@@ -11,7 +11,7 @@ class Produce::Context::Spec
   end
 
   def head_line
-    "context 'when #{repo.abstract.producer.example_name} is #{repo.producer.inference_body}'"
+    "context 'when #{repo.abstract.producer.example_name} is #{repo.producer.inference_body}' do"
   end
 
   def stub_line

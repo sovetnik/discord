@@ -15,7 +15,7 @@ class Produce::Inference::Spec
   end
 
   def head_line
-    "it \"returnes #{repo.name}\""
+    "it \"returnes #{repo.name}\" do"
   end
 
   def content_lines

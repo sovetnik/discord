@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 module Produce
   class Ability < ConcreteProducer
+    # Generation
     def to_ruby
       Code.new(repo).generate_code
     end
@@ -13,16 +14,16 @@ module Produce
       Code.new(repo).generate_path
     end
 
-    def child_kinds
-      %w(Axiom Context Inference)
-    end
-
-    def inferences
-      repo.descendants.inferences
+    def to_spec_path
+      # Spec.new(repo).generate_path
     end
 
     def sentence
       "tell #{repo.name}"
+    end
+
+    def child_kinds
+      %w(Axiom Context Inference)
     end
 
     def abstractable?
@@ -31,6 +32,11 @@ module Produce
 
     def abstract_kind
       'Ability'
+    end
+
+    # Relations
+    def inferences
+      repo.descendants.inferences
     end
 
     def update_context_tree!

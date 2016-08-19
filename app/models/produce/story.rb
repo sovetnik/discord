@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 module Produce
   class Story < ConcreteProducer
+    # Generation
     def to_ruby
       []
     end
@@ -11,6 +12,10 @@ module Produce
 
     def to_ruby_path
       ''
+    end
+
+    def to_spec_path
+      # Spec.new(repo).generate_path
     end
 
     def child_kinds

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 module Produce
   class Domain < ConcreteProducer
+    # Generation
     def to_ruby
       []
     end
@@ -13,6 +14,10 @@ module Produce
       ["describe #{repo.name}"]
     end
 
+    def to_spec_path
+      # Spec.new(repo).generate_path
+    end
+
     def child_kinds
       %w(Story Model Domain)
     end
@@ -21,16 +26,12 @@ module Produce
       "look at #{repo.name}"
     end
 
-    def const_name
-      nil
-    end
-
     def abstractable?
       false
     end
 
-    def path_line
-      "# ~/#{repo.producer.full_path}#{repo.name.underscore}/*\n"
+    def const_name
+      nil
     end
   end
 end

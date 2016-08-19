@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 module Produce
   class Example < ConcreteProducer
+    # Generation
     def to_ruby
       ["# => #{repo.name.underscore}"]
     end
@@ -9,12 +10,16 @@ module Produce
       Spec.new(repo).generate_spec
     end
 
-    def to_stub
-      Spec.new(repo).generate_stub
-    end
-
     def to_ruby_path
       ''
+    end
+
+    def to_spec_path
+      # Spec.new(repo).generate_path
+    end
+
+    def to_stub
+      Spec.new(repo).generate_stub
     end
 
     def child_kinds
@@ -29,6 +34,7 @@ module Produce
       false
     end
 
+    # Relations
     def axioms
       if repo.parent.kind == 'Axiom'
         [repo.parent]

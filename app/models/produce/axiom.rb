@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 module Produce
   class Axiom < ConcreteProducer
+    # Generation
     def to_ruby
       Code.new(repo).generate_code
     end
@@ -13,12 +14,16 @@ module Produce
       Spec.new(repo).generate_spec
     end
 
-    def child_kinds
-      ['Example']
+    def to_spec_path
+      # Spec.new(repo).generate_path
     end
 
     def sentence
       "know #{repo.title}"
+    end
+
+    def child_kinds
+      ['Example']
     end
 
     def abstractable?
@@ -29,6 +34,7 @@ module Produce
       'Ability'
     end
 
+    # Relations
     def abstracts
       if repo.abstract.nil?
         repo.children.examples

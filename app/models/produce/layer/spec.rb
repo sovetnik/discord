@@ -6,12 +6,24 @@ class Produce::Layer::Spec
     @repo = repo
   end
 
+  def generate_path
+    "\"\#\{Rails.root\}/spec/lib/#{dynamic_path}_spec.rb\""
+  end
+
   def generate_spec
-    [head_line, subject_line, abilites_lines, 'end']
+    [require_line, head_line, subject_line, abilites_lines, 'end']
+  end
+
+  def require_line
+    "require \"\#\{Rails.root\}/lib/#{dynamic_path}\"\n"
+  end
+
+  def dynamic_path
+    repo.producer.reverse_ancestry.map(&:underscore).join('/')
   end
 
   def head_line
-    "Rspec.describe  #{subject_name} do"
+    "describe  #{subject_name} do"
   end
 
   def subject_line

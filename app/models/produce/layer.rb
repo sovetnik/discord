@@ -1,16 +1,21 @@
 # frozen_string_literal: true
 module Produce
   class Layer < ConcreteProducer
-    def to_spec
-      Spec.new(repo).generate_spec
-    end
-
+    # Generation
     def to_ruby
       Code.new(repo).generate_code
     end
 
     def to_ruby_path
       Code.new(repo).generate_path
+    end
+
+    def to_spec
+      Spec.new(repo).generate_spec
+    end
+
+    def to_spec_path
+      Spec.new(repo).generate_path
     end
 
     def child_kinds
@@ -29,8 +34,13 @@ module Produce
       'Layer'
     end
 
+    # Relations
     def init_args
       repo.children.init_args
+    end
+
+    def reverse_ancestry
+      repo.self_and_ancestors.collect(&:name).reverse
     end
   end
 end

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 module Produce
   class Context < ConcreteProducer
+    # Generation
     def to_ruby
       ["context '#{repo.name}' do"]
     end
@@ -11,6 +12,10 @@ module Produce
 
     def to_spec
       Spec.new(repo).generate_spec
+    end
+
+    def to_spec_path
+      # Spec.new(repo).generate_path
     end
 
     def child_kinds
@@ -27,6 +32,11 @@ module Produce
 
     def abstract_kind
       'Inference'
+    end
+
+    # Relations
+    def inferences
+      repo.descendants.inferences
     end
 
     def wiredrawn?

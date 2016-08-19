@@ -1,8 +1,13 @@
 # frozen_string_literal: true
 module Produce
   class Inference < ConcreteProducer
+    # Generation
     def to_ruby
       ["# => #{repo.name.underscore}"]
+    end
+
+    def to_ruby_path
+      ''
     end
 
     def to_spec
@@ -13,13 +18,12 @@ module Produce
       Spec.new(repo).generate_stub
     end
 
-    def to_ruby_path
-      ''
+    def to_spec_path
+      # Spec.new(repo).generate_path
     end
 
     def child_kinds
       []
-      # %w(Layer Ability)
     end
 
     def sentence
@@ -30,6 +34,7 @@ module Produce
       false
     end
 
+    # Relations
     def axioms
       repo.parent.examples.axioms
     end
