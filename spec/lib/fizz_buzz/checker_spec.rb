@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 require 'rails_helper'
 require "#{Rails.root}/lib/fizz_buzz/checker"
 
@@ -5,17 +6,16 @@ describe FizzBuzz::Checker do
   let(:subject) { described_class.new(number) }
 
   describe '#fizz?' do
-
     context 'when number is 3' do
       let(:number) { 3 }
-      it "returnes true" do
+      it 'returnes true' do
         expect(subject.fizz?).to equal(true)
       end
     end
 
     context 'when number is 5' do
       let(:number) { 5 }
-      it "returnes false" do
+      it 'returnes false' do
         expect(subject.fizz?).to equal(false)
       end
     end

@@ -1,3 +1,4 @@
+# frozen_string_literal: true
 module FizzBuzz
   class Checker
     attr_reader :number
@@ -15,6 +16,7 @@ module FizzBuzz
     def buzz?
       # undefined => format
     end
+
     # => true
     # => false
     # context format

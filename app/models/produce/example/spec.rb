@@ -18,5 +18,3 @@ class Produce::Example::Spec
     repo.parent.name
   end
 end
-
-
