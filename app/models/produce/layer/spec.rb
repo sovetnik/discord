@@ -11,7 +11,11 @@ class Produce::Layer::Spec
   end
 
   def generate_spec
-    [require_line, head_line, subject_line, abilites_lines, 'end']
+    [helper_line, require_line, head_line, subject_line, abilites_lines, 'end']
+  end
+
+  def helper_line
+    "require 'rails_helper'"
   end
 
   def require_line
@@ -43,10 +47,6 @@ class Produce::Layer::Spec
   end
 
   def subject_name
-    [module_name, repo.name].join('::')
+    repo.producer.reverse_ancestry.join('::')
   end
-
-  def module_name
-    repo.ancestors.models.reverse.collect(&:name).join '::'
-  end #  => ["Chaos", "Message"]
 end
