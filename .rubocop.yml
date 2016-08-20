@@ -6,6 +6,10 @@
 # Note that changes in the inspected code, or installation of new
 # versions of RuboCop, may require this file to be generated again.
 
+AllCops:
+  TargetRubyVersion:
+    2.3
+
 # Offense count: 2
 Lint/AmbiguousOperator:
   Exclude:
@@ -17,8 +21,15 @@ Lint/AmbiguousOperator:
 Metrics/LineLength:
   Max: 100
   Exclude:
+    - 'bin/**/*'
     - 'db/**/*'
     - 'config/**/*'
+
+# Offense count: 1
+# Configuration parameters: CountComments.
+Metrics/MethodLength:
+  Exclude:
+    - 'db/**/*'
 
 # Offense count: 8
 # Configuration parameters: EnforcedStyle, SupportedStyles.

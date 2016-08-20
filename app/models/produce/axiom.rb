@@ -1,29 +1,7 @@
 # frozen_string_literal: true
 module Produce
   class Axiom < ConcreteProducer
-    # it is a source for ability
-
-    # in code: method dependency, from same class (private),
-    # from opened layers (common) or from abstract layers (contracts)
-    # in spec: generates let
-    # in filesystem: nothing
-
-    def contexts
-      if repo.abstract.nil?
-        []
-      else
-        repo.abstract.descendants.inferences.collect(&:name)
-      end
-    end
-
-    def child_kinds
-      []
-    end
-
-    def sentence
-      "Should supply #{repo.desc} and return #{repo.name}"
-    end
-
+    # Generation
     def to_ruby
       Code.new(repo).generate_code
     end
@@ -36,12 +14,50 @@ module Produce
       Spec.new(repo).generate_spec
     end
 
+    def to_spec_path
+      # Spec.new(repo).generate_path
+    end
+
+    def sentence
+      "know #{repo.title}"
+    end
+
+    def child_kinds
+      ['Example']
+    end
+
     def abstractable?
       true
     end
 
     def abstract_kind
       'Ability'
+    end
+
+    # Relations
+    def abstracts
+      if repo.abstract.nil?
+        repo.children.examples
+      else
+        repo.abstract.producer.inferences
+      end
+    end
+
+    def refresh_context_tree_for(nodes)
+      if abstracts.count > 1
+        refresh_context_tree(nodes)
+      else
+        nodes
+      end
+    end
+
+    def refresh_context_tree(nodes)
+      contexts = []
+      nodes.each do |node|
+        abstracts.each { |i| contexts << node.children.contexts.find_or_create_by(abstract: i) }
+        node.children.contexts.where.not(id: contexts.map(&:id)).each(&:destroy)
+      end
+      contexts
     end
   end
 end

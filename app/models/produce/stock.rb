@@ -1,20 +1,7 @@
 # frozen_string_literal: true
 module Produce
   class Stock < ConcreteProducer
-    # Avaliable layer from this layer
-
-    # in code: nothing
-    # in spec: nothing
-    # in filesystem: nothing
-
-    def child_kinds
-      []
-    end
-
-    def sentence
-      "where pick out #{repo.name}"
-    end
-
+    # Generation
     def to_ruby
       []
     end
@@ -25,6 +12,18 @@ module Produce
 
     def to_ruby_path
       ''
+    end
+
+    def to_spec_path
+      # Spec.new(repo).generate_path
+    end
+
+    def child_kinds
+      []
+    end
+
+    def sentence
+      "with #{repo.name}"
     end
 
     def abstractable?

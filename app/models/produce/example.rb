@@ -1,25 +1,25 @@
 # frozen_string_literal: true
 module Produce
-  class Inference < ConcreteProducer
+  class Example < ConcreteProducer
     # Generation
     def to_ruby
       ["# => #{repo.name.underscore}"]
-    end
-
-    def to_ruby_path
-      ''
     end
 
     def to_spec
       Spec.new(repo).generate_spec
     end
 
-    def to_stub
-      Spec.new(repo).generate_stub
+    def to_ruby_path
+      ''
     end
 
     def to_spec_path
       # Spec.new(repo).generate_path
+    end
+
+    def to_stub
+      Spec.new(repo).generate_stub
     end
 
     def child_kinds
@@ -27,7 +27,7 @@ module Produce
     end
 
     def sentence
-      "return #{repo.name}"
+      "happens #{repo.name}"
     end
 
     def abstractable?
@@ -36,11 +36,19 @@ module Produce
 
     # Relations
     def axioms
-      repo.parent.examples.axioms
+      if repo.parent.kind == 'Axiom'
+        [repo.parent]
+      else
+        repo.parent.examples.axioms
+      end
     end
 
     def example_name
-      repo.ancestors.abilities.first.name
+      if repo.parent.kind == 'Axiom'
+        repo.parent.name
+      else
+        repo.ancestors.abilities.first.name
+      end
     end
   end
 end

@@ -1,24 +1,7 @@
 # frozen_string_literal: true
 module Produce
   class Layer < ConcreteProducer
-    # Point of view what encapsulate some kind of model responsibilities
-
-    # in code: class
-    # in spec: file with root describe
-    # in filesystem: is file
-
-    def child_kinds
-      %w(Ability Stock)
-    end
-
-    def sentence
-      "from #{repo.name} point of view"
-    end
-
-    def to_spec
-      Spec.new(repo).generate_spec
-    end
-
+    # Generation
     def to_ruby
       Code.new(repo).generate_code
     end
@@ -27,12 +10,37 @@ module Produce
       Code.new(repo).generate_path
     end
 
+    def to_spec
+      Spec.new(repo).generate_spec
+    end
+
+    def to_spec_path
+      Spec.new(repo).generate_path
+    end
+
+    def child_kinds
+      %w(Ability Axiom Stock)
+    end
+
+    def sentence
+      "as #{repo.name}"
+    end
+
     def abstractable?
       true
     end
 
     def abstract_kind
-      'Contract'
+      'Layer'
+    end
+
+    # Relations
+    def init_args
+      repo.children.init_args
+    end
+
+    def reverse_ancestry
+      repo.self_and_ancestors.collect(&:name).reverse
     end
   end
 end

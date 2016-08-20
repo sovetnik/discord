@@ -42,7 +42,7 @@ class EntitiesController < ApplicationController
 
   def add_child
     @entity.add_child(entity_params.merge(parent: @entity))
-    redirect_to entity_path @entity.root? ? @entity : @entity.parent
+    redirect_to entity_path @entity
   end
 
   # PATCH/PUT /entities/1
@@ -64,7 +64,10 @@ class EntitiesController < ApplicationController
   def destroy
     @entity.destroy
     respond_to do |format|
-      format.html { redirect_to entities_url, notice: 'Entity was successfully destroyed.' }
+      format.html do
+        redirect_to entity_path @entity.root? ? entities_url : @entity.parent,
+                                notice: 'Entity was successfully destroyed.'
+      end
       format.json { head :no_content }
     end
   end

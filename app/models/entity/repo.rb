@@ -2,9 +2,10 @@
 module Entity
   class Repo < Layers::Repo
     self.table_name = 'entities'
-    acts_as_tree order: 'sort_order'
+    acts_as_tree dependent: :destroy, order: 'sort_order'
 
     belongs_to :abstract, class_name: 'Repo'
+    has_many :examples, class_name: 'Repo', foreign_key: 'abstract_id', dependent: :destroy
 
     scope :abilities, -> { where(kind: 'Ability') }
     scope :axioms, -> { where(kind: 'Axiom') }
@@ -12,8 +13,12 @@ module Entity
     scope :inferences, -> { where(kind: 'Inference') }
     scope :layers, -> { where(kind: 'Layer') }
     scope :models, -> { where(kind: 'Model') }
+    scope :examples, -> { where(kind: 'Example') }
     scope :stocks, -> { where(kind: 'Stock') }
     scope :stories, -> { where(kind: 'Story') }
+    scope :init_args, -> { where(kind: %w(Stock Axiom)) }
+
+    after_commit :try_update_context_tree, on: [:create, :update]
 
     def presenter
       Presenter.new self, producer
@@ -23,12 +28,12 @@ module Entity
       Producer.wrap(self)
     end
 
-    def abstract_layer_name
-      abstract&.parent&.name
+    def title
+      name || abstract&.name
     end
 
-    def concretes
-      root.descendants.where(abstract: self)
+    def abstract_layer_name
+      abstract&.parent&.name
     end
 
     def possibly_kinds
@@ -41,7 +46,7 @@ module Entity
     end
 
     def possibly_abstract_list
-      root.descendants.where(kind: producer.abstract_kind)
+      parent.siblings.where(kind: producer.abstract_kind)
     end
 
     def kinds_list
@@ -54,13 +59,14 @@ module Entity
 
     ## Possible values to collection select & validation
     def parents_list
-      self.class.all
+      root.self_and_descendants
     end
 
     def add_child(params)
       child = children.build(params)
       child.kind_num = params[:kind_num]
       child.save
+      child.try_update_context_tree
       child
     end
 
@@ -71,7 +77,24 @@ module Entity
 
     ## kind setter by num
     def kind_num=(num)
-      self.kind = possibly_kinds[num.to_i] || ''
+      self.kind = kind_by_num(num)
+    end
+
+    def kind_by_num(num)
+      possibly_kinds[num.to_i] || 'Story'
+    end
+
+    def try_update_context_tree
+      case kind
+      when 'Axiom'
+        ancestors.abilities.first&.producer&.update_context_tree!
+      when 'Inference'
+        producer.axioms.each do |axiom|
+          axiom.parent.producer.update_context_tree!
+        end
+      when 'Example'
+        ancestors.abilities.first.producer.update_context_tree!
+      end
     end
   end
 end

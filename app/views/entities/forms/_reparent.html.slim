@@ -1,5 +1,5 @@
 = bootstrap_form_for entity, url: entity_path(entity), layout: :inline do |form|
-  = form.collection_select :parent_id, entity.parents_list, :id, :name,
+  = form.collection_select :parent_id, entity.parents_list, :id, :title,
     include_blank: 'root', hide_label: true
   = form.submit 'reparent!', class: 'btn btn-default'
 br

@@ -1,28 +1,7 @@
 # frozen_string_literal: true
 module Produce
   class Ability < ConcreteProducer
-    # it is a function or method Entity
-
-    ## block of def ... ... end with argument, deps & result
-    ## in layer_tabs#  none
-
-    # in code: method with same name, including
-    # argument(zero or several), axiom(several) and inference(one or more)
-    # in spec: generates describe
-    # in filesystem: nothing
-
-    def possibly_contexts
-      repo.descendants.axioms.collect(&:producer).collect(&:contexts)
-    end
-
-    def child_kinds
-      %w(Axiom Context Inference)
-    end
-
-    def sentence
-      "can understand #{repo.name}"
-    end
-
+    # Generation
     def to_ruby
       Code.new(repo).generate_code
     end
@@ -35,12 +14,51 @@ module Produce
       Code.new(repo).generate_path
     end
 
+    def to_spec_path
+      # Spec.new(repo).generate_path
+    end
+
+    def sentence
+      "tell #{repo.name}"
+    end
+
+    def child_kinds
+      %w(Axiom Context Inference)
+    end
+
     def abstractable?
       true
     end
 
     def abstract_kind
-      'Guaranty'
+      'Ability'
+    end
+
+    # Relations
+    def inferences
+      repo.descendants.inferences
+    end
+
+    def update_context_tree!
+      clean_dead_contexts
+      nodes = [repo]
+      repo.children.axioms.each do |axiom|
+        nodes = axiom.producer.refresh_context_tree_for(nodes)
+      end
+      nodes
+    end
+
+    def clean_dead_contexts
+      repo.children.contexts.where.not(id: all_abstracts_ids).each(&:destroy)
+    end
+
+    def all_abstracts_ids
+      repo.children.axioms.collect(&:producer).flat_map(&:abstracts).collect(&:id)
+    end
+
+    # TODO: maybe deprecate
+    def to_axiom
+      [repo.name, repo.parent.name].join('.')
     end
   end
 end

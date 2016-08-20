@@ -1,20 +1,7 @@
 # frozen_string_literal: true
 module Produce
   class Story < ConcreteProducer
-    # Use case or accident in described domain
-
-    # in code: nothing
-    # in spec: feature spec
-    # in filesystem: nothing
-
-    def child_kinds
-      %w(Story)
-    end
-
-    def sentence
-      "and listen a story about #{repo.name}"
-    end
-
+    # Generation
     def to_ruby
       []
     end
@@ -25,6 +12,18 @@ module Produce
 
     def to_ruby_path
       ''
+    end
+
+    def to_spec_path
+      # Spec.new(repo).generate_path
+    end
+
+    def child_kinds
+      %w(Story)
+    end
+
+    def sentence
+      "story of #{repo.name}"
     end
 
     def const_name

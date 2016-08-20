@@ -21,7 +21,7 @@ class Produce::Axiom::Code
   end
 
   def inference_name
-    "# #{[repo.abstract.parent.name.underscore, repo.abstract.name].join('.')}:"
+    [repo.abstract.producer.to_axiom]
   end
 
   def contexts
