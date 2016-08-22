@@ -15,7 +15,7 @@ module Produce
     end
 
     def to_spec_path
-      # Spec.new(repo).generate_path
+      ''
     end
 
     def sentence
@@ -32,6 +32,10 @@ module Produce
 
     def abstract_kind
       'Ability'
+    end
+
+    def signature
+      Code.new(repo).signature
     end
 
     # Relations

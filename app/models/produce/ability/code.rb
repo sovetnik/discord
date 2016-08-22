@@ -7,11 +7,15 @@ class Produce::Ability::Code
   end
 
   def generate_code
-    ["def #{repo.name}#{args_line}", axiom_code, 'end', inference_code, context_code]
+    [signature_line, axiom_code, 'end', inference_code, context_code]
   end
 
-  def generate_path
-    repo.parent.producer.to_ruby_path
+  def signature_line
+    "def #{signature}"
+  end
+
+  def signature
+    "#{repo.name}#{args_line}"
   end
 
   private

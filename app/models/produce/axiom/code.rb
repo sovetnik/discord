@@ -7,24 +7,24 @@ class Produce::Axiom::Code
   end
 
   def generate_code
-    repo.abstract.nil? ? inference_undefined : inference_abstract
+    [[origin, contexts].join(' contexts: ')]
   end
 
   private
 
-  def inference_undefined
-    ["# undefined => #{repo.name}"]
-  end
-
-  def inference_abstract
-    [inference_name, contexts]
-  end
-
-  def inference_name
-    [repo.abstract.producer.to_axiom]
+  def origin
+    if repo.abstract
+      repo.abstract.producer.signature
+    else
+      repo.name.underscore
+    end
   end
 
   def contexts
-    repo.abstract.descendants.inferences.collect(&:name).map { |c| "# => #{c}" }
+    if repo.abstract
+      repo.abstract.descendants.inferences
+    else
+      repo.descendants.examples
+    end.collect(&:name).join ', '
   end
 end
