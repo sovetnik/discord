@@ -9,27 +9,23 @@ module FizzBuzz
 
     def fizz?
       number.modulo(3).zero?
-      # undefined => number
     end
 
-    # context number
     def buzz?
-      # undefined => format
+      # number context: 5, 7
+
+      # when format is 5 => true
+      # when format is 7 => false
     end
 
-    # => true
-    # => false
-    # context format
     def print
-      fizz?.Checker
-      # => false
-      # => true
-      buzz?.Checker
-      # => true
-      # => false
-    end
+      # fizz? context: true, false
+      # buzz? context: true, false
 
-    # context fizz bool
-    # context buzz bool
+      # when fizz? is true and buzz? is true => 'FizzBuzz'
+      # when fizz? is true and buzz? is false => 'Fizz'
+      # when fizz? is false and buzz? is true => 'Buzz'
+      # when fizz? is false and buzz? is false => 13
+    end
   end
 end

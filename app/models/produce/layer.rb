@@ -7,7 +7,7 @@ module Produce
     end
 
     def to_ruby_path
-      Code.new(repo).generate_path
+      "#{Rails.root}/lib/#{dynamic_path}.rb"
     end
 
     def to_spec
@@ -32,6 +32,10 @@ module Produce
 
     def abstract_kind
       'Layer'
+    end
+
+    def dynamic_path
+      reverse_ancestry.map(&:underscore).join('/')
     end
 
     # Relations

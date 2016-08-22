@@ -7,7 +7,7 @@ class Produce::Layer::Spec
   end
 
   def generate_path
-    "\"\#\{Rails.root\}/spec/lib/#{dynamic_path}_spec.rb\""
+    "\"\#\{Rails.root\}/spec/lib/#{repo.producer.dynamic_path}_spec.rb\""
   end
 
   def generate_spec
@@ -19,11 +19,7 @@ class Produce::Layer::Spec
   end
 
   def require_line
-    "require \"\#\{Rails.root\}/lib/#{dynamic_path}\"\n"
-  end
-
-  def dynamic_path
-    repo.producer.reverse_ancestry.map(&:underscore).join('/')
+    "require \"\#\{Rails.root\}/lib/#{repo.producer.dynamic_path}\"\n"
   end
 
   def head_line

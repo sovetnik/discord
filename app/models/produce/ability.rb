@@ -11,7 +11,7 @@ module Produce
     end
 
     def to_ruby_path
-      Code.new(repo).generate_path
+      ''
     end
 
     def to_spec_path

@@ -22,7 +22,7 @@ module Entity
     end
 
     def path_line
-      producer.to_ruby_path
+      '# ' + producer.to_ruby_path
     end
 
     def produced_code
@@ -54,7 +54,7 @@ module Entity
                             indent(element, (depth + 2))
                           else
                             indent_line(element.to_s, depth)
-                          end
+        end
       end
       indented_array.flatten.join("\n")
     end
