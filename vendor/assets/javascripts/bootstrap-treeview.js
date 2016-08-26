@@ -33,18 +33,18 @@
 
 		levels: 2,
 
-		expandIcon: 'glyphicon glyphicon-plus',
-		collapseIcon: 'glyphicon glyphicon-minus',
+		expandIcon: 'glyphicon glyphicon-menu-right',
+		collapseIcon: 'glyphicon glyphicon-menu-down',
 		emptyIcon: 'glyphicon',
 		nodeIcon: '',
 		selectedIcon: '',
 		checkedIcon: 'glyphicon glyphicon-check',
 		uncheckedIcon: 'glyphicon glyphicon-unchecked',
 
-		color: undefined, // '#000000',
-		backColor: undefined, // '#FFFFFF',
+		color: '#B5B8B1',
+		backColor: '#2F353B',
 		borderColor: undefined, // '#dddddd',
-		onhoverColor: '#F5F5F5',
+		onhoverColor: '#474A51',
 		selectedColor: '#FFFFFF',
 		selectedBackColor: '#428bca',
 		searchResultColor: '#D9534F',

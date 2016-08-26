@@ -2,15 +2,15 @@
 
 json.text entity.producer.sentence
 json.tags [entity.kind]
-json.selectedIcon 'glyphicon glyphicon-stop'
-json.collapseIcon 'glyphicon glyphicon-chevron-down'
-json.expandIcon 'glyphicon glyphicon-chevron-right'
+json.selectedIcon 'glyphicon glyphicon-play'
+# json.collapseIcon 'glyphicon glyphicon-chevron-down'
+# json.expandIcon 'glyphicon glyphicon-triangle-right'
 # json.color "#000000"
 # json.backColor "#F5F5F5"
 json.href entity_url(entity)
 json.selectable false
 json.state do
-  json.checked true
+  # json.checked true
   json.expanded true
   json.selected entity.id == entity_id
 end
