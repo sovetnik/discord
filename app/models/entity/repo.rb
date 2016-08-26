@@ -16,7 +16,6 @@ module Entity
     scope :examples, -> { where(kind: 'Example') }
     scope :stocks, -> { where(kind: 'Stock') }
     scope :stories, -> { where(kind: 'Story') }
-    scope :init_args, -> { where(kind: %w(Stock Axiom)) }
 
     after_commit :try_update_context_tree, on: [:create, :update]
 

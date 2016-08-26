@@ -7,33 +7,48 @@ class Produce::Layer::Code
   end
 
   def generate_code
-    [head_line, stocks_line, abilities_code, footer_code]
-  end
-
-  def generate_path
-    "# ~/#{[repo.producer.full_path, repo.name.underscore].join('/')}.rb\n"
+    [module_line, [head_line, [init_lines, abilities_code], 'end'], 'end']
   end
 
   private
 
+  def module_line
+    "module #{module_name}"
+  end
+
   def head_line
-    "class #{module_name}::#{repo.name}"
+    "class #{repo.name}"
+  end
+
+  def init_lines
+    if stocked_names.any?
+      [attr_line,
+       "def initialize(#{stocked_names.join(', ')})",
+       variables_lines,
+       'end']
+    else
+      []
+    end
+  end
+
+  def attr_line
+    "attr_reader #{stocked_symbols.join(', ')}"
+  end
+
+  def variables_lines
+    stocked_names.map { |name| "@#{name} = #{name}" }
   end
 
   def module_name
     repo.ancestors.models.reverse.collect(&:name).join '::'
-  end #  => ["Chaos", "Message"]
-
-  def stocked_layers
-    stocks = []
-    repo.children.stocks.collect(&:name).each do |stock|
-      stocks << (':' + stock.underscore)
-    end
-    stocks
   end
 
-  def stocks_line
-    ["open_layers #{stocked_layers.join(', ')}\n"] if stocked_layers.any?
+  def stocked_symbols
+    stocked_names.map { |s| ':' + s.underscore }
+  end
+
+  def stocked_names
+    repo.children.stocks.pluck(:name)
   end
 
   def abilities_code

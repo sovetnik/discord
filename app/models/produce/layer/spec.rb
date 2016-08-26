@@ -27,7 +27,7 @@ class Produce::Layer::Spec
   end
 
   def subject_line
-    if repo.producer.init_args.any?
+    if repo.children.stocks.any?
       "let(:subject) { #{subject_name}.new(#{args_line}) }"
     else
       "let(:subject) { #{subject_name}.new }"
@@ -35,7 +35,7 @@ class Produce::Layer::Spec
   end
 
   def args_line
-    repo.producer.init_args.collect(&:name).join(', ')
+    repo.children.stocks.collect(&:name).join(', ')
   end
 
   def abilites_lines

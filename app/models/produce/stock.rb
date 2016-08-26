@@ -15,11 +15,11 @@ module Produce
     end
 
     def to_spec_path
-      # Spec.new(repo).generate_path
+      ''
     end
 
     def child_kinds
-      []
+      ['Example']
     end
 
     def sentence

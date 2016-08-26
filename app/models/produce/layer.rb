@@ -19,7 +19,7 @@ module Produce
     end
 
     def child_kinds
-      %w(Ability Axiom Stock)
+      %w(Ability Stock)
     end
 
     def sentence
@@ -39,10 +39,6 @@ module Produce
     end
 
     # Relations
-    def init_args
-      repo.children.init_args
-    end
-
     def reverse_ancestry
       repo.self_and_ancestors.collect(&:name).reverse
     end
