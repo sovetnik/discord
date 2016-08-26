@@ -28,7 +28,7 @@ module Entity
     end
 
     def title
-      name || abstract&.name
+      abstract.nil? ? name : abstract.name
     end
 
     def abstract_layer_name

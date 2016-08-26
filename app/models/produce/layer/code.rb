@@ -25,14 +25,14 @@ class Produce::Layer::Code
       [attr_line,
        "def initialize(#{stocked_names.join(', ')})",
        variables_lines,
-       'end']
+       "end\n"]
     else
       []
     end
   end
 
   def attr_line
-    "attr_reader #{stocked_symbols.join(', ')}"
+    "attr_reader #{stocked_symbols.join(', ')}\n"
   end
 
   def variables_lines
@@ -48,7 +48,7 @@ class Produce::Layer::Code
   end
 
   def stocked_names
-    repo.children.stocks.pluck(:name)
+    repo.children.stocks.collect(&:title)
   end
 
   def abilities_code
