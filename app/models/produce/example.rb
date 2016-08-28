@@ -7,7 +7,7 @@ module Produce
     end
 
     def to_spec
-      Spec.new(repo).generate_spec
+      []
     end
 
     def to_ruby_path
@@ -19,7 +19,7 @@ module Produce
     end
 
     def to_stub
-      Spec.new(repo).generate_stub
+      "let(:#{example_name}) { #{repo.name} }"
     end
 
     def child_kinds
@@ -39,7 +39,7 @@ module Produce
       if repo.parent.kind == 'Axiom'
         [repo.parent]
       else
-        repo.parent.examples.axioms
+        repo.parent.exemplars.axioms
       end
     end
 

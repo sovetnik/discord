@@ -5,7 +5,7 @@ module Entity
     acts_as_tree dependent: :destroy, order: 'sort_order'
 
     belongs_to :abstract, class_name: 'Repo'
-    has_many :examples, class_name: 'Repo', foreign_key: 'abstract_id', dependent: :destroy
+    has_many :exemplars, class_name: 'Repo', foreign_key: 'abstract_id', dependent: :destroy
 
     scope :abilities, -> { where(kind: 'Ability') }
     scope :axioms, -> { where(kind: 'Axiom') }

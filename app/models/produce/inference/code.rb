@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 class Produce::Inference::Code
-  attr_reader :repo
+  attr_reader :producer
 
-  def initialize(repo)
-    @repo = repo
+  def initialize(producer)
+    @producer = producer
   end
 
   def generate_code
-    ["# #{when_line} => #{repo.name.underscore}"]
+    ["# #{when_line} => #{producer.name}"]
   end
 
   private
@@ -16,11 +16,7 @@ class Produce::Inference::Code
     "when #{contexts.reverse.join(' and ')} "
   end
 
-  def context_sequence
-    contexts.reverse.join(' and ')
-  end
-
   def contexts
-    repo.ancestors.contexts.flat_map(&:producer).flat_map(&:to_ruby)
+    producer.contexts.flat_map(&:producer).flat_map(&:to_ruby)
   end
 end

@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 class Produce::Inference::Spec
-  attr_reader :repo
+  attr_reader :producer
 
-  def initialize(repo)
-    @repo = repo
+  def initialize(producer)
+    @producer = producer
   end
 
   def generate_spec
@@ -11,22 +11,22 @@ class Produce::Inference::Spec
   end
 
   def generate_stub
-    "allow(#{layer_name}).to receive(:#{ability_name}).and_return(#{repo.name})"
+    "allow(#{layer_name}).to receive(:#{ability_name}).and_return(#{producer.name})"
   end
 
   def head_line
-    "it \"returnes #{repo.name}\" do"
+    "it \"returnes #{producer.name}\" do"
   end
 
   def content_lines
-    ["expect(subject.#{ability_name}).to equal(#{repo.name})"]
+    ["expect(subject.#{ability_name}).to equal(#{producer.name})"]
   end
 
   def ability_name
-    repo.ancestors.abilities.first.name
+    producer.ability.name
   end
 
   def layer_name
-    repo.ancestors.layers.first.name.underscore
+    producer.layer.name.underscore
   end
 end

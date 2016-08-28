@@ -2,8 +2,17 @@
 module Produce
   class Inference < ConcreteProducer
     # Relations
+
+    def name
+      repo.name
+    end
+
     def axioms
-      repo.parent.examples.axioms
+      repo.parent.exemplars.axioms
+    end
+
+    def contexts
+      repo.ancestors.contexts
     end
 
     def ability
@@ -16,7 +25,7 @@ module Produce
 
     # Generation
     def to_ruby
-      Code.new(repo).generate_code
+      Code.new(self).generate_code
     end
 
     def to_ruby_path
@@ -24,11 +33,11 @@ module Produce
     end
 
     def to_spec
-      Spec.new(repo).generate_spec
+      Spec.new(self).generate_spec
     end
 
     def to_stub
-      Spec.new(repo).generate_stub
+      Spec.new(self).generate_stub
     end
 
     def to_spec_path

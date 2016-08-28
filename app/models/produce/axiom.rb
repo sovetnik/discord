@@ -11,7 +11,7 @@ module Produce
     end
 
     def to_spec
-      Spec.new(repo).generate_spec
+      []
     end
 
     def to_spec_path
