@@ -40,15 +40,15 @@ class Produce::Layer::Code
   end
 
   def module_name
-    repo.ancestors.models.reverse.collect(&:name).join '::'
+    repo.ancestors.pluck(:name).reverse.join '::'
   end
 
   def stocked_symbols
-    stocked_names.map { |s| ':' + s.underscore }
+    stocked_names.map { |s| ':' + s }
   end
 
   def stocked_names
-    repo.children.stocks.collect(&:title)
+    repo.children.stocks.collect(&:title).map(&:underscore)
   end
 
   def abilities_code

@@ -7,7 +7,8 @@ class Produce::Ability::Code
   end
 
   def generate_code
-    [signature_line, axiom_code, 'end', inference_code, context_code]
+    p inference_code
+    [signature_line, axiom_code, 'end', inference_code]
   end
 
   def signature_line
@@ -33,7 +34,7 @@ class Produce::Ability::Code
   end
 
   def stock_list
-    repo.parent.children.stocks.collect &:abstract_layer_name
+    repo.siblings.stocks.collect &:abstract_layer_name
   end
 
   def axiom_code
@@ -41,11 +42,8 @@ class Produce::Ability::Code
     code.flatten 1
   end
 
+  # FIXME: this shit isn't work
   def inference_code
-    repo.children.inferences.collect(&:name).map { |line| '# => ' + line }
-  end
-
-  def context_code
-    repo.children.axioms.collect(&:name).map { |e| "# context #{e}" }
+    repo.children.inferences.collect(&:producer).flat_map(&:to_ruby)
   end
 end

@@ -28,14 +28,14 @@ class Produce::Layer::Spec
 
   def subject_line
     if repo.children.stocks.any?
-      "let(:subject) { #{subject_name}.new(#{args_line}) }"
+      "let(:subject) { described_class.new(#{args_line}) }"
     else
-      "let(:subject) { #{subject_name}.new }"
+      'let(:subject) { described_class.new }'
     end
   end
 
   def args_line
-    repo.children.stocks.collect(&:name).join(', ')
+    repo.children.stocks.collect(&:title).map(&:underscore).join(', ')
   end
 
   def abilites_lines

@@ -3,7 +3,8 @@ module Produce
   class Inference < ConcreteProducer
     # Generation
     def to_ruby
-      ["# => #{repo.name.underscore}"]
+      # ['fuck this!']
+      Code.new(repo).generate_code
     end
 
     def to_ruby_path

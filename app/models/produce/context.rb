@@ -3,7 +3,7 @@ module Produce
   class Context < ConcreteProducer
     # Generation
     def to_ruby
-      ["context '#{repo.name}' do"]
+      [[ability_body, inference_body].join(' is ')]
     end
 
     def to_ruby_path
@@ -44,7 +44,7 @@ module Produce
     end
 
     def ability_body
-      wiredrawn? ? 'undefined' : repo.abstract.parent.name
+      wiredrawn? ? 'undefined' : repo.abstract.ancestors.abilities.first.producer.signature
     end
 
     def inference_body
