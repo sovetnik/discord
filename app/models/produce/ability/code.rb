@@ -1,13 +1,12 @@
 # frozen_string_literal: true
 class Produce::Ability::Code
-  attr_reader :repo
+  attr_reader :producer
 
-  def initialize(repo)
-    @repo = repo
+  def initialize(producer)
+    @producer = producer
   end
 
   def generate_code
-    p inference_code
     [signature_line, axiom_code, 'end', inference_code]
   end
 
@@ -16,7 +15,7 @@ class Produce::Ability::Code
   end
 
   def signature
-    "#{repo.name}#{args_line}"
+    "#{producer.repo.name}#{args_line}"
   end
 
   private
@@ -26,24 +25,22 @@ class Produce::Ability::Code
   end
 
   def args_list
-    axiom_layers_list - stock_list
+    axiom_layers_names - stock_names
   end
 
-  def axiom_layers_list
-    repo.children.axioms.collect &:abstract_layer_name
+  def axiom_layers_names
+    producer.axioms.flat_map(&:producer).collect(&:axi_name)
   end
 
-  def stock_list
-    repo.siblings.stocks.collect &:abstract_layer_name
+  def stock_names
+    producer.stocks.collect &:title
   end
 
   def axiom_code
-    code = repo.children.axioms.collect { |i| i.producer.to_ruby }
-    code.flatten 1
+    producer.axioms.flat_map { |a| a.producer.to_ruby }
   end
 
-  # FIXME: this shit isn't work
   def inference_code
-    repo.children.inferences.collect(&:producer).flat_map(&:to_ruby)
+    producer.inferences.collect(&:producer).flat_map(&:to_ruby)
   end
 end

@@ -3,11 +3,15 @@ module Produce
   class Ability < ConcreteProducer
     # Generation
     def to_ruby
-      Code.new(repo).generate_code
+      Code.new(self).generate_code
     end
 
     def to_spec
-      Spec.new(repo).generate_spec
+      Spec.new(self).generate_spec
+    end
+
+    def signature
+      Code.new(self).signature
     end
 
     def to_ruby_path
@@ -34,11 +38,19 @@ module Produce
       'Ability'
     end
 
-    def signature
-      Code.new(repo).signature
+    # Relations
+    def axioms
+      repo.children.axioms
     end
 
-    # Relations
+    def child_contexts
+      repo.children.contexts
+    end
+
+    def stocks
+      repo.siblings.stocks
+    end
+
     def inferences
       repo.descendants.inferences
     end
@@ -58,11 +70,6 @@ module Produce
 
     def all_abstracts_ids
       repo.children.axioms.collect(&:producer).flat_map(&:abstracts).collect(&:id)
-    end
-
-    # TODO: maybe deprecate
-    def to_axiom
-      [repo.name, repo.parent.name].join('.')
     end
   end
 end

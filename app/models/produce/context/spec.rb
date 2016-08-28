@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 class Produce::Context::Spec
-  attr_reader :repo
+  attr_reader :producer
 
-  def initialize(repo)
-    @repo = repo
+  def initialize(producer)
+    @producer = producer
   end
 
   def generate_spec
@@ -11,15 +11,15 @@ class Produce::Context::Spec
   end
 
   def head_line
-    "context 'when #{repo.abstract.producer.example_name} is #{repo.producer.inference_body}' do"
+    "context 'when #{producer.abstract.example_name} is #{producer.inference_body}' do"
   end
 
   def stub_line
-    repo.abstract.producer.to_stub
+    producer.abstract.to_stub
   end
 
   def content
-    repo.children.inferences.any? ? inference_spec : common_lines
+    producer.child_inferences.any? ? inference_spec : common_lines
   end
 
   def common_lines
@@ -27,22 +27,20 @@ class Produce::Context::Spec
   end
 
   def context_lines
-    repo.children.contexts.flat_map(&:producer).flat_map(&:to_spec)
+    producer.child_contexts.flat_map(&:producer).flat_map(&:to_spec)
   end
 
   def inference_spec
-    repo.children.inferences.flat_map(&:producer).flat_map(&:to_spec)
+    producer.child_inferences.flat_map(&:producer).flat_map(&:to_spec)
   end
 
+  # OPTIMIZE: maybe layer_name?
   def ability_name
-    repo.abstract.ancestors.abilities.first.name
+    producer.abstract.ability.name
   end
 
+  # OPTIMIZE: maybe layer_name?
   def layer_name
-    repo.abstract.ancestors.layers.first.name.underscore
-  end
-
-  def abstract_name
-    repo.abstract.name
+    producer.abstract.layer.name
   end
 end

@@ -1,9 +1,21 @@
 # frozen_string_literal: true
 module Produce
   class Inference < ConcreteProducer
+    # Relations
+    def axioms
+      repo.parent.examples.axioms
+    end
+
+    def ability
+      repo.ancestors.abilities.first
+    end
+
+    def layer
+      repo.ancestors.layers.first
+    end
+
     # Generation
     def to_ruby
-      # ['fuck this!']
       Code.new(repo).generate_code
     end
 
@@ -33,11 +45,6 @@ module Produce
 
     def abstractable?
       false
-    end
-
-    # Relations
-    def axioms
-      repo.parent.examples.axioms
     end
 
     def example_name

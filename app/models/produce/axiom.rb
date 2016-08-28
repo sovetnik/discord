@@ -34,8 +34,16 @@ module Produce
       'Ability'
     end
 
+    def axi_name
+      if repo.abstract.nil?
+        repo.name
+      else
+        repo.abstract.parent.name
+      end
+    end
+
     # Relations
-    def abstracts
+    def happens
       if repo.abstract.nil?
         repo.children.examples
       else
@@ -44,7 +52,7 @@ module Produce
     end
 
     def refresh_context_tree_for(nodes)
-      if abstracts.count > 1
+      if happens.count > 1
         refresh_context_tree(nodes)
       else
         nodes
@@ -54,7 +62,7 @@ module Produce
     def refresh_context_tree(nodes)
       contexts = []
       nodes.each do |node|
-        abstracts.each { |i| contexts << node.children.contexts.find_or_create_by(abstract: i) }
+        happens.each { |i| contexts << node.children.contexts.find_or_create_by(abstract: i) }
         node.children.contexts.where.not(id: contexts.map(&:id)).each(&:destroy)
       end
       contexts

@@ -5,10 +5,6 @@ module Entity
       repo.root.descendants.stories
     end
 
-    def sentences
-      repo.ancestors.reverse.collect(&:producer).map(&:sentence)
-    end
-
     def sentence
       producer.sentence
     end

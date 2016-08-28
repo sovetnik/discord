@@ -1,8 +1,12 @@
 # frozen_string_literal: true
 module Produce
-  REPO = Struct.new 'Repo', :repo
+  class ConcreteProducer
+    attr_reader :repo
 
-  class ConcreteProducer < REPO
+    def initialize(repo)
+      @repo = repo
+    end
+
     def to_tree
       expanded_childs.unshift self.class
     end
@@ -18,7 +22,7 @@ module Produce
     end
 
     def possible_childs
-      child_kinds.map { |ck| full_kind(ck).constantize.new }
+      child_kinds.map { |ck| full_kind(ck).constantize.new(self) }
     end
 
     def expand_child(child)

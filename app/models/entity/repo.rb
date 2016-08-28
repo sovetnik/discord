@@ -31,10 +31,6 @@ module Entity
       abstract.nil? ? name : abstract.name
     end
 
-    def abstract_layer_name
-      abstract&.parent&.name
-    end
-
     def possibly_kinds
       return ['Domain'] if parent_id.nil?
       Entity::KINDS & parent.producer.child_kinds

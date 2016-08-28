@@ -1,9 +1,10 @@
 # frozen_string_literal: true
 class Produce::Axiom::Code
-  attr_reader :repo
+  attr_reader :repo, :producer
 
   def initialize(repo)
     @repo = repo
+    @producer = repo.producer
   end
 
   def generate_code
@@ -16,15 +17,11 @@ class Produce::Axiom::Code
     if repo.abstract
       repo.abstract.producer.signature
     else
-      repo.name.underscore
+      repo.name
     end
   end
 
   def contexts
-    if repo.abstract
-      repo.abstract.descendants.inferences
-    else
-      repo.descendants.examples
-    end.collect(&:name).join ', '
+    producer.happens.collect(&:name).join ', '
   end
 end
