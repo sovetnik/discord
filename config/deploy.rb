@@ -6,7 +6,7 @@ set :application, 'discordian'
 set :scm, :git
 set :repo_url, 'git@github.com:sovetnik/discordian.git'
 ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }.call
-set :branch, 'spec'
+set :branch, 'code'
 
 set :deploy_to, '/var/www/discordian'
 set :deploy_user, 'doppler'

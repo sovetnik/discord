@@ -1,9 +1,9 @@
 # frozen_string_literal: true
 class Produce::Layer::Code
-  attr_reader :repo
+  attr_reader :producer
 
-  def initialize(repo)
-    @repo = repo
+  def initialize(producer)
+    @producer = producer
   end
 
   def generate_code
@@ -13,11 +13,11 @@ class Produce::Layer::Code
   private
 
   def module_line
-    "module #{module_name}"
+    "module #{producer.module_name}"
   end
 
   def head_line
-    "class #{repo.name}"
+    "class #{producer.layer_name}"
   end
 
   def init_lines
@@ -39,24 +39,15 @@ class Produce::Layer::Code
     stocked_names.map { |name| "@#{name} = #{name}" }
   end
 
-  def module_name
-    repo.ancestors.pluck(:name).reverse.join '::'
-  end
-
   def stocked_symbols
     stocked_names.map { |s| ':' + s }
   end
 
   def stocked_names
-    repo.children.stocks.collect(&:title).map(&:underscore)
+    producer.stocks.collect(&:title).map(&:underscore)
   end
 
   def abilities_code
-    code = repo.children.abilities.collect { |i| i.producer.to_ruby }
-    code.flatten 1
-  end
-
-  def footer_code
-    "end\n"
+    code = producer.abilities.flat_map { |i| i.producer.to_ruby }
   end
 end

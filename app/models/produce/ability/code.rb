@@ -7,7 +7,7 @@ class Produce::Ability::Code
   end
 
   def generate_code
-    [signature_line, axiom_code, 'end', inference_code]
+    [signature_line, axiom_code, inference_code, "end\n"]
   end
 
   def signature_line

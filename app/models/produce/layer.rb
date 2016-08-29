@@ -3,7 +3,7 @@ module Produce
   class Layer < ConcreteProducer
     # Generation
     def to_ruby
-      Code.new(repo).generate_code
+      Code.new(self).generate_code
     end
 
     def to_ruby_path
@@ -11,11 +11,11 @@ module Produce
     end
 
     def to_spec
-      Spec.new(repo).generate_spec
+      Spec.new(self).generate_spec
     end
 
     def to_spec_path
-      Spec.new(repo).generate_path
+      Spec.new(self).generate_path
     end
 
     def child_kinds
@@ -34,11 +34,28 @@ module Produce
       'Layer'
     end
 
+    def module_name
+      repo.ancestors.pluck(:name).reverse.join '::'
+    end
+
+    def layer_name
+      repo.name.camelize
+    end
+
     def dynamic_path
       reverse_ancestry.map(&:underscore).join('/')
     end
 
     # Relations
+
+    def abilities
+      repo.children.abilities
+    end
+
+    def stocks
+      repo.children.stocks
+    end
+
     def reverse_ancestry
       repo.self_and_ancestors.collect(&:name).reverse
     end

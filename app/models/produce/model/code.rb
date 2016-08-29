@@ -7,7 +7,7 @@ class Produce::Model::Code
   end
 
   def generate_code
-    [head_line, layers_code, 'end']
+    [head_line, 'end']
   end
 
   def generate_path
@@ -22,14 +22,5 @@ class Produce::Model::Code
 
   def head_line
     "module #{module_name}"
-  end
-
-  def const_name
-    [repo.parent.producer.const_name, repo.name].join '::'
-  end
-
-  def layers_code
-    code = repo.children.layers.collect { |l| l.producer.to_ruby }
-    code.flatten(1)
   end
 end
