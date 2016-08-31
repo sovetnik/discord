@@ -33,7 +33,7 @@ class Produce::Ability::Code
   end
 
   def stock_names
-    producer.stocks.collect &:title
+    producer.stocks.collect(&:title) << producer.layer.layer_name
   end
 
   def axiom_code

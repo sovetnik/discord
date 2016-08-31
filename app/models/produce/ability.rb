@@ -39,6 +39,11 @@ module Produce
     end
 
     # Relations
+
+    def layer
+      repo.parent.producer
+    end
+
     def axioms
       repo.children.axioms
     end
@@ -69,7 +74,7 @@ module Produce
     end
 
     def all_abstracts_ids
-      repo.children.axioms.collect(&:producer).flat_map(&:abstracts).collect(&:id)
+      repo.children.axioms.collect(&:producer).flat_map(&:happens).collect(&:id)
     end
   end
 end
