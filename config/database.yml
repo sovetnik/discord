@@ -16,5 +16,7 @@ test:
   database: discordian_test
 
 production:
-  <<: *default
-  database: discordian_production
+  url: <%= ENV['DATABASE_URL'] %>
+  adapter: postgresql
+  encoding: unicode
+  pool: 5
